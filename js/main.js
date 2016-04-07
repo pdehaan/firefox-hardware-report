@@ -7,19 +7,20 @@
             height: 240,
             left: 0,
             right: 60,
-            xax_count: 3
+            xax_count: 4
         }
     };
 
-    d3.csv('data/hwsurvey-FF43-GFXStrings.csv', function(data_csv) {
-    d3.json('data/hwsurvey-FF43.json', function(data_gfx) {
-        var oss = getOSs(data_csv);
-        data_gfx.forEach(function(d) {
-            Object.assign(d, oss);
+    d3.json('data/hwsurvey-weekly-to20160326.json', function(data_gfx) {
+        data_gfx.map(function(d) {
+            //consolidate 'el capitan' releases
+            d['os_Darwin-15'] = d['os_Darwin-15.0.0']
+                + d['os_Darwin-15.2.0']
+                + d['os_Darwin-15.3.0']
+                + d['os_Darwin-15.4.0']
         });
 
         drawCharts([data_gfx]);
-    });
     });
 
     function drawCharts(data) {
@@ -56,8 +57,8 @@
             target: '#operating-systems',
             full_width: true,
             x_accesor: 'date',
-            y_accessor: ['os_Windows_NT-5.1', 'os_Windows_NT-10.0', 'os_Windows_NT-6.3', 'os_Darwin-14.5.0', 'os_Darwin-13.4.0'],
-            legend: ['Win XP', 'Win 10', 'Win 8.1', 'Yosemite', 'Mavericks']
+            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Darwin-15'],
+            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'OS X 15']
         });
 
         MG.data_graphic({
@@ -104,8 +105,8 @@
             target: '#display-resolution',
             full_width: true,
             x_accesor: 'date',
-            y_accessor: ['display_1366x768', 'display_1920x1080', 'display_1280x800', 'display_1440x900'],
-            legend: ['1366x768', '1920x1080', '1280x800', '1440x900']
+            y_accessor: ['display_1366x768', 'display_1920x1080', 'display_1600x900', 'display_1280x1024', 'display_1024x768'],
+            legend: ['1366x768', '1920x1080', '1600x900', '1280x1024', '1024x768']
         });
             
         MG.data_graphic({
@@ -120,32 +121,8 @@
             target: '#ram',
             full_width: true,
             x_accesor: 'date',
-            y_accessor: ['ram_4', 'ram_8', 'ram_2', 'ram_3', 'ram_1'],
-            legend: ['4GB', '8GB', '2GB', '3GB', '1GB']
+            y_accessor: ['ram_4', 'ram_2', 'ram_8', 'ram_3', 'ram_1'],
+            legend: ['4GB', '2GB', '8GB', '3GB', '1GB']
         });
-    }
-
-    function getOSs(data) {
-        var n = data.length;
-        var data_point = {};
-        data.map(function(d) {
-            d['os-version'] = d['environment/system/os/name'] + '-' + d['environment/system/os/version'];
-        });
-
-        var nested = d3.nest()
-            .key(function(d) { return d['os-version']; })
-            .rollup(function(leaves) { return leaves.length; })
-            .entries(data);
-
-        nested.sort(function(a, b) {
-            return b.values - a.values;
-        });
-        console.log('operating systems', nested);
-
-        for (var i = 0; i < 10; i += 1) {
-            data_point['os_' + nested[i].key] = nested[i].values / n;
-        }
-
-        return data_point;
     }
 }());
