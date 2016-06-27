@@ -44,7 +44,7 @@
             full_width: true,
             x_accesor: 'date',
             y_accessor: ['gpu_AMD', 'gpu_Intel', 'gpu_NVIDIA'],
-            legend: ['AMD', 'INTEL', 'NVIDIA']
+            legend: ['AMD', 'Intel', 'NVIDIA']
         });
 
         MG.data_graphic({
