@@ -43,8 +43,8 @@
             target: '#pc-video-card',
             full_width: true,
             x_accesor: 'date',
-            y_accessor: ['gpu_NVIDIA', 'gpu_AMD', 'gpu_Intel'],
-            legend: ['NVIDIA', 'AMD', 'INTEL']
+            y_accessor: ['gpu_AMD', 'gpu_Intel', 'gpu_NVIDIA'],
+            legend: ['AMD', 'INTEL', 'NVIDIA']
         });
 
         MG.data_graphic({
