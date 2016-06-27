@@ -11,13 +11,15 @@
         }
     };
 
-    d3.json('data/hwsurvey-weekly-to20160326.json', function(data_gfx) {
+    d3.json('data/hwsurvey-weekly.json', function(data_gfx) {
         data_gfx.map(function(d) {
             //consolidate 'el capitan' releases
-            d['os_Darwin-15'] = d['os_Darwin-15.0.0']
-                + d['os_Darwin-15.2.0']
-                + d['os_Darwin-15.3.0']
-                + d['os_Darwin-15.4.0']
+            d['os_Darwin-15'] = 0;
+            d['os_Darwin-15'] += d['os_Darwin-15.0.0'] || 0
+            d['os_Darwin-15'] += d['os_Darwin-15.2.0'] || 0
+            d['os_Darwin-15'] += d['os_Darwin-15.3.0'] || 0
+            d['os_Darwin-15'] += d['os_Darwin-15.4.0'] || 0
+            d['os_Darwin-15'] += d['os_Darwin-15.5.0'] || 0
         });
 
         drawCharts([data_gfx]);
@@ -25,7 +27,7 @@
 
     function drawCharts(data) {
         for (var i = 0; i < data.length; i++) {
-            data[i] = MG.convert.date(data[i], 'date', '%Y-%m-%dT00:00:00');
+            data[i] = MG.convert.date(data[i], 'date', '%Y-%m-%d');
         }
         console.log('data', data);
 
