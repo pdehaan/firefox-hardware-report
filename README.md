@@ -1,2 +1,3 @@
-# firefox-hardware-survey
-Hardware stats for Firefox users
+# Firefox Hardware Survey
+
+https://metrics.mozilla.com/protected/firefox-hardware-survey/
