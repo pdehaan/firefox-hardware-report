@@ -11,6 +11,41 @@
         }
     };
 
+    // on category click
+    d3.selectAll('ul.category li a.pill')
+      .on('click', function() {
+        d3.event.preventDefault();
+
+        d3.selectAll('ul.category li a.pill')
+            .classed('active', false);
+
+        d3.select(this)
+            .classed('active', true);
+
+        var section = d3.select(this).attr('href').slice(6);
+        document.location.hash = section;
+
+        reorderCharts(section);
+
+        // trigger resize since we're not resizing hidden svgs
+        window.dispatchEvent(new Event('resize'));
+
+        return false;
+    });
+
+    function reorderCharts(section) {
+        if (section == 'all') {
+            d3.selectAll('.chart').style('display', 'block');
+            return;
+        }
+
+        d3.selectAll('.chart')
+            .style('display', 'none');
+
+        d3.selectAll('.chart.' + section)
+            .style('display', 'block');
+    }
+
     d3.json('data/hwsurvey-weekly.json', function(data_gfx) {
         data_gfx.map(function(d) {
             //consolidate 'el capitan' releases
@@ -23,19 +58,28 @@
         });
 
         drawCharts([data_gfx]);
+        
+        // on first-load
+        var section = (document.location.hash) ? document.location.hash.slice(1) : 'all';
+        d3.selectAll('.category li a')
+            .filter(function() {
+                return d3.select(this).attr('href') == '#goto-' + section;
+            })
+            .classed('active', true);
+
+        reorderCharts(section);
     });
 
     function drawCharts(data) {
         for (var i = 0; i < data.length; i++) {
             data[i] = MG.convert.date(data[i], 'date', '%Y-%m-%d');
         }
-        console.log('data', data);
 
         MG.data_graphic({
             title: "GPU",
-            description: "Lorem ipsum dolor sit.",
             data: data,
             format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
             xax_count: global.trunk.xax_count,
@@ -49,9 +93,9 @@
 
         MG.data_graphic({
             title: "Operating System",
-            description: "Lorem ipsum dolor sit.",
             data: data,
             format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
             xax_count: global.trunk.xax_count,
@@ -65,14 +109,14 @@
 
         MG.data_graphic({
             title: "Processor",
-            description: "Lorem ipsum dolor sit.",
             data: data,
             format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
             xax_count: global.trunk.xax_count,
             right: global.trunk.right,
-            target: '#cpu',
+            target: '#processor',
             full_width: true,
             x_accesor: 'date',
             y_accessor: ['cpu_AuthenticAMD', 'cpu_GenuineIntel'],
@@ -84,6 +128,7 @@
             description: "Number of cores. Only for PCs.",
             data: data,
             format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
             xax_count: global.trunk.xax_count,
@@ -97,9 +142,9 @@
 
         MG.data_graphic({
             title: "Display Resolution",
-            description: "Lorem ipsum dolor sit.",
             data: data,
             format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
             xax_count: global.trunk.xax_count,
@@ -113,9 +158,9 @@
             
         MG.data_graphic({
             title: "Memory",
-            description: "Lorem ipsum dolor sit.",
             data: data,
             format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
             xax_count: global.trunk.xax_count,
@@ -125,6 +170,116 @@
             x_accesor: 'date',
             y_accessor: ['ram_4', 'ram_2', 'ram_8', 'ram_3', 'ram_1'],
             legend: ['4GB', '2GB', '8GB', '3GB', '1GB']
+        });
+        
+        MG.data_graphic({
+            title: "GPU Model",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#gpu-model',
+            full_width: true,
+        });
+        
+        MG.data_graphic({
+            title: "Browser 32, 64 bit",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#browser-share-32-64',
+            full_width: true,
+        });
+        
+        MG.data_graphic({
+            title: "OS 32, 64 bit",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#browser-share-os-32-64',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "Browsers that can use WebGL1",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#browser-share-os-32-64',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "Processor Speed",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#processor-speed',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "Processor Speed",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#processor-speed',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "Flash Availability",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#flash',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "Silverlight Availability",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#silverlight',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "Unity Web Player Availability",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#unity',
+            full_width: true,
+        });
+
+        MG.data_graphic({
+            title: "WebGL 1 Availability",
+            chart_type: 'missing-data',
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#webgl1',
+            full_width: true,
         });
     }
 }());

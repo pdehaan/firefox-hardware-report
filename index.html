@@ -4,19 +4,19 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <title>Firefox Hardware Survey</title>
 
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,700' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic,700' rel='stylesheet' type='text/css'>
     <link href="//netdna.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
     <link href="css/metricsgraphics.css" rel="stylesheet" type="text/css" id="light">
     <link href="css/metricsgraphics-dark.css" rel="stylesheet" type="text/css" id="dark">
     <link href="css/games.css" rel="stylesheet" type="text/css">
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.4.11/d3.min.js" charset="utf-8"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src='js/metricsgraphics.min.js'></script>
 </head>
 <body>
@@ -24,27 +24,45 @@
         <div class='row'>
             <div class='col-lg-12'>
                 <h1 class='text-center'>Firefox Hardware Survey</h1>
-                <p>The Firefox Hardware Survey is a public report of the hardware that is used by a representative sample of the Firefox Release population. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize Firefox development efforts, as well as power this survey, the aim of which is to help game developers understand what hardware configurations their titles might want to target.</p>
+                <p>The Firefox Hardware Survey is a public report of the hardware that is used by a representative sample of the population from Firefox's release channel. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize Firefox development efforts and to power this survey. This survey aims to help game developers understand what hardware configurations their titles might want to target.</p>
             </div>
         </div>
         <div class='row'>
-            
-            <div class='col-lg-4 text-center chart' id='cpu'></div>
-            <div class='col-lg-4 text-center chart' id='pc-video-card'></div>
-            <div class='col-lg-4 text-center chart' id='display-resolution'></div>
+            <ul class='text-center category'>
+                <li><a href='#goto-all' class='pill'>All</a></li>
+                <li><a href='#goto-cpu-and-memory' class='pill'>CPU&nbsp;and&nbsp;Memory</a></li>
+                <li><a href='#goto-graphics' class='pill'>Graphics</a></li>
+                <li><a href='#goto-os-and-browser-share' class='pill'>OS&nbsp;and&nbsp;Browser&nbsp;Share</a></li>
+                <li><a href='#goto-plugins' class='pill'>Plugins</a></li>
+            </ul>
         </div>
         <div class='row'>
-            <div class='col-lg-4 text-center chart' id='no-of-cpus'></div>
-            <div class='col-lg-4 text-center chart' id='operating-systems'></div>
-            <div class='col-lg-4 text-center chart' id='ram'></div>
+            <div class='col-lg-4 text-center chart cpu-and-memory' id='processor'></div>
+            <div class='col-lg-4 text-center chart graphics' id='pc-video-card'></div>
+            <div class='col-lg-4 text-center chart graphics' id='display-resolution'></div>
+            <div class='col-lg-4 text-center chart cpu-and-memory' id='no-of-cpus'></div>
+            <div class='col-lg-4 text-center chart os-and-browser-share' id='operating-systems'></div>
+            <div class='col-lg-4 text-center chart cpu-and-memory' id='ram'></div>
+            <div class='col-lg-4 text-center chart graphics' id='gpu-model'></div>
+            <div class='col-lg-4 text-center chart os-and-browser-share' id='browser-share-32-64'></div>
+            <div class='col-lg-4 text-center chart os-and-browser-share' id='browser-share-os-32-64'></div>
+            <div class='col-lg-4 text-center chart graphics' id='webgl1'></div>
+            <div class='col-lg-4 text-center chart cpu-and-memory' id='processor-speed'></div>
+            <div class='col-lg-4 text-center chart plugins' id='flash'></div>
+            <div class='col-lg-4 text-center chart plugins' id='silverlight'></div>
+            <div class='col-lg-4 text-center chart plugins' id='unity'></div>
         </div>
     </div>
     <div class='container container-prose'>
-        <p><b>How is the survey created?</b> Firefox collects information about your hardware and operating system configuration and sends it to us roughly daily. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing  indicators that might be used to identify individual users.
-        <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <i>Other</i> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Games Website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
+        <h2>How is the survey created?</h2>
+        <p>Firefox collects information about your hardware and operating system configuration and sends it to us roughly daily. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing  indicators that might be used to identify individual users.
+        <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <span class='it'>Other</span> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Games Website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
+
+        <h2>Who worked on it?</h2>
+        <p>Lorem ipsum dolor sit.</p>
         
-        <div id="credits">
-            MOZILLA &middot; Portions of this content are &copy; 1998–2016 by individual mozilla.org contributors. Content available under a Creative Commons license. Lorem ipsum dolor sit.
+        <div id='credits'>
+            MOZILLA &middot; Portions of this content are &copy; 1998–2016 by individual mozilla.org contributors. Content available under a Creative Commons license.
         </div>
     </div>
 

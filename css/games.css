@@ -1,3 +1,40 @@
+html {
+    font-size: 13px;
+}
+
+.pill {
+    font-family: 'PT Sans', serif;
+    font-size: 1rem;
+    text-transform: uppercase;
+}
+
+.pill:hover,
+.pill:active,
+.pill:visited,
+.pill:link {
+    text-decoration: none;
+}
+
+ul {
+    clear: both;
+    font-size: 1.2rem;
+    padding: 10px 0 0 0;
+}
+
+ul.category li {
+    display: inline;
+    list-style: none;
+    padding: 3px 10px 3px 10px;
+}
+
+ul li.no-padding {
+    padding: 0;
+}
+
+ul.category li {
+    line-height: 30px;
+}
+
 .mg-chart-title {
     font-family: 'Old Standard TT', serif;
 	font-size: 1.5rem;
@@ -27,12 +64,8 @@ svg {
     margin-top: 30px;
 }
 
-html {
-    font-size: 12px;
-}
-
 body {
-    font-family: 'Open Sans', sans-serif, Arial;
+    font-family: 'PT Sans', sans-serif, Arial;
     background: url(../images/bg2.jpg) no-repeat center 30% fixed;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
@@ -44,6 +77,11 @@ p {
     font-family: 'PT Serif', serif;
     font-size: 16px;
     line-height: 24px;
+}
+
+.it {
+    font-family: 'Old Standard TT', serif !important;
+    font-style: italic;
 }
 
 a,
@@ -60,9 +98,9 @@ a:hover {
 a.active {
     background-color: #70b6f1;
     border: 0;
-    border-radius: 24px;
-    color: #fff;
-    padding: 2px 8px 2px 8px;
+    border-radius: 16px;
+    color: black;
+    padding: 3px 10px 3px 10px;
     text-decoration: none;
 }
 
@@ -79,6 +117,11 @@ h1 {
     text-align: center;
 }
 
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+}
+
 .transparent-rollover-rect {
     fill: white;
 }
@@ -90,7 +133,7 @@ h1 {
 
 @media (max-width:1200px){
     .mg-chart-title {
-        font-size: 2rem;
+        font-size: 1.9rem;
     }
 }
 
@@ -120,35 +163,6 @@ h1 {
 .btn-group span.title {
     margin-left: 4px;
     margin-right: 4px;
-}
-
-ul.switch {
-    border-bottom: 1px solid #3b3b3b;
-    border-top: 1px solid #3b3b3b;
-    clear: both;
-    font-size: 1.2rem;
-    margin-bottom: 20px;
-    padding: 17px 0 17px 0;
-}
-
-ul.switch li {
-    display: inline-block;
-    list-style: none;
-    padding-right: 15px;
-}
-
-ul.switch li.no-padding {
-    padding: 0;
-}
-
-.pill {
-    font-family: 'Open Sans', serif;
-    font-size: 1rem;
-    text-transform: uppercase;
-}
-
-.pill:hover {
-    text-decoration: none;
 }
 
 .mg-x-axis text,
