@@ -177,41 +177,26 @@
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#gpu-model',
             full_width: true,
         });
         
         MG.data_graphic({
-            title: "Browser 32, 64 bit",
+            title: "Browsers by Architecture",
+            description: "The share of 32-to-64-bit browsers.",
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#browser-share-32-64',
             full_width: true,
         });
-        
-        MG.data_graphic({
-            title: "OS 32, 64 bit",
-            chart_type: 'missing-data',
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#browser-share-os-32-64',
-            full_width: true,
-        });
 
         MG.data_graphic({
-            title: "Browsers that can use WebGL1",
+            title: "OSs by Architecture",
+            description: "The share of 32-to-64-bit operating systems.",
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#browser-share-os-32-64',
             full_width: true,
         });
@@ -221,63 +206,46 @@
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#processor-speed',
             full_width: true,
         });
 
         MG.data_graphic({
-            title: "Processor Speed",
+            title: "Flash",
+            description: "Is the Flash plugin available?",
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#processor-speed',
-            full_width: true,
-        });
-
-        MG.data_graphic({
-            title: "Flash Availability",
-            chart_type: 'missing-data',
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#flash',
             full_width: true,
         });
 
         MG.data_graphic({
-            title: "Silverlight Availability",
+            title: "Silverlight",
+            description: "Is the Silverlight plugin available?",
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#silverlight',
             full_width: true,
         });
 
         MG.data_graphic({
-            title: "Unity Web Player Availability",
+            title: "Unity",
+            description: "Is the Unity Web Player available?",
             chart_type: 'missing-data',
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#unity',
             full_width: true,
         });
 
         MG.data_graphic({
-            title: "WebGL 1 Availability",
+            title: "WebGL",
             chart_type: 'missing-data',
+            description: "The percentage of people who try to use WebGL 1 and succeed.",
             width: global.trunk.width,
             height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
             target: '#webgl1',
             full_width: true,
         });
