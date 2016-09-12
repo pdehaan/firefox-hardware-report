@@ -10,3 +10,5 @@ data/hwsurvey-weekly-to20160326.json
 data/hwsurvey-weekly.json
 
 .DS_Store
+
+*.json

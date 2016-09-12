@@ -3,7 +3,7 @@
 
     var global = {
         trunk: {
-            width: 360,
+            width: 350,
             height: 240,
             left: 0,
             right: 60,
@@ -46,15 +46,37 @@
             .style('display', 'block');
     }
 
-    d3.json('data/hwsurvey-weekly.json', function(data_gfx) {
+    d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
         data_gfx.map(function(d) {
             //consolidate 'el capitan' releases
             d['os_Darwin-15'] = 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.0.0'] || 0
-            d['os_Darwin-15'] += d['os_Darwin-15.2.0'] || 0
-            d['os_Darwin-15'] += d['os_Darwin-15.3.0'] || 0
-            d['os_Darwin-15'] += d['os_Darwin-15.4.0'] || 0
-            d['os_Darwin-15'] += d['os_Darwin-15.5.0'] || 0
+            d['os_Darwin-15'] += d['os_Darwin-15.0.0'] || 0;
+            d['os_Darwin-15'] += d['os_Darwin-15.2.0'] || 0;
+            d['os_Darwin-15'] += d['os_Darwin-15.3.0'] || 0;
+            d['os_Darwin-15'] += d['os_Darwin-15.4.0'] || 0;
+            d['os_Darwin-15'] += d['os_Darwin-15.5.0'] || 0;
+            d['os_Darwin-15'] += d['os_Darwin-15.6.0'] || 0;
+            
+            //consolidate gpu models
+            /*d['gpu_model_Other'] += d['gpu_model_gen7-ivybridge-gt1'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_EVERGREEN-TURKS'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_EVERGREEN-CEDAR'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen4.5-gma4500'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen8-broadwell-gt2'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen3-gma950'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_CAYMAN-ARUBA'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen5-ironlake'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_CIK-KABINI'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_EVERGREEN-PALM'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen4-gma3500'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen4.5-gma4500hd'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen9-skylake-gt2'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_NV40-C61'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen3-gma3100'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen7.5-haswell-gt3'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_gen7.5-haswell-gt1'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_Tesla-GT218'] || 0;
+            d['gpu_model_Other'] += d['gpu_model_CIK-MULLINS'] || 0;*/
         });
 
         drawCharts([data_gfx]);
@@ -87,6 +109,7 @@
             target: '#pc-video-card',
             full_width: true,
             x_accesor: 'date',
+            max_y: 1,
             y_accessor: ['gpu_AMD', 'gpu_Intel', 'gpu_NVIDIA'],
             legend: ['AMD', 'Intel', 'NVIDIA']
         });
@@ -119,13 +142,13 @@
             target: '#processor',
             full_width: true,
             x_accesor: 'date',
+            max_y: 1,
             y_accessor: ['cpu_AuthenticAMD', 'cpu_GenuineIntel'],
             legend: ['AMD', 'Intel']
         });
 
         MG.data_graphic({
             title: "Number of Cores",
-            description: "Number of cores. Only for PCs.",
             data: data,
             format: 'perc',
             animate_on_load: true,
@@ -136,6 +159,7 @@
             target: '#no-of-cpus',
             full_width: true,
             x_accesor: 'date',
+            max_y: 1,
             y_accessor: ['cores_2', 'cores_4', 'cores_1', 'cores_3'],
             legend: ['2 cores', '4 cores', '1 core', '3 cores']
         });
@@ -174,79 +198,140 @@
         
         MG.data_graphic({
             title: "GPU Model",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#gpu-model',
             full_width: true,
+            x_accesor: 'date',
+            max_y: '.10',
+            y_accessor: ['gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1'],
+            legend: ['Haswell (GT2)', 'Ivy Bridge (GT2)', 'Sandy Bridge (GT2)', 'Sandy Bridge (GT1)', 'Ivy Bridge (GT1)']
+            //y_accessor: ['gpu_model_Other', 'gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1', 'gpu_model_EVERGREEN-TURKS', 'gpu_model_EVERGREEN-CEDAR', 'gpu_model_gen4.5-gma4500', 'gpu_model_gen8-broadwell-gt2', 'gpu_model_gen3-gma950', 'gpu_model_CAYMAN-ARUBA', 'gpu_model_gen5-ironlake', 'gpu_model_CIK-KABINI', 'gpu_model_EVERGREEN-PALM', 'gpu_model_gen4-gma3500', 'gpu_model_gen4.5-gma4500hd', 'gpu_model_gen9-skylake-gt2', 'gpu_model_NV40-C61', 'gpu_model_gen3-gma3100', 'gpu_model_gen7.5-haswell-gt3', 'gpu_model_gen7.5-haswell-gt1', 'gpu_model_Tesla-GT218', 'gpu_model_CIK-MULLINS'],
+            //legend: ['Other', 'gpu_model_gen7.5-haswell-gt2', 'Ivy Bridge (Gen7, GT2)', 'Sandy Bridge (Gen6, GT2)', 'Sandy Bridge (Gen6, GT1)', 'Ivy Bridge (Gen7, GT1)', 'Evergreen Turks', 'Evergreen Cedar', 'Intel G45 (GMA X4500)', 'Broadwell (Gen8, GT2)', 'Intel 945 (GMA 950)', 'Cayman Aruba', 'Ironlake (Gen5)', 'gpu_model_CIK-KABINI', 'gpu_model_EVERGREEN-PALM', 'gpu_model_gen4-gma3500', 'gpu_model_gen4.5-gma4500hd', 'gpu_model_gen9-skylake-gt2', 'gpu_model_NV40-C61', 'gpu_model_gen3-gma3100', 'gpu_model_gen7.5-haswell-gt3', 'gpu_model_gen7.5-haswell-gt1', 'gpu_model_Tesla-GT218', 'gpu_model_CIK-MULLINS']
         });
         
         MG.data_graphic({
             title: "Browsers by Architecture",
             description: "The share of 32-to-64-bit browsers.",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#browser-share-32-64',
+            y_accessor: ['browser_arch_x86', 'browser_arch_x86-64'],
+            legend: ['32-bit', '64-bit'],
+            max_y: 1,
             full_width: true,
         });
 
         MG.data_graphic({
             title: "OSs by Architecture",
             description: "The share of 32-to-64-bit operating systems.",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#browser-share-os-32-64',
+            y_accessor: ['os_arch_x86', 'os_arch_x86-64'],
+            legend: ['32-bit', '64-bit'],
+            max_y: 1,
             full_width: true,
         });
 
         MG.data_graphic({
             title: "Processor Speed",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#processor-speed',
+            max_y: 0.2,
+            y_accessor: ['cpu_speed_2.4', 'cpu_speed_2.2', 'cpu_speed_2.5', 'cpu_speed_2.3', 'cpu_speed_2.0'],
+            legend: ['2.4 Ghz', '2.2 Ghz', '2.5 Ghz', '2.3 Ghz', '2.0 Ghz'],
+            //y_accessor: ['cpu_speed_2.3', 'cpu_speed_1.3', 'cpu_speed_1.5', 'cpu_speed_1.4', 'cpu_speed_1.7', 'cpu_speed_1.6', 'cpu_speed_1.9', 'cpu_speed_1.8', 'cpu_speed_3.3', 'cpu_speed_3.0', 'cpu_speed_3.1', 'cpu_speed_3.2', 'cpu_speed_3.4', 'cpu_speed_3.5', 'cpu_speed_3.6', 'cpu_speed_2.2', 'cpu_speed_2.4', 'cpu_speed_2.5', 'cpu_speed_2.6', 'cpu_speed_2.7', 'cpu_speed_2.0', 'cpu_speed_2.1', 'cpu_speed_2.8', 'cpu_speed_2.9', 'cpu_speed_Other'],
+            //legend: ['cpu_speed_2.3', 'cpu_speed_1.3', 'cpu_speed_1.5', 'cpu_speed_1.4', 'cpu_speed_1.7', 'cpu_speed_1.6', 'cpu_speed_1.9', 'cpu_speed_1.8', 'cpu_speed_3.3', 'cpu_speed_3.0', 'cpu_speed_3.1', 'cpu_speed_3.2', 'cpu_speed_3.4', 'cpu_speed_3.5', 'cpu_speed_3.6', 'cpu_speed_2.2', 'cpu_speed_2.4', 'cpu_speed_2.5', 'cpu_speed_2.6', 'cpu_speed_2.7', 'cpu_speed_2.0', 'cpu_speed_2.1', 'cpu_speed_2.8', 'cpu_speed_2.9', 'cpu_speed_Other'],
             full_width: true,
         });
 
         MG.data_graphic({
             title: "Flash",
             description: "Is the Flash plugin available?",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#flash',
+            y_accessor: ['has_flash_True'],
+            legend: ['Yes'],
+            max_y: 1,
             full_width: true,
         });
 
         MG.data_graphic({
             title: "Silverlight",
             description: "Is the Silverlight plugin available?",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#silverlight',
+            y_accessor: ['has_silverlight_True'],
+            legend: ['Yes'],
+            max_y: 1,
             full_width: true,
         });
 
         MG.data_graphic({
             title: "Unity",
             description: "Is the Unity Web Player available?",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#unity',
+            y_accessor: ['has_unity_True'],
+            legend: ['Yes'],
+            max_y: 1,
             full_width: true,
         });
 
         MG.data_graphic({
             title: "WebGL",
-            chart_type: 'missing-data',
+            data: data,
+            format: 'perc',
             description: "The percentage of people who try to use WebGL 1 and succeed.",
+            animate_on_load: true,
             width: global.trunk.width,
             height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
             target: '#webgl1',
+            y_accessor: ['webgl_canvas_request_Success'],
+            legend: ['Yes'],
+            max_y: 0.1,
             full_width: true,
         });
     }
