@@ -169,3 +169,20 @@ h2 {
 .mg-y-axis text {
     font-size: 0.8rem;
 }
+
+.mg-line6-color {
+    stroke: #e371ca;
+}
+
+.mg-hover-line6-color {
+    fill: #e371ca;
+}
+
+.mg-line6-legend-color {
+    color: #e371ca;
+    fill: #e371ca;
+}
+
+.mg-area6-color {
+    fill: #e371ca;
+}

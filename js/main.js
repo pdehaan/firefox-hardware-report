@@ -92,6 +92,22 @@
         reorderCharts(section);
     });
 
+    function topX(prefix, data) {
+      var subset = [];
+      Object.keys(data).forEach(function(prop) {
+        if(prop.indexOf(prefix) !== -1) {
+          subset.push({key: prop, value: +data[prop]});
+        }
+      });
+
+      subset.sort(function(a, b) {
+        if(a.value < b.value) return 1;
+        if(a.value > b.value) return -1;
+        return 0;
+      });
+      return subset;
+    }
+
     function drawCharts(data) {
         for (var i = 0; i < data.length; i++) {
             data[i] = MG.convert.date(data[i], 'date', '%Y-%m-%d');
@@ -197,7 +213,8 @@
         });
         
         MG.data_graphic({
-            title: "GPU Model",
+            title: "Integrated GPU Model",
+            description: "The top integrated GPU models.",
             data: data,
             format: 'perc',
             animate_on_load: true,
@@ -208,11 +225,29 @@
             target: '#gpu-model',
             full_width: true,
             x_accesor: 'date',
-            max_y: '.10',
-            y_accessor: ['gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1'],
-            legend: ['Haswell (GT2)', 'Ivy Bridge (GT2)', 'Sandy Bridge (GT2)', 'Sandy Bridge (GT1)', 'Ivy Bridge (GT1)']
+            y_accessor: ['gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1', 'gpu_model_gen4.5-gma4500hd'],
+            legend: ['Haswell (GT2)', 'Ivy Bridge (GT2)', 'Sandy Bridge (GT2)', 'Sandy Bridge (GT1)', 'Ivy Bridge (GT1)', 'GMA 4500HD']
             //y_accessor: ['gpu_model_Other', 'gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1', 'gpu_model_EVERGREEN-TURKS', 'gpu_model_EVERGREEN-CEDAR', 'gpu_model_gen4.5-gma4500', 'gpu_model_gen8-broadwell-gt2', 'gpu_model_gen3-gma950', 'gpu_model_CAYMAN-ARUBA', 'gpu_model_gen5-ironlake', 'gpu_model_CIK-KABINI', 'gpu_model_EVERGREEN-PALM', 'gpu_model_gen4-gma3500', 'gpu_model_gen4.5-gma4500hd', 'gpu_model_gen9-skylake-gt2', 'gpu_model_NV40-C61', 'gpu_model_gen3-gma3100', 'gpu_model_gen7.5-haswell-gt3', 'gpu_model_gen7.5-haswell-gt1', 'gpu_model_Tesla-GT218', 'gpu_model_CIK-MULLINS'],
             //legend: ['Other', 'gpu_model_gen7.5-haswell-gt2', 'Ivy Bridge (Gen7, GT2)', 'Sandy Bridge (Gen6, GT2)', 'Sandy Bridge (Gen6, GT1)', 'Ivy Bridge (Gen7, GT1)', 'Evergreen Turks', 'Evergreen Cedar', 'Intel G45 (GMA X4500)', 'Broadwell (Gen8, GT2)', 'Intel 945 (GMA 950)', 'Cayman Aruba', 'Ironlake (Gen5)', 'gpu_model_CIK-KABINI', 'gpu_model_EVERGREEN-PALM', 'gpu_model_gen4-gma3500', 'gpu_model_gen4.5-gma4500hd', 'gpu_model_gen9-skylake-gt2', 'gpu_model_NV40-C61', 'gpu_model_gen3-gma3100', 'gpu_model_gen7.5-haswell-gt3', 'gpu_model_gen7.5-haswell-gt1', 'gpu_model_Tesla-GT218', 'gpu_model_CIK-MULLINS']
+        });
+
+        var gpu_models = topX('gpu_model_', data[0][0]);
+
+        MG.data_graphic({
+            title: "Dedicated GPU Model",
+            description: "The top dedicated GPU models.",
+            data: data,
+            format: 'perc',
+            animate_on_load: true,
+            width: global.trunk.width,
+            height: global.trunk.height,
+            xax_count: global.trunk.xax_count,
+            right: global.trunk.right,
+            target: '#gpu-model-vendors',
+            full_width: true,
+            x_accesor: 'date',
+            y_accessor: ['gpu_model_EVERGREEN-PALM', 'gpu_model_EVERGREEN-CEDAR', 'gpu_model_CAYMAN-ARUBA', 'gpu_model_NV40-C61', 'gpu_model_Tesla-GT218', 'gpu_model_R700-RV710'],
+            legend: ['Radeon (Palm)', 'Radeon (Cedar)', 'Radeon (Cayman)', 'GeForce 6150SE', 'GeForce 210', 'Radeon HD 4000']
         });
         
         MG.data_graphic({
@@ -315,23 +350,6 @@
             y_accessor: ['has_unity_True'],
             legend: ['Yes'],
             max_y: 1,
-            full_width: true,
-        });
-
-        MG.data_graphic({
-            title: "WebGL",
-            data: data,
-            format: 'perc',
-            description: "The percentage of people who try to use WebGL 1 and succeed.",
-            animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#webgl1',
-            y_accessor: ['webgl_canvas_request_Success'],
-            legend: ['Yes'],
-            max_y: 0.1,
             full_width: true,
         });
     }
