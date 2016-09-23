@@ -20,11 +20,12 @@
     <script src='js/metricsgraphics.min.js'></script>
 </head>
 <body>
+    <div class='container header'></div>
     <div class='container container-charts'>
         <div class='row'>
             <div class='col-lg-12'>
                 <h1 class='text-center'>Firefox Hardware Survey</h1>
-                <p>The Firefox Hardware Survey is a public report of the hardware that is used by a representative sample of the population from Firefox's release channel. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize Firefox development efforts and to power this survey. This survey aims to help game developers understand what hardware configurations their titles might want to target.</p>
+                <p>The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help game developers understand what hardware configurations their titles might want to target.</p>
             </div>
         </div>
         <div class='row'>
@@ -38,11 +39,11 @@
         </div>
         <div class='row'>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='processor'></div>
+            <div class='col-lg-4 text-center chart cpu-and-memory' id='no-of-cpus'></div>
             <div class='col-lg-4 text-center chart graphics' id='pc-video-card'></div>
             <div class='col-lg-4 text-center chart graphics' id='gpu-model'></div>
             <div class='col-lg-4 text-center chart graphics' id='gpu-model-vendors'></div>
             <div class='col-lg-4 text-center chart graphics' id='display-resolution'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='no-of-cpus'></div>
             <div class='col-lg-4 text-center chart os-and-architecture' id='operating-systems'></div>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='ram'></div>
             <div class='col-lg-4 text-center chart os-and-architecture' id='browser-share-32-64'></div>
@@ -57,6 +58,13 @@
         <h2>How is the survey created?</h2>
         <p>Firefox collects information about your hardware and operating system configuration and sends it to us roughly daily. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing  indicators that might be used to identify individual users.
         <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <span class='it'>Other</span> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Games Website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
+
+        <h2>About us</h2>
+        <p>To learn more about this survey, take a look at our <a href='#'>blog post</a>. Our code is <a href='https://github.com/mozilla/firefox-hardware-survey'>available on GitHub.</a></p>
+        <p><a href='https://mozillians.org/u/avrignaud/'>Andre Vrignaud</a> &mdash; Product manager</p>
+        <p><a href='https://mozillians.org/u/rweiss/'>Rebecca Weiss</a> &mdash; Data</p>
+        <p><a href='https://mozillians.org/u/alessio.placitelli/'>Alessio Placitelli</a> &mdash; Data engineering</p>
+        <p><a href='https://mozillians.org/u/almossawi/'>Ali Almossawi</a> &mdash; Data visualization</p>
 
         <div id='credits'>
             MOZILLA &middot; Portions of this content are &copy; 1998–2016 by individual mozilla.org contributors. Content available under a Creative Commons license.

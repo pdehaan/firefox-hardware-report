@@ -1,9 +1,10 @@
 html {
     font-size: 13px;
+    background: #0253A7 url(https://games.mozilla.org/assets/img/bg_grain.png);
 }
 
 .pill {
-    font-family: 'PT Sans', serif;
+    font-family: 'Open Sans', sans-serif, Arial;
     font-size: 1rem;
     text-transform: uppercase;
 }
@@ -36,7 +37,7 @@ ul.category li {
 }
 
 .mg-chart-title {
-    font-family: 'Old Standard TT', serif;
+    font-family: 'Open Sans', sans-serif, Arial;
 	font-size: 1.5rem;
 	font-weight: 400;
 }
@@ -51,7 +52,7 @@ ul.category li {
     background-color: white;
     color: #3b3b3b;
 	opacity: 0.9;
-	margin: 0 auto 20px auto;
+	margin: 0 auto 40px auto;
 	padding: 20px;
 }
 
@@ -65,29 +66,26 @@ svg {
 }
 
 body {
-    font-family: 'PT Sans', sans-serif, Arial;
-    background: url(../images/bg2.jpg) no-repeat center 30% fixed;
-	-webkit-background-size: cover;
-	-moz-background-size: cover;
-	-o-background-size: cover;
-	background-size: cover;
+    font-family: 'Open Sans', sans-serif, Arial;
+    background: url(https://games.mozilla.org/assets/img/bg_top@2x.png) 50% -70px no-repeat;
+    background-size: 1920px auto;
+    margin: 0 !important;
 }
 
 p {
-    font-family: 'PT Serif', serif;
-    font-size: 16px;
+    font-family: 'Open Sans', sans-serif, Arial;
+    font-size: 1.1rem;
     line-height: 24px;
 }
 
 .it {
-    font-family: 'Old Standard TT', serif !important;
     font-style: italic;
 }
 
 a,
 a:active,
 a:visited {
-    color: #70b6f1;
+    color: #278de3;
     text-decoration: none;
 }
 
@@ -110,16 +108,16 @@ a.active {
 }
 
 h1 {
-    font-family: 'Old Standard TT', serif;
-    font-size: 40px;
-    font-weight: 400;
+    font-family: 'Open Sans', sans-serif, Arial;
+    font-size: 46px;
+    font-weight: 300;
     margin: 5px 0 5px 0;
     text-align: center;
 }
 
 h2 {
-    font-size: 20px;
-    font-weight: 600;
+    font-size: 24px;
+    font-weight: 400;
 }
 
 .transparent-rollover-rect {
@@ -185,4 +183,13 @@ h2 {
 
 .mg-area6-color {
     fill: #e371ca;
+}
+
+.mg-active-datapoint,
+.mg-line-legend text {
+  font-size: 0.85rem !important;
+}
+
+.header {
+  height: 20px;
 }
