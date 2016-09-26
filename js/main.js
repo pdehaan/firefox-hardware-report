@@ -2,15 +2,84 @@
     'use strict'
 
     var global = {
-        trunk: {
+        chart: {
             width: 350,
             height: 240,
             left: 0,
-            right: 60,
+            right: 95,
             xax_count: 4
+        },
+        expanded_chart: {
+            height: 780
+        },
+        gpu_models: {
+          min_lines: 6,
+          max_lines: 19
+        },
+        gpu_model_nice: {
+          'gpu_model_gen7.5-haswell-gt2': 'Haswell (GT2)',
+          'gpu_model_gen7-ivybridge-gt2': 'Ivy Bridge (GT2)',
+          'gpu_model_gen6-sandybridge-gt2': 'Sandy Bridge (GT2)',
+          'gpu_model_gen6-sandybridge-gt1': 'Sandy Bridge (GT1)',
+          'gpu_model_gen7-ivybridge-gt1': 'Ivy Bridge (GT1)',
+          'gpu_model_gen4.5-gma4500hd': 'GMA 4500HD',
+          'gpu_model_gen5-ironlake': 'Ironlake',
+          'gpu_model_gen7-baytrail': 'Bay Trail',
+          'gpu_model_gen4.5-gma4500': 'GMA 4500',
+          'gpu_model_gen8-broadwell-gt2': 'Broadwell (GT2)',
+          'gpu_model_gen3-gma3100': 'GMA 3100',
+          'gpu_model_gen3-gma950': 'GMA 950',
+          'gpu_model_gen7.5-haswell-gt21': 'Haswell (GT21)',
+          'gpu_model_gen7-ivybridge-gt22': 'Ivy Bridge (GT22)',
+          'gpu_model_gen6-sandybridge-gt23': 'Sandy Bridge (GT23)',
+          'gpu_model_gen6-sandybridge-gt14': 'Sandy Bridge (GT14)',
+          'gpu_model_gen7-ivybridge-gt15': 'Sandy Bridge (GT15)',
+          'gpu_model_gen4.5-gma4500hd6': 'GMA 4500HD 6',
+          'gpu_model_gen5-ironlake7': 'Ironlake',
+          'gpu_model_gen7-baytrail8': 'Bay Trail 8',
+          'gpu_model_gen4.5-gma45009': 'GMA 4500 9',
+          'gpu_model_gen8-broadwell-gt210': 'Broadwell (GT 210)',
+          'gpu_model_gen3-gma310011': 'GMA 310011',
+          'gpu_model_EVERGREEN-PALM': 'Evergreen (Palm)†',
+          'gpu_model_gen9-skylake-gt2': 'Skylake (GT2)',
+          'gpu_model_EVERGREEN-CEDAR': 'Evergreen (Cedar)†',
+          'gpu_model_CAYMAN-ARUBA': 'Cayman (Aruba)†',
+          'gpu_model_gen4-gma3500': 'GMA 3500',
+          'gpu_model_Tesla-GT218': 'GeForce GT218*',
+          'gpu_model_NV40-C61': 'GeForce NV40*'
         }
     };
 
+    var mouseover = function(target) {
+      return function() {
+        //reduce opacity of all other lines but this one
+        var hiding_these = '';
+        var r = /\d+/;
+
+        d3.selectAll(target + ' .mg-line-rollover-circle').nodes().forEach(function(d) {
+          if(d3.select(d).style('opacity') === '0' || d3.select(d).attr('r') === '0') {
+            var line_id = d.classList[0].match(r);
+            hiding_these += 'path.mg-line' + line_id + ',';
+            hiding_these += '.mg-line-legend .mg-line' + line_id + '-legend-color,';
+          }
+        });
+
+        d3.select(target).selectAll(hiding_these.slice(0,-1))
+          .style('opacity', '0.3');
+          
+        //update color of hover text with vendor color if applicable
+        d3.select(target).selectAll('.mg-active-datapoint tspan tspan')
+          .style('fill', 'white');
+      }
+    }
+
+    var mouseout = function(target) {
+      return function() {
+        d3.select(target).selectAll('path, .mg-line-legend text')
+          .style('opacity', '1');
+      }
+    }
+ 
     // on category click
     d3.selectAll('ul.category li a.pill')
       .on('click', function() {
@@ -47,6 +116,7 @@
     }
 
     d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
+    //d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
         data_gfx.map(function(d) {
             //consolidate 'el capitan' releases
             d['os_Darwin-15'] = 0;
@@ -56,27 +126,15 @@
             d['os_Darwin-15'] += d['os_Darwin-15.4.0'] || 0;
             d['os_Darwin-15'] += d['os_Darwin-15.5.0'] || 0;
             d['os_Darwin-15'] += d['os_Darwin-15.6.0'] || 0;
-            
-            //consolidate gpu models
-            /*d['gpu_model_Other'] += d['gpu_model_gen7-ivybridge-gt1'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_EVERGREEN-TURKS'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_EVERGREEN-CEDAR'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen4.5-gma4500'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen8-broadwell-gt2'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen3-gma950'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_CAYMAN-ARUBA'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen5-ironlake'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_CIK-KABINI'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_EVERGREEN-PALM'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen4-gma3500'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen4.5-gma4500hd'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen9-skylake-gt2'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_NV40-C61'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen3-gma3100'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen7.5-haswell-gt3'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_gen7.5-haswell-gt1'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_Tesla-GT218'] || 0;
-            d['gpu_model_Other'] += d['gpu_model_CIK-MULLINS'] || 0;*/
+
+            // generate dummy data points, until we get new data file
+            data_gfx.push(MG.clone(data_gfx[0]));
+            data_gfx.push(MG.clone(data_gfx[0]));
+            data_gfx.push(MG.clone(data_gfx[0]));
+            data_gfx[1].date = "2016-09-05";
+            data_gfx[2].date = "2016-09-12";
+            data_gfx[3].date = "2016-09-19";
+            console.log(data_gfx);
         });
 
         drawCharts([data_gfx]);
@@ -109,196 +167,174 @@
     }
 
     function drawCharts(data) {
-        for (var i = 0; i < data.length; i++) {
-            data[i] = MG.convert.date(data[i], 'date', '%Y-%m-%d');
-        }
+      var target;
+      for (var i = 0; i < data.length; i++) {
+        data[i] = MG.convert.date(data[i], 'date', '%Y-%m-%d');
+      }
 
-        MG.data_graphic({
-            title: "GPU",
+      global.data = data;
+
+      target = '#pc-video-card'
+      MG.data_graphic({
+            title: "GPU Vendor",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#pc-video-card',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
             full_width: true,
-            x_accesor: 'date',
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
             max_y: 1,
-            y_accessor: ['gpu_AMD', 'gpu_Intel', 'gpu_NVIDIA'],
-            legend: ['AMD', 'Intel', 'NVIDIA']
+            x_accesor: 'date',
+            y_accessor: ['gpu_Intel', 'gpu_AMD', 'gpu_NVIDIA'],
+            legend: ['Intel', 'AMD', 'NVIDIA']
         });
 
+        target = '#operating-systems';
         MG.data_graphic({
             title: "Operating System",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#operating-systems',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
             full_width: true,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
             x_accesor: 'date',
             y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Darwin-15'],
             legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'OS X 15']
         });
 
+        target = '#processor';
         MG.data_graphic({
             title: "Processor",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#processor',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
             full_width: true,
-            x_accesor: 'date',
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
             max_y: 1,
-            y_accessor: ['cpu_AuthenticAMD', 'cpu_GenuineIntel'],
-            legend: ['AMD', 'Intel']
+            x_accesor: 'date',
+            y_accessor: ['cpu_GenuineIntel', 'cpu_AuthenticAMD'],
+            legend: ['Intel', 'AMD']
         });
 
+        target = '#no-of-cpus';
         MG.data_graphic({
-            title: "Number of Cores",
+            title: "Processor Cores",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#no-of-cpus',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
             full_width: true,
-            x_accesor: 'date',
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
             max_y: 1,
+            x_accesor: 'date',
             y_accessor: ['cores_2', 'cores_4', 'cores_1', 'cores_3'],
             legend: ['2 cores', '4 cores', '1 core', '3 cores']
         });
 
+        target = '#display-resolution';
         MG.data_graphic({
             title: "Display Resolution",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#display-resolution',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
             full_width: true,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
             x_accesor: 'date',
             y_accessor: ['display_1366x768', 'display_1920x1080', 'display_1600x900', 'display_1280x1024', 'display_1024x768'],
             legend: ['1366x768', '1920x1080', '1600x900', '1280x1024', '1024x768']
         });
-            
+
+        target = '#ram';
         MG.data_graphic({
             title: "Memory",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#ram',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
             full_width: true,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
             x_accesor: 'date',
             y_accessor: ['ram_4', 'ram_2', 'ram_8', 'ram_3', 'ram_1'],
             legend: ['4GB', '2GB', '8GB', '3GB', '1GB']
         });
-        
-        MG.data_graphic({
-            title: "Integrated GPU Model",
-            description: "The top integrated GPU models.",
-            data: data,
-            format: 'perc',
-            animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#gpu-model',
-            full_width: true,
-            x_accesor: 'date',
-            y_accessor: ['gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1', 'gpu_model_gen4.5-gma4500hd'],
-            legend: ['Haswell (GT2)', 'Ivy Bridge (GT2)', 'Sandy Bridge (GT2)', 'Sandy Bridge (GT1)', 'Ivy Bridge (GT1)', 'GMA 4500HD']
-            //y_accessor: ['gpu_model_Other', 'gpu_model_gen7.5-haswell-gt2', 'gpu_model_gen7-ivybridge-gt2', 'gpu_model_gen6-sandybridge-gt2', 'gpu_model_gen6-sandybridge-gt1', 'gpu_model_gen7-ivybridge-gt1', 'gpu_model_EVERGREEN-TURKS', 'gpu_model_EVERGREEN-CEDAR', 'gpu_model_gen4.5-gma4500', 'gpu_model_gen8-broadwell-gt2', 'gpu_model_gen3-gma950', 'gpu_model_CAYMAN-ARUBA', 'gpu_model_gen5-ironlake', 'gpu_model_CIK-KABINI', 'gpu_model_EVERGREEN-PALM', 'gpu_model_gen4-gma3500', 'gpu_model_gen4.5-gma4500hd', 'gpu_model_gen9-skylake-gt2', 'gpu_model_NV40-C61', 'gpu_model_gen3-gma3100', 'gpu_model_gen7.5-haswell-gt3', 'gpu_model_gen7.5-haswell-gt1', 'gpu_model_Tesla-GT218', 'gpu_model_CIK-MULLINS'],
-            //legend: ['Other', 'gpu_model_gen7.5-haswell-gt2', 'Ivy Bridge (Gen7, GT2)', 'Sandy Bridge (Gen6, GT2)', 'Sandy Bridge (Gen6, GT1)', 'Ivy Bridge (Gen7, GT1)', 'Evergreen Turks', 'Evergreen Cedar', 'Intel G45 (GMA X4500)', 'Broadwell (Gen8, GT2)', 'Intel 945 (GMA 950)', 'Cayman Aruba', 'Ironlake (Gen5)', 'gpu_model_CIK-KABINI', 'gpu_model_EVERGREEN-PALM', 'gpu_model_gen4-gma3500', 'gpu_model_gen4.5-gma4500hd', 'gpu_model_gen9-skylake-gt2', 'gpu_model_NV40-C61', 'gpu_model_gen3-gma3100', 'gpu_model_gen7.5-haswell-gt3', 'gpu_model_gen7.5-haswell-gt1', 'gpu_model_Tesla-GT218', 'gpu_model_CIK-MULLINS']
-        });
 
-        var gpu_models = topX('gpu_model_', data[0][0]);
+        // gives us the top gpu models
+        // TODO
+        //var gpu_models = topX('gpu_model_', data[0][0]);
 
-        MG.data_graphic({
-            title: "Dedicated GPU Model",
-            description: "The top dedicated GPU models.",
-            data: data,
-            format: 'perc',
-            animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#gpu-model-vendors',
-            full_width: true,
-            x_accesor: 'date',
-            y_accessor: ['gpu_model_EVERGREEN-PALM', 'gpu_model_EVERGREEN-CEDAR', 'gpu_model_CAYMAN-ARUBA', 'gpu_model_NV40-C61', 'gpu_model_Tesla-GT218', 'gpu_model_R700-RV710'],
-            legend: ['Radeon (Palm)', 'Radeon (Cedar)', 'Radeon (Cayman)', 'GeForce 6150SE', 'GeForce 210', 'Radeon HD 4000']
-        });
-        
+        draw_gpu_models(global.gpu_models.min_lines, global.chart.height);
+
+        target = '#browser-share-32-64';
         MG.data_graphic({
             title: "Browsers by Architecture",
             description: "The share of 32-to-64-bit browsers.",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#browser-share-32-64',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
+            x_accesor: 'date',
             y_accessor: ['browser_arch_x86', 'browser_arch_x86-64'],
             legend: ['32-bit', '64-bit'],
             max_y: 1,
             full_width: true,
         });
 
+        target = '#browser-share-os-32-64';
         MG.data_graphic({
             title: "OSs by Architecture",
-            description: "The share of 32-to-64-bit operating systems.",
+            description: "The share of 32-to-64-bit operating systems. Note that this metric likely undercounts non-Windows OSs.",
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#browser-share-os-32-64',
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
+            target: target,
             y_accessor: ['os_arch_x86', 'os_arch_x86-64'],
             legend: ['32-bit', '64-bit'],
             max_y: 1,
-            full_width: true,
-        });
-
-        MG.data_graphic({
-            title: "Processor Speed",
-            data: data,
-            format: 'perc',
-            animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
-            target: '#processor-speed',
-            max_y: 0.2,
-            y_accessor: ['cpu_speed_2.4', 'cpu_speed_2.2', 'cpu_speed_2.5', 'cpu_speed_2.3', 'cpu_speed_2.0'],
-            legend: ['2.4 Ghz', '2.2 Ghz', '2.5 Ghz', '2.3 Ghz', '2.0 Ghz'],
-            //y_accessor: ['cpu_speed_2.3', 'cpu_speed_1.3', 'cpu_speed_1.5', 'cpu_speed_1.4', 'cpu_speed_1.7', 'cpu_speed_1.6', 'cpu_speed_1.9', 'cpu_speed_1.8', 'cpu_speed_3.3', 'cpu_speed_3.0', 'cpu_speed_3.1', 'cpu_speed_3.2', 'cpu_speed_3.4', 'cpu_speed_3.5', 'cpu_speed_3.6', 'cpu_speed_2.2', 'cpu_speed_2.4', 'cpu_speed_2.5', 'cpu_speed_2.6', 'cpu_speed_2.7', 'cpu_speed_2.0', 'cpu_speed_2.1', 'cpu_speed_2.8', 'cpu_speed_2.9', 'cpu_speed_Other'],
-            //legend: ['cpu_speed_2.3', 'cpu_speed_1.3', 'cpu_speed_1.5', 'cpu_speed_1.4', 'cpu_speed_1.7', 'cpu_speed_1.6', 'cpu_speed_1.9', 'cpu_speed_1.8', 'cpu_speed_3.3', 'cpu_speed_3.0', 'cpu_speed_3.1', 'cpu_speed_3.2', 'cpu_speed_3.4', 'cpu_speed_3.5', 'cpu_speed_3.6', 'cpu_speed_2.2', 'cpu_speed_2.4', 'cpu_speed_2.5', 'cpu_speed_2.6', 'cpu_speed_2.7', 'cpu_speed_2.0', 'cpu_speed_2.1', 'cpu_speed_2.8', 'cpu_speed_2.9', 'cpu_speed_Other'],
             full_width: true,
         });
 
@@ -308,14 +344,15 @@
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
             target: '#flash',
             y_accessor: ['has_flash_True'],
             legend: ['Yes'],
             max_y: 1,
+            area: false,
             full_width: true,
         });
 
@@ -325,14 +362,15 @@
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
             target: '#silverlight',
             y_accessor: ['has_silverlight_True'],
             legend: ['Yes'],
             max_y: 1,
+            area: false,
             full_width: true,
         });
 
@@ -342,15 +380,96 @@
             data: data,
             format: 'perc',
             animate_on_load: true,
-            width: global.trunk.width,
-            height: global.trunk.height,
-            xax_count: global.trunk.xax_count,
-            right: global.trunk.right,
+            width: global.chart.width,
+            height: global.chart.height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
             target: '#unity',
             y_accessor: ['has_unity_True'],
             legend: ['Yes'],
             max_y: 1,
+            area: false,
             full_width: true,
         });
     }
+    
+    function draw_gpu_models(how_many, height) {
+        var target = '#gpu-model';
+
+        var gpu_models = topX('gpu_model_', global.data[0][0]);
+        var gpu_models_keys = [];
+        var gpu_models_labels = [];
+        gpu_models.forEach(function(d, i) {
+          if(d.key == 'gpu_model_Other' || i > how_many)
+              return;
+
+          gpu_models_keys.push(d.key);
+          gpu_models_labels.push(global.gpu_model_nice[d.key]);
+        });
+
+        MG.data_graphic({
+            title: "GPU Model",
+            description: "Click anywhere to show an expanded list of GPU models. Those marked with an asterisk (*) are NVIDIA GPUs, those marked with a dagger (†) are AMD GPUs, and unmarked ones are Intel integrated GPUs.",
+            data: global.data,
+            format: 'perc',
+            animate_on_load: true,
+            width: global.chart.width,
+            height: height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
+            full_width: true,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
+            y_accessor: gpu_models_keys,
+            max_y: 0.1,
+            legend: gpu_models_labels
+        });
+        
+      //color lines based on vendor
+      var r = /\d+/;
+      d3.select(target).selectAll('.mg-line-legend text')
+        .style('fill', function() {
+          var line_id_to_set;
+          var vendor;
+
+          //get text
+          if(d3.select(this).node().innerHTML.indexOf('*') !== -1) {
+            vendor = 'vendor-nvidia';
+          } else if(d3.select(this).node().innerHTML.indexOf('†') !== -1) {
+            vendor = 'vendor-amd';
+          } else {
+            vendor = 'vendor-intel';
+          }
+          
+          //original line ID          
+          var line_id = d3.select(this).node().classList[0].match(r);
+
+          //set vendor for legend labels
+          d3.select(this)
+            .classed(vendor, true)
+
+          //cascade change to associated line too
+          d3.select(target).selectAll('.mg-line' + line_id + '-color')
+            .classed(vendor + '-line', true);
+        });
+    }
+
+    // expanders for charts
+    d3.select('#gpu-model')
+      .on('click', function() {
+        //set expanded class
+        var expanded = d3.select(this)
+          .classed('expanded');
+
+        if(expanded) {
+          d3.select(this)
+            .classed('expanded', false);
+          draw_gpu_models(global.gpu_models.min_lines, global.chart.height);
+          } else {
+            d3.select(this)
+              .classed('expanded', true);
+            draw_gpu_models(global.gpu_models.max_lines, global.expanded_chart.height);
+          }
+        });
 }());

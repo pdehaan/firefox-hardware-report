@@ -1,6 +1,6 @@
 html {
     font-size: 13px;
-    background: #0253A7 url(https://games.mozilla.org/assets/img/bg_grain.png);
+    background: #0253A7 url(../images/grain.jpg)
 }
 
 .pill {
@@ -67,9 +67,10 @@ svg {
 
 body {
     font-family: 'Open Sans', sans-serif, Arial;
-    background: url(https://games.mozilla.org/assets/img/bg_top@2x.png) 50% -70px no-repeat;
-    background-size: 1920px auto;
-    margin: 0 !important;
+	background: url(../images/bg3.jpg) 50% -70px no-repeat;
+	background-size: 1920px auto;
+    margin: 0;
+    padding: 0;
 }
 
 p {
@@ -168,6 +169,24 @@ h2 {
     font-size: 0.8rem;
 }
 
+.mg-active-datapoint,
+.mg-line-legend text {
+  font-size: 0.85rem !important;
+}
+
+.header {
+  height: 20px;
+}
+
+#gpu-model .mg-chart-title {
+  cursor: pointer;
+}
+
+/* colors */
+.mg-area6-color {
+    fill: #e371ca;
+}
+
 .mg-line6-color {
     stroke: #e371ca;
 }
@@ -181,15 +200,302 @@ h2 {
     fill: #e371ca;
 }
 
-.mg-area6-color {
-    fill: #e371ca;
+.mg-area7-color {
+    fill: #929292;
 }
 
-.mg-active-datapoint,
-.mg-line-legend text {
-  font-size: 0.85rem !important;
+.mg-line7-color {
+    stroke: #929292;
 }
 
-.header {
-  height: 20px;
+.mg-hover-line7-color {
+    fill: #929292;
+}
+
+.mg-line7-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area7-color {
+    fill: #929292;
+}
+
+.mg-area8-color {
+    fill: #929292;
+}
+
+.mg-line8-color {
+    stroke: #929292;
+}
+
+.mg-hover-line8-color {
+    fill: #929292;
+}
+
+.mg-line8-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area8-color {
+    fill: #929292;
+}
+
+.mg-area9-color {
+    fill: #929292;
+}
+
+.mg-line9-color {
+    stroke: #929292;
+}
+
+.mg-hover-line9-color {
+    fill: #929292;
+}
+
+.mg-line9-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area9-color {
+    fill: #929292;
+}
+
+.mg-area10-color {
+    fill: #929292;
+}
+
+.mg-line10-color {
+    stroke: #929292;
+}
+
+.mg-hover-line10-color {
+    fill: #929292;
+}
+
+.mg-line10-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area10-color {
+    fill: #929292;
+}
+
+.mg-area11-color {
+    fill: #929292;
+}
+
+.mg-line11-color {
+    stroke: #929292;
+}
+
+.mg-hover-line11-color {
+    fill: #929292;
+}
+
+.mg-line11-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area11-color {
+    fill: #929292;
+}
+
+.mg-area12-color {
+    fill: #929292;
+}
+
+.mg-line12-color {
+    stroke: #929292;
+}
+
+.mg-hover-line12-color {
+    fill: #929292;
+}
+
+.mg-line12-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area12-color {
+    fill: #929292;
+}
+
+.mg-area13-color {
+    fill: #929292;
+}
+
+.mg-line13-color {
+    stroke: #929292;
+}
+
+.mg-hover-line13-color {
+    fill: #929292;
+}
+
+.mg-line13-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area13-color {
+    fill: #929292;
+}
+
+.mg-area14-color {
+    fill: #929292;
+}
+
+.mg-line14-color {
+    stroke: #929292;
+}
+
+.mg-hover-line14-color {
+    fill: #929292;
+}
+
+.mg-line14-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area14-color {
+    fill: #929292;
+}
+
+.mg-area15-color {
+    fill: #929292;
+}
+
+.mg-line15-color {
+    stroke: #929292;
+}
+
+.mg-hover-line15-color {
+    fill: #929292;
+}
+
+.mg-line15-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area15-color {
+    fill: #929292;
+}
+
+.mg-area16-color {
+    fill: #929292;
+}
+
+.mg-line16-color {
+    stroke: #929292;
+}
+
+.mg-hover-line16-color {
+    fill: #929292;
+}
+
+.mg-line16-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area16-color {
+    fill: #929292;
+}
+
+.mg-area17-color {
+    fill: #929292;
+}
+
+.mg-line17-color {
+    stroke: #929292;
+}
+
+.mg-hover-line17-color {
+    fill: #929292;
+}
+
+.mg-line17-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area17-color {
+    fill: #929292;
+}
+
+.mg-area18-color {
+    fill: #929292;
+}
+
+.mg-line18-color {
+    stroke: #929292;
+}
+
+.mg-hover-line18-color {
+    fill: #929292;
+}
+
+.mg-line18-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area18-color {
+    fill: #929292;
+}
+
+.mg-area19-color {
+    fill: #929292;
+}
+
+.mg-line19-color {
+    stroke: #929292;
+}
+
+.mg-hover-line19-color {
+    fill: #929292;
+}
+
+.mg-line19-legend-color {
+    color: #929292;
+    fill: #929292;
+}
+
+.mg-area19-color {
+    fill: #929292;
+}
+
+.vendor-intel {
+  fill: #ffd300 !important;
+}
+
+.vendor-nvidia {
+  fill: #f57070 !important;
+}
+
+.vendor-amd {
+  fill: #18ff00 !important;
+}
+
+.vendor-intel-line {
+  stroke: #ffd300 !important;
+  fill: #ffd300 !important;
+}
+
+.vendor-nvidia-line {
+  stroke: #f57070 !important;
+  fill: #f57070 !important;
+}
+
+.vendor-amd-line {
+  stroke: #18ff00 !important;
+  fill: #18ff00 !important;
 }

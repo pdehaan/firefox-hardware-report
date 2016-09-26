@@ -13,14 +13,17 @@
     <link href="css/metricsgraphics.css" rel="stylesheet" type="text/css" id="light">
     <link href="css/metricsgraphics-dark.css" rel="stylesheet" type="text/css" id="dark">
     <link href="css/games.css" rel="stylesheet" type="text/css">
+    <!--<link rel='stylesheet' href='css/addons/mg_line_brushing.css' />-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src='js/metricsgraphics.min.js'></script>
+    <!--<script src='js/addons/mg_line_brushing.js'></script>-->
 </head>
 <body>
     <div class='container header'></div>
+
     <div class='container container-charts'>
         <div class='row'>
             <div class='col-lg-12'>
@@ -37,18 +40,17 @@
                 <li><a href='#goto-plugins' class='pill'>Plugins</a></li>
             </ul>
         </div>
+
         <div class='row'>
+            <div class='col-lg-4 text-center chart graphics' id='gpu-model'></div>
+            <div class='col-lg-4 text-center chart graphics' id='pc-video-card'></div>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='processor'></div>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='no-of-cpus'></div>
-            <div class='col-lg-4 text-center chart graphics' id='pc-video-card'></div>
-            <div class='col-lg-4 text-center chart graphics' id='gpu-model'></div>
-            <div class='col-lg-4 text-center chart graphics' id='gpu-model-vendors'></div>
             <div class='col-lg-4 text-center chart graphics' id='display-resolution'></div>
             <div class='col-lg-4 text-center chart os-and-architecture' id='operating-systems'></div>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='ram'></div>
             <div class='col-lg-4 text-center chart os-and-architecture' id='browser-share-32-64'></div>
             <div class='col-lg-4 text-center chart os-and-architecture' id='browser-share-os-32-64'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='processor-speed'></div>
             <div class='col-lg-4 text-center chart plugins' id='flash'></div>
             <div class='col-lg-4 text-center chart plugins' id='silverlight'></div>
             <div class='col-lg-4 text-center chart plugins' id='unity'></div>
