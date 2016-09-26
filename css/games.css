@@ -1,43 +1,43 @@
 html {
-    font-size: 13px;
-    background: #0253A7 url(../images/grain.jpg)
+  font-size: 13px;
+  background: #0253A7 url(../images/grain.jpg)
 }
 
 .pill {
-    font-family: 'Open Sans', sans-serif, Arial;
-    font-size: 1rem;
-    text-transform: uppercase;
+  font-family: 'Open Sans', sans-serif, Arial;
+  font-size: 1rem;
+  text-transform: uppercase;
 }
 
 .pill:hover,
 .pill:active,
 .pill:visited,
 .pill:link {
-    text-decoration: none;
+  text-decoration: none;
 }
 
 ul {
-    clear: both;
-    font-size: 1.2rem;
-    padding: 10px 0 0 0;
+  clear: both;
+  font-size: 1.2rem;
+  padding: 10px 0 0 0;
 }
 
 ul.category li {
-    display: inline;
-    list-style: none;
-    padding: 3px 10px 3px 10px;
+  display: inline;
+  list-style: none;
+  padding: 3px 10px 3px 10px;
 }
 
 ul li.no-padding {
-    padding: 0;
+  padding: 0;
 }
 
 ul.category li {
-    line-height: 30px;
+  line-height: 30px;
 }
 
 .mg-chart-title {
-    font-family: 'Open Sans', sans-serif, Arial;
+  font-family: 'Open Sans', sans-serif, Arial;
 	font-size: 1.5rem;
 	font-weight: 400;
 }
@@ -49,8 +49,8 @@ ul.category li {
 }
 
 .container-prose {
-    background-color: white;
-    color: #3b3b3b;
+  background-color: white;
+  color: #3b3b3b;
 	opacity: 0.9;
 	margin: 0 auto 40px auto;
 	padding: 20px;
@@ -62,111 +62,111 @@ ul.category li {
 }
 
 svg {
-    margin-top: 30px;
+  margin-top: 30px;
 }
 
 body {
-    font-family: 'Open Sans', sans-serif, Arial;
+  font-family: 'Open Sans', sans-serif, Arial;
 	background: url(../images/bg3.jpg) 50% -70px no-repeat;
 	background-size: 1920px auto;
-    margin: 0;
-    padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 p {
-    font-family: 'Open Sans', sans-serif, Arial;
-    font-size: 1.1rem;
-    line-height: 24px;
+  font-family: 'Open Sans', sans-serif, Arial;
+  font-size: 1.1rem;
+  line-height: 24px;
 }
 
 .it {
-    font-style: italic;
+  font-style: italic;
 }
 
 a,
 a:active,
 a:visited {
-    color: #278de3;
-    text-decoration: none;
+  color: #278de3;
+  text-decoration: none;
 }
 
 a:hover {
-    color: #70b6f1;
+  color: #70b6f1;
 }
 
 a.active {
-    background-color: #70b6f1;
-    border: 0;
-    border-radius: 16px;
-    color: black;
-    padding: 3px 10px 3px 10px;
-    text-decoration: none;
+  background-color: #70b6f1;
+  border: 0;
+  border-radius: 16px;
+  color: black;
+  padding: 3px 10px 3px 10px;
+  text-decoration: none;
 }
 
 .footer {
-    border-top: 0;
-    font-size: 0.9rem;
+  border-top: 0;
+  font-size: 0.9rem;
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif, Arial;
-    font-size: 46px;
-    font-weight: 300;
-    margin: 5px 0 5px 0;
-    text-align: center;
+  font-family: 'Open Sans', sans-serif, Arial;
+  font-size: 46px;
+  font-weight: 300;
+  margin: 5px 0 5px 0;
+  text-align: center;
 }
 
 h2 {
-    font-size: 24px;
-    font-weight: 400;
+  font-size: 24px;
+  font-weight: 400;
 }
 
 .transparent-rollover-rect {
-    fill: white;
+  fill: white;
 }
 
 .mg-missing-background {
-    stroke: #ccc;
+  stroke: #ccc;
 }
 
 
 @media (max-width:1200px){
-    .mg-chart-title {
-        font-size: 1.9rem;
-    }
+  .mg-chart-title {
+    font-size: 1.9rem;
+  }
 }
 
 .hr {
-    border-bottom: 1px solid #3b3b3b;
-    height: 24px;
-    margin: 20px 0 10px 0;
+  border-bottom: 1px solid #3b3b3b;
+  height: 24px;
+  margin: 20px 0 10px 0;
 }
 
 .buttons {
-    position: absolute;
-    right: -10px;
+  position: absolute;
+  right: -10px;
 }
 
 .btn-group {
-    display: inline-block;
-    margin-left: 3px;
-    margin-right: 3px;
-    padding-bottom: 15px;
+  display: inline-block;
+  margin-left: 3px;
+  margin-right: 3px;
+  padding-bottom: 15px;
 }
 
 .btn-group span.which-button {
-    font-weight: 300;
-    color: darkgray;
+  font-weight: 300;
+  color: darkgray;
 }
 
 .btn-group span.title {
-    margin-left: 4px;
-    margin-right: 4px;
+  margin-left: 4px;
+  margin-right: 4px;
 }
 
 .mg-x-axis text,
 .mg-y-axis text {
-    font-size: 0.8rem;
+  font-size: 0.8rem;
 }
 
 .mg-active-datapoint,
@@ -180,297 +180,6 @@ h2 {
 
 #gpu-model .mg-chart-title {
   cursor: pointer;
-}
-
-/* colors */
-.mg-area6-color {
-    fill: #e371ca;
-}
-
-.mg-line6-color {
-    stroke: #e371ca;
-}
-
-.mg-hover-line6-color {
-    fill: #e371ca;
-}
-
-.mg-line6-legend-color {
-    color: #e371ca;
-    fill: #e371ca;
-}
-
-.mg-area7-color {
-    fill: #929292;
-}
-
-.mg-line7-color {
-    stroke: #929292;
-}
-
-.mg-hover-line7-color {
-    fill: #929292;
-}
-
-.mg-line7-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area7-color {
-    fill: #929292;
-}
-
-.mg-area8-color {
-    fill: #929292;
-}
-
-.mg-line8-color {
-    stroke: #929292;
-}
-
-.mg-hover-line8-color {
-    fill: #929292;
-}
-
-.mg-line8-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area8-color {
-    fill: #929292;
-}
-
-.mg-area9-color {
-    fill: #929292;
-}
-
-.mg-line9-color {
-    stroke: #929292;
-}
-
-.mg-hover-line9-color {
-    fill: #929292;
-}
-
-.mg-line9-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area9-color {
-    fill: #929292;
-}
-
-.mg-area10-color {
-    fill: #929292;
-}
-
-.mg-line10-color {
-    stroke: #929292;
-}
-
-.mg-hover-line10-color {
-    fill: #929292;
-}
-
-.mg-line10-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area10-color {
-    fill: #929292;
-}
-
-.mg-area11-color {
-    fill: #929292;
-}
-
-.mg-line11-color {
-    stroke: #929292;
-}
-
-.mg-hover-line11-color {
-    fill: #929292;
-}
-
-.mg-line11-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area11-color {
-    fill: #929292;
-}
-
-.mg-area12-color {
-    fill: #929292;
-}
-
-.mg-line12-color {
-    stroke: #929292;
-}
-
-.mg-hover-line12-color {
-    fill: #929292;
-}
-
-.mg-line12-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area12-color {
-    fill: #929292;
-}
-
-.mg-area13-color {
-    fill: #929292;
-}
-
-.mg-line13-color {
-    stroke: #929292;
-}
-
-.mg-hover-line13-color {
-    fill: #929292;
-}
-
-.mg-line13-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area13-color {
-    fill: #929292;
-}
-
-.mg-area14-color {
-    fill: #929292;
-}
-
-.mg-line14-color {
-    stroke: #929292;
-}
-
-.mg-hover-line14-color {
-    fill: #929292;
-}
-
-.mg-line14-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area14-color {
-    fill: #929292;
-}
-
-.mg-area15-color {
-    fill: #929292;
-}
-
-.mg-line15-color {
-    stroke: #929292;
-}
-
-.mg-hover-line15-color {
-    fill: #929292;
-}
-
-.mg-line15-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area15-color {
-    fill: #929292;
-}
-
-.mg-area16-color {
-    fill: #929292;
-}
-
-.mg-line16-color {
-    stroke: #929292;
-}
-
-.mg-hover-line16-color {
-    fill: #929292;
-}
-
-.mg-line16-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area16-color {
-    fill: #929292;
-}
-
-.mg-area17-color {
-    fill: #929292;
-}
-
-.mg-line17-color {
-    stroke: #929292;
-}
-
-.mg-hover-line17-color {
-    fill: #929292;
-}
-
-.mg-line17-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area17-color {
-    fill: #929292;
-}
-
-.mg-area18-color {
-    fill: #929292;
-}
-
-.mg-line18-color {
-    stroke: #929292;
-}
-
-.mg-hover-line18-color {
-    fill: #929292;
-}
-
-.mg-line18-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area18-color {
-    fill: #929292;
-}
-
-.mg-area19-color {
-    fill: #929292;
-}
-
-.mg-line19-color {
-    stroke: #929292;
-}
-
-.mg-hover-line19-color {
-    fill: #929292;
-}
-
-.mg-line19-legend-color {
-    color: #929292;
-    fill: #929292;
-}
-
-.mg-area19-color {
-    fill: #929292;
 }
 
 .vendor-intel {
