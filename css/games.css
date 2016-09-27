@@ -183,7 +183,7 @@ h2 {
 }
 
 .vendor-intel {
-  fill: #ffd300 !important;
+  fill: #87CEFA !important;
 }
 
 .vendor-amd {
@@ -195,8 +195,8 @@ h2 {
 }
 
 .vendor-intel-line {
-  stroke: #ffd300 !important;
-  fill: #ffd300 !important;
+  stroke: #87CEFA !important;
+  fill: #87CEFA !important;
 }
 
 .vendor-amd-line {
@@ -228,4 +228,42 @@ h2 {
 
 #processor .mg-area2-color {
   fill: #f57070;
+}
+
+#processor .mg-area2-color {
+  fill: #f57070;
+}
+
+#processor .mg-line1-color {
+  stroke: #87CEFA;
+}
+
+#processor .mg-hover-line1-color {
+  fill: #87CEFA;
+}
+
+#processor .mg-line1-legend-color {
+  color: #87CEFA;
+  fill: #87CEFA;
+}
+
+#processor .mg-area1-color {
+  fill: #87CEFA;
+}
+
+#pc-video-card .mg-line1-color {
+  stroke: #87CEFA;
+}
+
+#pc-video-card .mg-hover-line1-color {
+  fill: #87CEFA;
+}
+
+#pc-video-card .mg-line1-legend-color {
+  color: #87CEFA;
+  fill: #87CEFA;
+}
+
+#pc-video-card .mg-area1-color {
+  fill: #87CEFA;
 }
