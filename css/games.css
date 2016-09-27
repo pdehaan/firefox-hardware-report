@@ -186,11 +186,11 @@ h2 {
   fill: #ffd300 !important;
 }
 
-.vendor-nvidia {
+.vendor-amd {
   fill: #f57070 !important;
 }
 
-.vendor-amd {
+.vendor-nvidia {
   fill: #18ff00 !important;
 }
 
@@ -199,12 +199,33 @@ h2 {
   fill: #ffd300 !important;
 }
 
-.vendor-nvidia-line {
+.vendor-amd-line {
   stroke: #f57070 !important;
   fill: #f57070 !important;
 }
 
-.vendor-amd-line {
+.vendor-nvidia-line {
   stroke: #18ff00 !important;
   fill: #18ff00 !important;
+}
+
+#processor .mg-area2-color {
+  fill: #f57070;
+}
+
+#processor .mg-line2-color {
+  stroke: #f57070;
+}
+
+#processor .mg-hover-line2-color {
+  fill: #f57070;
+}
+
+#processor .mg-line2-legend-color {
+  color: #f57070;
+  fill: #f57070;
+}
+
+#processor .mg-area2-color {
+  fill: #f57070;
 }

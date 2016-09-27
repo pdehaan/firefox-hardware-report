@@ -190,8 +190,8 @@
             mouseout: mouseout(target),
             max_y: 1,
             x_accesor: 'date',
-            y_accessor: ['gpu_Intel', 'gpu_AMD', 'gpu_NVIDIA'],
-            legend: ['Intel', 'AMD', 'NVIDIA']
+            y_accessor: ['gpu_Intel', 'gpu_NVIDIA', 'gpu_AMD'],
+            legend: ['Intel', 'NVIDIA', 'AMD']
         });
 
         target = '#operating-systems';
@@ -229,7 +229,7 @@
             mouseout: mouseout(target),
             max_y: 1,
             x_accesor: 'date',
-            y_accessor: ['cpu_GenuineIntel', 'cpu_AuthenticAMD'],
+            y_accessor: ['cpu_AuthenticAMD','cpu_GenuineIntel'],
             legend: ['Intel', 'AMD']
         });
 
