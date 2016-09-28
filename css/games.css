@@ -272,6 +272,40 @@ h2 {
   fill: #87CEFA;
 }
 
-.mg-chart-title-show-more {
-  font-size: 0.7rem;
+
+
+
+
+.mg-line6-color {
+  stroke: pink;
+}
+
+.mg-hover-line6-color {
+  fill: pink;
+}
+
+.mg-line6-legend-color {
+  color: pink;
+  fill: pink;
+}
+
+.mg-area6-color {
+  fill: pink;
+}
+
+.mg-line7-color {
+  stroke: #cb5cff;
+}
+
+.mg-hover-line7-color {
+  fill: #cb5cff;
+}
+
+.mg-line7-legend-color {
+  color: #cb5cff;
+  fill: #cb5cff;
+}
+
+.mg-area7-color {
+  fill: #cb5cff;
 }

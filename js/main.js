@@ -184,6 +184,7 @@
         target = '#operating-systems';
         MG.data_graphic({
             title: "Operating System",
+            description: "Vista maps to Windows NT version 6.0 and may therefore also include Windows Server 2008. Similarly, for the other series. Please refer to <a href='https://en.wikipedia.org/wiki/Windows_NT'>this table of releases</a>.",
             data: data,
             format: 'perc',
             animate_on_load: true,
@@ -196,8 +197,8 @@
             mouseover: mouseover(target),
             mouseout: mouseout(target),
             x_accesor: 'date',
-            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Other'],
-            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'Other']
+            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Other', 'os_Windows_NT-6.0', 'os_Windows_NT-6.2'],
+            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'Other', 'Vista', 'Win 8']
         });
 
         target = '#processor';
