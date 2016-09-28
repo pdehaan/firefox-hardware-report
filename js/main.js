@@ -16,6 +16,10 @@
           min_lines: 6,
           max_lines: 19
         },
+        cpu_cores: {
+          min_lines: 5,
+          max_lines: 24
+        },
         gpu_model_nice: {
           'gpu_model_gen7.5-haswell-gt2': 'Haswell (GT2)',
           'gpu_model_gen7-ivybridge-gt2': 'Ivy Bridge (GT2)',
@@ -118,23 +122,6 @@
     d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
     //d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
         data_gfx.map(function(d) {
-            //consolidate 'el capitan' releases
-            d['os_Darwin-15'] = 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.0.0'] || 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.2.0'] || 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.3.0'] || 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.4.0'] || 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.5.0'] || 0;
-            d['os_Darwin-15'] += d['os_Darwin-15.6.0'] || 0;
-
-            // generate dummy data points, until we get new data file
-            data_gfx.push(MG.clone(data_gfx[0]));
-            data_gfx.push(MG.clone(data_gfx[0]));
-            data_gfx.push(MG.clone(data_gfx[0]));
-            data_gfx[1].date = "2016-09-05";
-            data_gfx[2].date = "2016-09-12";
-            data_gfx[3].date = "2016-09-19";
-            console.log(data_gfx);
         });
 
         drawCharts([data_gfx]);
@@ -209,8 +196,8 @@
             mouseover: mouseover(target),
             mouseout: mouseout(target),
             x_accesor: 'date',
-            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Darwin-15'],
-            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'OS X 15']
+            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Other'],
+            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'Other']
         });
 
         target = '#processor';
@@ -229,29 +216,12 @@
             mouseout: mouseout(target),
             max_y: 1,
             x_accesor: 'date',
-            y_accessor: ['cpu_AuthenticAMD','cpu_GenuineIntel'],
+            y_accessor: ['cpu_GenuineIntel','cpu_AuthenticAMD'],
             legend: ['Intel', 'AMD']
         });
 
         target = '#no-of-cpus';
-        MG.data_graphic({
-            title: "Processor Cores",
-            data: data,
-            format: 'perc',
-            animate_on_load: true,
-            width: global.chart.width,
-            height: global.chart.height,
-            xax_count: global.chart.xax_count,
-            right: global.chart.right,
-            target: target,
-            full_width: true,
-            mouseover: mouseover(target),
-            mouseout: mouseout(target),
-            max_y: 1,
-            x_accesor: 'date',
-            y_accessor: ['cores_2', 'cores_4', 'cores_1', 'cores_3'],
-            legend: ['2 cores', '4 cores', '1 core', '3 cores']
-        });
+        draw_processor_cores(global.cpu_cores.min_lines, global.chart.height);
 
         target = '#display-resolution';
         MG.data_graphic({
@@ -392,7 +362,82 @@
             full_width: true,
         });
     }
+
+    function nicify_cpu_core_str(str) {
+        var bits = str.split('_');
+        return bits[2] + ' cores (' + bits[3] + 'GHz)';
+    }
     
+    function draw_processor_cores(how_many, height) {
+        var target = '#no-of-cpus';
+
+        var cpu_cores = topX('core_speed_', global.data[0][0]);
+        var cpu_cores_keys = [];
+        var cpu_cores_labels = [];
+        cpu_cores.forEach(function(d, i) {
+          if(d.key == 'core_speed_Other' || i > how_many)
+              return;
+
+          cpu_cores_keys.push(d.key);
+          cpu_cores_labels.push(nicify_cpu_core_str(d.key));
+        });
+
+        var args = {
+            title: "Processor Cores",
+            description: "Click anywhere to show an expanded list of Processor core-speed pairs.",
+            data: global.data,
+            format: 'perc',
+            animate_on_load: true,
+            width: global.chart.width,
+            height: height,
+            xax_count: global.chart.xax_count,
+            right: global.chart.right,
+            target: target,
+            full_width: true,
+            mouseover: mouseover(target),
+            mouseout: mouseout(target),
+            y_accessor: cpu_cores_keys,
+            legend: cpu_cores_labels
+        };
+        
+        MG.data_graphic(args);
+        
+      //color lines based on number of cores
+      var r = /\d+/;
+      d3.select(target).selectAll('.mg-line-legend text')
+        .each(function() {
+          var line_id_to_set;
+          var cores;
+
+          //get text
+          if(d3.select(this).node().innerHTML[0] == '2') {
+            cores = 'cores-2';
+          } else if(d3.select(this).node().innerHTML[0] == '4') {
+            cores = 'cores-4';
+          } else {
+            cores = 'cores-other';
+          }
+          
+          //original line ID          
+          var line_id = d3.select(this).node().classList[0].match(r);
+
+          //set cores for legend labels
+          d3.select(this)
+            .classed(cores, true)
+
+          //cascade change to associated line and circle too
+          d3.select(target).selectAll('path.mg-line' + line_id + '-color')
+            .classed(cores + '-line', true);
+
+          d3.select(target).selectAll('circle.mg-line' + line_id + '-color')
+            .classed(cores, true)
+            .classed(cores + '-line', true);
+        });
+        
+        d3.select(target).select('.mg-chart-description')
+          .text('\uf138');
+    }
+
     function draw_gpu_models(how_many, height) {
         var target = '#gpu-model';
 
@@ -407,7 +452,7 @@
           gpu_models_labels.push(global.gpu_model_nice[d.key]);
         });
 
-        MG.data_graphic({
+        var args = {
             title: "GPU Model",
             description: "Click anywhere to show an expanded list of GPU models. Those marked with an asterisk (*) are NVIDIA GPUs, those marked with a dagger (†) are AMD GPUs, and unmarked ones are Intel integrated GPUs.",
             data: global.data,
@@ -422,14 +467,15 @@
             mouseover: mouseover(target),
             mouseout: mouseout(target),
             y_accessor: gpu_models_keys,
-            max_y: 0.1,
             legend: gpu_models_labels
-        });
+        };
+        
+        MG.data_graphic(args);
         
       //color lines based on vendor
       var r = /\d+/;
       d3.select(target).selectAll('.mg-line-legend text')
-        .style('fill', function() {
+        .each(function() {
           var line_id_to_set;
           var vendor;
 
@@ -449,10 +495,17 @@
           d3.select(this)
             .classed(vendor, true)
 
-          //cascade change to associated line too
-          d3.select(target).selectAll('.mg-line' + line_id + '-color')
+          //cascade change to associated line and circle too
+          d3.select(target).selectAll('path.mg-line' + line_id + '-color')
+            .classed(vendor + '-line', true);
+
+          d3.select(target).selectAll('circle.mg-line' + line_id + '-color')
+            .classed(vendor, true)
             .classed(vendor + '-line', true);
         });
+        
+        d3.select(target).select('.mg-chart-description')
+          .text('\uf138');
     }
 
     // expanders for charts
@@ -466,10 +519,35 @@
           d3.select(this)
             .classed('expanded', false);
           draw_gpu_models(global.gpu_models.min_lines, global.chart.height);
+          d3.select('#gpu-model').select('.mg-chart-description')
+            .text('\uf138');
           } else {
             d3.select(this)
               .classed('expanded', true);
             draw_gpu_models(global.gpu_models.max_lines, global.expanded_chart.height);
+            d3.select('#gpu-model').select('.mg-chart-description')
+            .text('\uf13a');
+          }
+        });
+
+    d3.select('#no-of-cpus')
+      .on('click', function() {
+        //set expanded class
+        var expanded = d3.select(this)
+          .classed('expanded');
+
+        if(expanded) {
+          d3.select(this)
+            .classed('expanded', false);
+          draw_processor_cores(global.cpu_cores.min_lines, global.chart.height);
+          d3.select('#no-of-cpus').select('.mg-chart-description')
+            .text('\uf138');
+          } else {
+            d3.select(this)
+              .classed('expanded', true);
+            draw_processor_cores(global.cpu_cores.max_lines, global.expanded_chart.height);
+            d3.select('#no-of-cpus').select('.mg-chart-description')
+            .text('\uf13a');
           }
         });
 }());

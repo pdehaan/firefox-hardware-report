@@ -86,7 +86,7 @@ p {
 a,
 a:active,
 a:visited {
-  color: #278de3;
+  color: #70b6f1;
   text-decoration: none;
 }
 
@@ -178,35 +178,39 @@ h2 {
   height: 20px;
 }
 
-#gpu-model .mg-chart-title {
+#gpu-model .mg-chart-title,
+#no-of-cpus .mg-chart-title {
   cursor: pointer;
 }
 
-.vendor-intel {
+.vendor-intel,
+.cores-2 {
   fill: #87CEFA !important;
 }
 
-.vendor-amd {
+.vendor-amd,
+.cores-4 {
   fill: #f57070 !important;
 }
 
-.vendor-nvidia {
+.vendor-nvidia,
+.cores-other {
   fill: #18ff00 !important;
 }
 
-.vendor-intel-line {
+.vendor-intel-line,
+.cores-2-line {
   stroke: #87CEFA !important;
-  fill: #87CEFA !important;
 }
 
-.vendor-amd-line {
+.vendor-amd-line,
+.cores-4-line {
   stroke: #f57070 !important;
-  fill: #f57070 !important;
 }
 
-.vendor-nvidia-line {
+.vendor-nvidia-line,
+.cores-other-line {
   stroke: #18ff00 !important;
-  fill: #18ff00 !important;
 }
 
 #processor .mg-area2-color {
@@ -266,4 +270,8 @@ h2 {
 
 #pc-video-card .mg-area1-color {
   fill: #87CEFA;
+}
+
+.mg-chart-title-show-more {
+  font-size: 0.7rem;
 }
