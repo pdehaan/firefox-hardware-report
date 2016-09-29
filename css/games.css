@@ -327,3 +327,7 @@ h2 {
   width: 100%;
   height: auto;
 }
+
+.team {
+  margin: 0 auto 20px auto;
+}
