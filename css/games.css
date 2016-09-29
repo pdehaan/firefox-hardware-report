@@ -38,27 +38,31 @@ ul.category li {
 
 .mg-chart-title {
   font-family: 'Open Sans', sans-serif, Arial;
-	font-size: 1.5rem;
-	font-weight: 400;
+  font-size: 1.5rem;
+  font-weight: 400;
 }
 
 .container-charts {
-	background-image: url(../images/alpha.png);
-	margin: 20px auto 0 auto;
-	padding: 40px;
+  background-image: url(../images/alpha.png);
+  margin: 20px auto 0 auto;
+  padding: 40px;
 }
 
 .container-prose {
   background-color: white;
   color: #3b3b3b;
-	opacity: 0.9;
-	margin: 0 auto 40px auto;
-	padding: 20px;
+  opacity: 0.9;
+  margin: 0 auto 40px auto;
+  padding: 20px;
 }
 
-#credits {
-	margin-top: 50px;
-	font-size: 0.9rem;
+.credits {
+  margin: 0 auto 20px auto;
+  font-size: 0.9rem;
+}
+
+.credits img {
+  width: 100px;
 }
 
 svg {
@@ -67,8 +71,8 @@ svg {
 
 body {
   font-family: 'Open Sans', sans-serif, Arial;
-	background: url(../images/bg3.jpg) 50% -70px no-repeat;
-	background-size: 1920px auto;
+  background: url(../images/bg3.jpg) 50% -70px no-repeat;
+  background-size: 1920px auto;
   margin: 0;
   padding: 0;
 }
@@ -132,7 +136,7 @@ h2 {
 
 @media (max-width:1200px){
   .mg-chart-title {
-    font-size: 1.9rem;
+  font-size: 1.9rem;
   }
 }
 
@@ -272,10 +276,6 @@ h2 {
   fill: #87CEFA;
 }
 
-
-
-
-
 .mg-line6-color {
   stroke: pink;
 }
@@ -308,4 +308,22 @@ h2 {
 
 .mg-area7-color {
   fill: #cb5cff;
+}
+
+.profile-photo {
+  border-radius: 100%;
+  background-clip: padding-box;
+  border: 5px solid #ffffff;
+  box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+  width: 150px;
+  height: 150px;
+  display: block;
+  margin: 24px auto 6px auto;
+}
+
+.profile-photo img {
+  border-radius: 100%;
+  background-clip: padding-box;
+  width: 100%;
+  height: auto;
 }

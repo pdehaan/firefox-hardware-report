@@ -258,14 +258,12 @@
             mouseover: mouseover(target),
             mouseout: mouseout(target),
             x_accesor: 'date',
-            y_accessor: ['ram_4', 'ram_2', 'ram_8', 'ram_3', 'ram_1'],
-            legend: ['4GB', '2GB', '8GB', '3GB', '1GB']
+            y_accessor: ['ram_4', 'ram_2', 'ram_8', 'ram_3', 'ram_1', 'ram_6', 'ram_16'],
+            legend: ['4GB', '2GB', '8GB', '3GB', '1GB', '6GB', '16GB']
         });
 
         // gives us the top gpu models
-        // TODO
         //var gpu_models = topX('gpu_model_', data[0][0]);
-
         draw_gpu_models(global.gpu_models.min_lines, global.chart.height);
 
         target = '#browser-share-32-64';
@@ -510,8 +508,10 @@
     }
 
     // expanders for charts
-    d3.select('#gpu-model')
+    d3.selectAll('.expandobox')
       .on('click', function() {
+        var target = '#' + d3.select(this).attr('id');
+
         //set expanded class
         var expanded = d3.select(this)
           .classed('expanded');
@@ -519,36 +519,27 @@
         if(expanded) {
           d3.select(this)
             .classed('expanded', false);
-          draw_gpu_models(global.gpu_models.min_lines, global.chart.height);
-          d3.select('#gpu-model').select('.mg-chart-description')
-            .text('\uf138');
-          } else {
-            d3.select(this)
-              .classed('expanded', true);
-            draw_gpu_models(global.gpu_models.max_lines, global.expanded_chart.height);
-            d3.select('#gpu-model').select('.mg-chart-description')
-            .text('\uf13a');
+
+          if(target == '#gpu-model') {
+            draw_gpu_models(global.gpu_models.min_lines, global.chart.height);
+          } else if(target == '#no-of-cpus') {
+            draw_processor_cores(global.cpu_cores.min_lines, global.chart.height);
           }
-        });
 
-    d3.select('#no-of-cpus')
-      .on('click', function() {
-        //set expanded class
-        var expanded = d3.select(this)
-          .classed('expanded');
-
-        if(expanded) {
-          d3.select(this)
-            .classed('expanded', false);
-          draw_processor_cores(global.cpu_cores.min_lines, global.chart.height);
-          d3.select('#no-of-cpus').select('.mg-chart-description')
+          d3.select(target).select('.mg-chart-description')
             .text('\uf138');
           } else {
             d3.select(this)
               .classed('expanded', true);
-            draw_processor_cores(global.cpu_cores.max_lines, global.expanded_chart.height);
-            d3.select('#no-of-cpus').select('.mg-chart-description')
-            .text('\uf13a');
+
+            if(target == '#gpu-model') {
+              draw_gpu_models(global.gpu_models.max_lines, global.expanded_chart.height);
+            } else if(target == '#no-of-cpus') {
+              draw_processor_cores(global.cpu_cores.max_lines, global.expanded_chart.height);
+            }
+
+            d3.select(target).select('.mg-chart-description')
+              .text('\uf13a');
           }
         });
 }());

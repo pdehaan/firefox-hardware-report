@@ -2,8 +2,17 @@
 <html lang="en">
 <head>
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+
     <title>Firefox Hardware Survey</title>
 
+    <meta property="og:title" content="Firefox Hardware Survey" />
+    <meta property="og:description" content="The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help game developers understand what hardware configurations their titles might want to target." />
+    <meta property="og:image" content="images/preview.jpg" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://games.mozilla.org/" />
+    <meta property="og:site_name" content="Firefox Hardware Survey" />
+  
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Old+Standard+TT:400,400italic,700' rel='stylesheet' type='text/css'>
@@ -44,10 +53,10 @@
         </div>
 
         <div class='row'>
-            <div class='col-lg-4 text-center chart graphics' id='gpu-model'></div>
+            <div class='col-lg-4 text-center chart graphics expandobox' id='gpu-model'></div>
             <div class='col-lg-4 text-center chart graphics' id='pc-video-card'></div>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='processor'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='no-of-cpus'></div>
+            <div class='col-lg-4 text-center chart cpu-and-memory expandobox' id='no-of-cpus'></div>
             <div class='col-lg-4 text-center chart graphics' id='display-resolution'></div>
             <div class='col-lg-4 text-center chart os-and-architecture' id='operating-systems'></div>
             <div class='col-lg-4 text-center chart cpu-and-memory' id='ram'></div>
@@ -63,18 +72,62 @@
         <p>Firefox collects information about your hardware and operating system configuration and sends it to us roughly daily. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing  indicators that might be used to identify individual users.
         <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <span class='it'>Other</span> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Games Website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
 
-        <h2>About us</h2>
+        <h2>The team</h2>
         <p>To learn more about this survey, take a look at our <a href='#'>blog post</a>. The website's code is <a href='https://github.com/mozilla/firefox-hardware-survey'>available on GitHub</a> and the raw data is <a href='https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json'>available from here.</a></p>
-        <p><a href='https://mozillians.org/u/avrignaud/'>Andre Vrignaud</a> &mdash; Product manager</p>
-        <p><a href='https://mozillians.org/u/rweiss/'>Rebecca Weiss</a> &mdash; Data</p>
-        <p><a href='https://mozillians.org/u/alessio.placitelli/'>Alessio Placitelli</a> &mdash; Data engineering</p>
-        <p><a href='https://mozillians.org/u/almossawi/'>Ali Almossawi</a> &mdash; Data visualization</p>
+        
+        <div class='row text-center'>
+          <div class='col-sm-3'>
+            <div class='profile-photo'>
+              <a href='https://mozillians.org/u/avrignaud/'>
+                <img src='images/avrignaud.jpeg' alt='Andre Vrignaud' title='Andre Vrignaud' />
+              </a>
+            </div>
+            <b>Andre Vrignaud</b><br />
+            Product manager<br />
+            <a href='https://twitter.com/avrignaud'>@avrignaud</a>
+          </div>
 
-        <div id='credits'>
-            MOZILLA &middot; Portions of this content are &copy; 1998–2016 by individual mozilla.org contributors. Content available under a Creative Commons license.
+          <div class='col-sm-3'>
+            <div class='profile-photo'>
+              <a href='https://mozillians.org/u/rweiss/'>
+                <img src='images/rweiss.jpeg' alt='Rebecca Weiss' title='Rebecca Weiss' />
+              </a>
+            </div>
+            <b>Rebecca Weiss</b><br />
+            Data<br />
+            <a href='https://github.com/rjweiss'>@rjweiss</a>
+          </div>
+
+          <div class='col-sm-3'>
+            <div class='profile-photo'>
+              <a href='https://mozillians.org/u/alessio.placitelli/'>
+                <img src='images/alessio.jpeg' alt='Alessio Placitelli' title='Alessio Placitelli' />
+              </a>
+            </div>
+            <b>Alessio Placitelli</b><br />
+            Data engineering<br />
+            <a href='https://twitter.com/dexterp37'>@dexterp37</a>
+          </div>
+
+          <div class='col-sm-3'>
+            <div class='profile-photo'>
+              <a href='https://mozillians.org/u/almossawi/'>
+                <img src='images/almossawi.jpeg' alt='Ali Almossawi' title='Ali Almossawi' />
+              </a>
+            </div>
+            <b>Ali Almossawi</b><br />
+            Data visualization<br />
+            <a href='https://twitter.com/alialmossawi'>@alialmossawi</a>
+          </div>
         </div>
     </div>
-
+    <div class='container text-center'>
+      <div class='credits'>
+        <a href='https://mozilla.org'>
+          <img src='images/mozilla.png' alt='Mozilla' title='Mozilla'>
+        </a>
+      </div>
+    </div>
     <script src='js/main.js'></script>
 </body>
 </html>
