@@ -122,6 +122,14 @@
     d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
     //d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
         data_gfx.map(function(d) {
+          //consolidate 'el capitan' releases
+          d['os_Darwin-15'] = 0;
+          d['os_Darwin-15'] += d['os_Darwin-15.0.0'] || 0;
+          d['os_Darwin-15'] += d['os_Darwin-15.2.0'] || 0;
+          d['os_Darwin-15'] += d['os_Darwin-15.3.0'] || 0;
+          d['os_Darwin-15'] += d['os_Darwin-15.4.0'] || 0;
+          d['os_Darwin-15'] += d['os_Darwin-15.5.0'] || 0;
+          d['os_Darwin-15'] += d['os_Darwin-15.6.0'] || 0;
         });
 
         drawCharts([data_gfx]);
@@ -163,7 +171,7 @@
 
       target = '#pc-video-card'
       MG.data_graphic({
-            title: "GPU Vendor",
+            title: "GPU",
             data: data,
             format: 'perc',
             animate_on_load: true,
@@ -197,13 +205,13 @@
             mouseover: mouseover(target),
             mouseout: mouseout(target),
             x_accesor: 'date',
-            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Other', 'os_Windows_NT-6.0', 'os_Windows_NT-6.2'],
-            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'Other', 'Vista', 'Win 8']
+            y_accessor: ['os_Windows_NT-6.1', 'os_Windows_NT-10.0', 'os_Windows_NT-5.1', 'os_Windows_NT-6.3', 'os_Darwin-15', 'os_Windows_NT-6.0', 'os_Windows_NT-6.2'],
+            legend: ['Win 7', 'Win 10', 'Win XP', 'Win 8.1', 'OS X 15', 'Vista', 'Win 8']
         });
 
         target = '#processor';
         MG.data_graphic({
-            title: "Processor",
+            title: "CPU",
             data: data,
             format: 'perc',
             animate_on_load: true,
@@ -382,8 +390,8 @@
         });
 
         var args = {
-            title: "Processor Cores",
-            description: "Click anywhere to show an expanded list of Processor core-speed pairs.",
+            title: "CPU Cores, Speeds",
+            description: "Click anywhere to show an expanded list of processor core-speed pairs.",
             data: global.data,
             format: 'perc',
             animate_on_load: true,
