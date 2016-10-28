@@ -1,64 +1,31 @@
 html {
   font-size: 13px;
-  background: #0253A7 url(../images/grain.jpg)
-}
-
-.pill {
-  font-family: 'Open Sans', sans-serif, Arial;
-  font-size: 1rem;
-  text-transform: uppercase;
-}
-
-.pill:hover,
-.pill:active,
-.pill:visited,
-.pill:link {
-  text-decoration: none;
-}
-
-ul {
-  clear: both;
-  font-size: 1.2rem;
-  padding: 10px 0 0 0;
-}
-
-ul.category li {
-  display: inline;
-  list-style: none;
-  padding: 3px 10px 3px 10px;
-}
-
-ul li.no-padding {
-  padding: 0;
-}
-
-ul.category li {
-  line-height: 30px;
+  background: #0253A7 url(../images/grain.jpg);
 }
 
 .mg-chart-title {
-  font-family: 'Open Sans', sans-serif, Arial;
+  font-family: 'Open Sans',sans-serif,Arial;
   font-size: 1.5rem;
   font-weight: 400;
 }
 
 .container-charts {
   background-image: url(../images/alpha.png);
-  margin: 20px auto 0 auto;
+  margin: 20px auto 0;
   padding: 40px;
 }
 
 .container-prose {
-  background-color: white;
+  background-color: #fff;
   color: #3b3b3b;
-  opacity: 0.9;
-  margin: 0 auto 40px auto;
+  opacity: .9;
+  margin: 0 auto 40px;
   padding: 20px;
 }
 
 .credits {
-  margin: 0 auto 20px auto;
-  font-size: 0.9rem;
+  margin: 0 auto 20px;
+  font-size: .9rem;
 }
 
 .credits img {
@@ -70,7 +37,7 @@ svg {
 }
 
 body {
-  font-family: 'Open Sans', sans-serif, Arial;
+  font-family: 'Open Sans',sans-serif,Arial;
   background: url(../images/bg3.jpg) 50% -70px no-repeat;
   background-size: 1920px auto;
   margin: 0;
@@ -78,7 +45,7 @@ body {
 }
 
 p {
-  font-family: 'Open Sans', sans-serif, Arial;
+  font-family: 'Open Sans',sans-serif,Arial;
   font-size: 1.1rem;
   line-height: 24px;
 }
@@ -87,9 +54,7 @@ p {
   font-style: italic;
 }
 
-a,
-a:active,
-a:visited {
+a,a:active,a:visited {
   color: #70b6f1;
   text-decoration: none;
 }
@@ -98,52 +63,37 @@ a:hover {
   color: #70b6f1;
 }
 
-a.active {
-  background-color: #70b6f1;
-  border: 0;
-  border-radius: 16px;
-  color: black;
-  padding: 3px 10px 3px 10px;
-  text-decoration: none;
-}
-
 .footer {
   border-top: 0;
-  font-size: 0.9rem;
+  font-size: .9rem;
 }
 
 h1 {
-  font-family: 'Open Sans', sans-serif, Arial;
+  font-family: 'Open Sans',sans-serif,Arial;
   font-size: 46px;
   font-weight: 300;
-  margin: 5px 0 5px 0;
+  margin: 5px 0;
   text-align: center;
 }
 
 h2 {
   font-size: 24px;
   font-weight: 400;
+  margin-top: 0;
 }
 
 .transparent-rollover-rect {
-  fill: white;
+  fill: #fff;
 }
 
 .mg-missing-background {
   stroke: #ccc;
 }
 
-
-@media (max-width:1200px){
-  .mg-chart-title {
-  font-size: 1.9rem;
-  }
-}
-
 .hr {
   border-bottom: 1px solid #3b3b3b;
   height: 24px;
-  margin: 20px 0 10px 0;
+  margin: 20px 0 10px;
 }
 
 .buttons {
@@ -160,7 +110,7 @@ h2 {
 
 .btn-group span.which-button {
   font-weight: 300;
-  color: darkgray;
+  color: #a9a9a9;
 }
 
 .btn-group span.title {
@@ -168,136 +118,127 @@ h2 {
   margin-right: 4px;
 }
 
-.mg-x-axis text,
-.mg-y-axis text {
-  font-size: 0.8rem;
+.mg-active-datapoint {
+  font-size: .85rem;
 }
 
-.mg-active-datapoint,
 .mg-line-legend text {
-  font-size: 0.85rem !important;
+  font-size: .88rem;
 }
 
 .header {
   height: 20px;
 }
 
-#gpu-model .mg-chart-title,
-#no-of-cpus .mg-chart-title {
+#gpu-model .mg-chart-title,#processor-cores-speeds .mg-chart-title {
   cursor: pointer;
 }
 
-.vendor-intel,
-.cores-2 {
+.vendor-intel,.cores-2 {
   fill: #87CEFA !important;
 }
 
-.vendor-amd,
-.cores-4 {
+.vendor-amd,.cores-4 {
   fill: #f57070 !important;
 }
 
-.vendor-nvidia,
-.cores-other {
+.vendor-nvidia,.cores-other {
   fill: #18ff00 !important;
 }
 
-.vendor-intel-line,
-.cores-2-line {
+.vendor-intel-line,.cores-2-line {
   stroke: #87CEFA !important;
 }
 
-.vendor-amd-line,
-.cores-4-line {
+.vendor-amd-line,.cores-4-line {
   stroke: #f57070 !important;
 }
 
-.vendor-nvidia-line,
-.cores-other-line {
+.vendor-nvidia-line,.cores-other-line {
   stroke: #18ff00 !important;
 }
 
-#processor .mg-area2-color {
+#detail-processor .mg-area2-color {
   fill: #f57070;
 }
 
-#processor .mg-line2-color {
+#detail-processor .mg-line2-color {
   stroke: #f57070;
 }
 
-#processor .mg-hover-line2-color {
+#detail-processor .mg-hover-line2-color {
   fill: #f57070;
 }
 
-#processor .mg-line2-legend-color {
+#detail-processor .mg-line2-legend-color {
   color: #f57070;
   fill: #f57070;
 }
 
-#processor .mg-area2-color {
+#detail-processor .mg-area2-color {
   fill: #f57070;
 }
 
-#processor .mg-area2-color {
+#detail-processor .mg-area2-color {
   fill: #f57070;
 }
 
-#processor .mg-line1-color {
+#detail-processor .mg-line1-color {
   stroke: #87CEFA;
 }
 
-#processor .mg-hover-line1-color {
+#detail-processor .mg-hover-line1-color {
   fill: #87CEFA;
 }
 
-#processor .mg-line1-legend-color {
+#detail-processor .mg-line1-legend-color {
   color: #87CEFA;
   fill: #87CEFA;
 }
 
-#processor .mg-area1-color {
+#detail-processor .mg-area1-color {
   fill: #87CEFA;
 }
 
-#pc-video-card .mg-line1-color {
+#detail-pc-video-card .mg-line1-color {
   stroke: #87CEFA;
 }
 
-#pc-video-card .mg-hover-line1-color {
+#detail-pc-video-card .mg-hover-line1-color {
   fill: #87CEFA;
 }
 
-#pc-video-card .mg-line1-legend-color {
+#detail-pc-video-card .mg-line1-legend-color {
   color: #87CEFA;
   fill: #87CEFA;
 }
 
-#pc-video-card .mg-area1-color {
+#detail-pc-video-card .mg-area1-color {
   fill: #87CEFA;
 }
 
 .mg-line6-color {
-  stroke: pink;
+  stroke: #ffc0cb;
 }
 
 .mg-hover-line6-color {
-  fill: pink;
+  fill: #ffc0cb;
 }
 
 .mg-line6-legend-color {
-  color: pink;
-  fill: pink;
+  color: #ffc0cb;
+  fill: #ffc0cb;
 }
 
 .mg-area6-color {
-  fill: pink;
+  fill: #ffc0cb;
 }
 
 .mg-line7-color {
   stroke: #cb5cff;
 }
 
-.mg-hover-line7-color {
+.mg-hover-line7-color,.mg-area7-color {
   fill: #cb5cff;
 }
 
@@ -306,19 +247,67 @@ h2 {
   fill: #cb5cff;
 }
 
-.mg-area7-color {
-  fill: #cb5cff;
+.mg-line8-color {
+  stroke: #9edae5;
+}
+
+.mg-hover-line8-color,.mg-area8-color {
+  fill: #9edae5;
+}
+
+.mg-line8-legend-color {
+  color: #9edae5;
+  fill: #9edae5;
+}
+
+.mg-line9-color {
+  stroke: #17becf;
+}
+
+.mg-hover-line9-color,.mg-area9-color {
+  fill: #17becf;
+}
+
+.mg-line9-legend-color {
+  color: #17becf;
+  fill: #17becf;
+}
+
+.mg-line10-color {
+  stroke: #dbdb8d;
+}
+
+.mg-hover-line10-color,.mg-area10-color {
+  fill: #dbdb8d;
+}
+
+.mg-line10-legend-color {
+  color: #dbdb8d;
+  fill: #dbdb8d;
+}
+
+.mg-line11-color {
+  stroke: #bcbd22;
+}
+
+.mg-hover-line11-color,.mg-area11-color {
+  fill: #bcbd22;
+}
+
+.mg-line11-legend-color {
+  color: #bcbd22;
+  fill: #bcbd22;
 }
 
 .profile-photo {
   border-radius: 100%;
   background-clip: padding-box;
-  border: 5px solid #ffffff;
-  box-shadow: 0px 0px 2px rgba(0,0,0,0.2);
+  border: 5px solid #fff;
+  box-shadow: 0 0 2px rgba(0,0,0,0.2);
   width: 150px;
   height: 150px;
   display: block;
-  margin: 24px auto 6px auto;
+  margin: 24px auto 6px;
 }
 
 .profile-photo img {
@@ -329,5 +318,93 @@ h2 {
 }
 
 .team {
-  margin: 0 auto 20px auto;
+  margin: 0 auto 20px;
+}
+
+.date-hero {
+  font-size: 120%;
+  margin: 20px auto;
+}
+
+.date-hero div {
+  margin-left: -40px;
+}
+
+.hero-left {
+  top: 0;
+  padding: 0 10px;
+  position: absolute;
+}
+
+.hero-right {
+  top: 0;
+  padding: 0 10px;
+  position: absolute;
+}
+
+.formatted-date {
+  opacity: .6;
+  margin: auto 20px auto 50px;
+}
+
+.date-hero a {
+  text-decoration: none;
+}
+
+.date-hero a:hover {
+  color: #bde1ff;
+}
+
+.detail-prose {
+  color: #a0a0a0;
+  margin-top: 80px;
+  background-color: #131313;
+}
+
+.detail-prose p {
+  margin: 10px 0;
+}
+
+.mg-x-axis text,.mg-y-axis text {
+  font-size: .95rem;
+}
+
+.detail-header {
+  color: #484848;
+  font-size: 24px;
+  font-weight: 400;
+  border-top: 1px solid #1f1f1f;
+  margin: 50px 0 20px;
+  padding-left: 0;
+}
+
+path {
+  stroke: #fff;
+}
+
+circle {
+  fill: #fff;
+}
+
+.mg-line-legend text {
+  font-size: .75rem;
+  
+}
+
+@media (max-width:450px) {
+  .mg-x-axis text,.mg-y-axis text {
+    font-size: .8rem;
+  }
+
+  .mg-active-datapoint,
+  .mg-line-legend text {
+    font-size: .65rem;
+  }
+}
+
+@media (max-width:1200px) {
+  .detail-prose {
+    margin-top: 10px;
+    border-left: 0;
+  }
 }
