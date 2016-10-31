@@ -391,6 +391,10 @@ circle {
   
 }
 
+.hero-p {
+  padding-left: 80px;
+}
+
 @media (max-width:450px) {
   .mg-x-axis text,.mg-y-axis text {
     font-size: .8rem;
@@ -406,5 +410,9 @@ circle {
   .detail-prose {
     margin-top: 10px;
     border-left: 0;
+  }
+
+  .hero-p {
+    padding-left: 15px;
   }
 }
