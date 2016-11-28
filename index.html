@@ -7,10 +7,10 @@
     <title>Firefox Hardware Survey</title>
 
     <meta property="og:title" content="Firefox Hardware Survey" />
-    <meta property="og:description" content="The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help game developers understand what hardware configurations their titles might want to target." />
+    <meta property="og:description" content="The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help web developers understand what hardware configurations they may wish to target for their titles." />
     <meta property="og:image" content="images/preview.jpg" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://games.mozilla.org/" />
+    <meta property="og:url" content="https://metrics.mozilla.com/firefox-hardware-survey/" />
     <meta property="og:site_name" content="Firefox Hardware Survey" />
   
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
@@ -22,14 +22,12 @@
     <link href="css/metricsgraphics.css" rel="stylesheet" type="text/css" id="light">
     <link href="css/metricsgraphics-dark.css" rel="stylesheet" type="text/css" id="dark">
     <link href="css/games.css" rel="stylesheet" type="text/css">
-    <!--<link rel='stylesheet' href='css/addons/mg_line_brushing.css' />-->
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src='js/metricsgraphics.min.js'></script>
-    <!--<script src='js/addons/mg_line_brushing.js'></script>-->
 </head>
 <body>
     <div class='container header'></div>
@@ -38,34 +36,10 @@
         <div class='row'>
             <div class='col-lg-12'>
                 <h1 class='text-center'>Firefox Hardware Survey</h1>
-                <p>The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help game developers understand what hardware configurations their titles might want to target.</p>
+                <p>The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help web developers understand what hardware configurations they may wish to target for their&nbsp;titles.</p>
             </div>
         </div>
-        <!--<div class='row'>
-            <ul class='text-center category'>
-                <li><a href='#goto-all' class='pill'>All</a></li>
-                <li><a href='#goto-cpu-and-memory' class='pill'>CPU&nbsp;and&nbsp;Memory</a></li>
-                <li><a href='#goto-graphics' class='pill'>Graphics</a></li>
-                <li><a href='#goto-os-and-architecture' class='pill'>OS&nbsp;and&nbsp;Architecture</a></li>
-                <li><a href='#goto-plugins' class='pill'>Plugins</a></li>
-            </ul>
-        </div>-->
 
-        <!--<div class='row'>
-            <div class='col-lg-4 text-center chart graphics expandobox' id='gpu-model'></div>
-            <div class='col-lg-4 text-center chart graphics' id='pc-video-card'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='processor'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory expandobox' id='processor-cores-speeds'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='ram'></div>
-            <div class='col-lg-4 text-center chart graphics' id='display-resolution'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='processor-speed'></div>
-            <div class='col-lg-4 text-center chart cpu-and-memory' id='processor-cores'></div>
-            <div class='col-lg-4 text-center chart os-and-architecture' id='operating-systems'></div>
-            <div class='col-lg-4 text-center chart os-and-architecture' id='browser-share-32-64'></div>
-            <div class='col-lg-4 text-center chart os-and-architecture' id='browser-share-os-32-64'></div>
-            <div class='col-lg-4 text-center chart plugins' id='flash'></div>
-        </div>-->
-            
         <div class='row hero-controls-bar'>
             <div class='col-lg-5'></div>
             <div class='col-lg-1'></div>
@@ -80,22 +54,22 @@
 
         <!-- stacked bar charts -->
         <div class='row hero'>
-            <div class='col-lg-5 hero-p'><p><h2>Graphics</h2> The share of Firefox users using Intel, AMD and NVIDIA GPUs showed no remarkable change. <a href='#goto-graphics' class='category'>More&nbsp;details&nbsp;&rsaquo;</a></p></div>
+            <div class='col-lg-5 hero-p'><p><h2>Graphics</h2> Data on GPU vendor and model market share. <a href='#goto-graphics' class='category'><br />More&nbsp;details&nbsp;&rsaquo;</a></p></div>
             <div class='col-lg-1'></div>
             <div class='col-lg-6 text-center' id='pc-video-card'><svg></svg></div>
         </div>
         <div class='row hero'>
-            <div class='col-lg-5 hero-p'><p><h2>Processor</h2> The share of Firefox users on Intel and AMD processors showed no remarkable change. <a href='#goto-cpu-and-memory' class='category'>More&nbsp;details&nbsp;&rsaquo;</a></p></div>
+            <div class='col-lg-5 hero-p'><p><h2>Processor</h2> Data on CPU vendors, cores, and speeds. <a href='#goto-cpu-and-memory' class='category'><br />More&nbsp;details&nbsp;&rsaquo;</a></p></div>
             <div class='col-lg-1'></div>
             <div class='col-lg-6 text-center' id='processor'><svg></svg></div>
         </div>
         <div class='row hero'>
-            <div class='col-lg-5 hero-p'><p><h2>Operating System</h2> Firefox users of Windows 10 showed a noticeable increase in the first half of 2016. <a href='#goto-os-and-architecture' class='category'>More&nbsp;details&nbsp;&rsaquo;</a></p></div>
+            <div class='col-lg-5 hero-p'><p><h2>Operating System</h2> Data on operating systems's market share. <a href='#goto-os-and-architecture' class='category'><br />More&nbsp;details&nbsp;&rsaquo;</a></p></div>
             <div class='col-lg-1'></div>
             <div class='col-lg-6 text-center' id='operating-systems'><svg></svg></div>
         </div>
         <div class='row hero'>
-            <div class='col-lg-5 hero-p'><p><h2>Flash</h2> Eight out of every ten Firefox users have Flash, with that availability trending down. <a href='#goto-plugins' class='category'>More&nbsp;details&nbsp;&rsaquo;</a></p></div>
+            <div class='col-lg-5 hero-p'><p><h2>Flash</h2> Data on Flash availability on Firefox. <a href='#goto-plugins' class='category'><br />More&nbsp;details&nbsp;&rsaquo;</a></p></div>
             <div class='col-lg-1'></div>
             <div class='col-lg-6 text-center' id='flash'><svg></svg></div>
         </div>
@@ -107,7 +81,7 @@
           <div class='col-lg-2'></div>
           <div class='col-lg-4 detail-prose hidden-sm'>
             <p>Lines marked with an asterisk (*) are NVIDIA GPUs, those marked with a dagger (†) are AMD GPUs, and unmarked ones are Intel integrated GPUs.</p>
-            <p>The <i>Other</i> category&mdash;not shown&mdash;is at around 30% and is what's absorbing the majority of the AMD and NVIDIA GPUs that have a share of less than 1%.</p>
+            <p>The <i>Other</i> category&mdash;not shown&mdash;is around 30% and consists primarily of AMD and NVIDIA GPUs that have a share of less than 1%.</p>
           </div>
         </div>
         <div class='row graphics chart'>
@@ -134,7 +108,7 @@
         <div class='row cpu-and-memory chart'>    
             <div class='col-lg-6 text-center graphic' id='detail-processor-speed'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>A quarter of users have processors that have clock speeds between 2.3 GHz and 2.69 GHz.</p></div>
+            <div class='col-lg-4 detail-prose'><p>A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.</p></div>
         </div>
         <div class='row cpu-and-memory chart'>
             <div class='col-lg-6 text-center graphic' id='detail-ram'></div>
@@ -161,14 +135,14 @@
           <div class='col-lg-12 detail-header' id='goto-plugins'></div>
             <div class='col-lg-6 text-center graphic' id='detail-flash'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>The number of users with a Flash plugin available shows a slow downward trend.</p></div>
+            <div class='col-lg-4 detail-prose'><p>Flash availability on Firefox shows a downward trend.</p></div>
         </div>
     </div>
     <div class='container container-prose'>
         <h2>How is the survey created?</h2>
         <p>Firefox collects information about your hardware and operating system configuration and sends it to us roughly daily. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing  indicators that might be used to identify individual users.
-        <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <span class='it'>Other</span> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Games Website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
-
+        <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <span class='it'>Other</span> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Metrics website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
+        <p>&nbsp;</p>
         <h2>The team</h2>
         <p>To learn more about this survey, take a look at our <a href='#'>blog post</a>. The website's code is <a href='https://github.com/mozilla/firefox-hardware-survey'>available on GitHub</a> and the raw data is <a href='https://metrics.mozilla.com/firefox-hardware-survey/data/hwsurvey-weekly-new-fields.json'>available from here.</a></p>
         

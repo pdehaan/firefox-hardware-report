@@ -82,6 +82,14 @@ h2 {
   margin-top: 0;
 }
 
+.profile-photo img {
+  filter: grayscale(100%);
+}
+
+.profile-photo img:hover {
+  filter: grayscale(0);
+}
+
 .transparent-rollover-rect {
   fill: #fff;
 }
