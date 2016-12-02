@@ -755,7 +755,7 @@
     .on('click', function() {
       d3.event.preventDefault();
 
-      global.heroIndex += 4 * 3;
+      global.heroIndex += 1;
       if (global.heroIndex >= global.data.length) {
         global.heroIndex = global.data.length - 1;
         $('.hero-left')
@@ -774,7 +774,7 @@
     .on('click', function() {
       d3.event.preventDefault();
 
-      global.heroIndex -= 4 * 3;
+      global.heroIndex -= 1;
       if (global.heroIndex < 0) {
         global.heroIndex = 0;
         $('.hero-right')
