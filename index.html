@@ -4,14 +4,14 @@
     <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
     <meta name='viewport' content='width=device-width, initial-scale=1'>
 
-    <title>Firefox Hardware Survey</title>
+    <title>Firefox Hardware Report</title>
 
-    <meta property="og:title" content="Firefox Hardware Survey" />
-    <meta property="og:description" content="The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help web developers understand what hardware configurations they may wish to target for their sites." />
+    <meta property="og:title" content="Firefox Hardware Report" />
+    <meta property="og:description" content="The Firefox Hardware Report is a public report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this report. This report aims to help web developers understand what hardware configurations they may wish to target for their sites." />
     <meta property="og:image" content="images/preview.jpg" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="https://metrics.mozilla.com/firefox-hardware-survey/" />
-    <meta property="og:site_name" content="Firefox Hardware Survey" />
+    <meta property="og:url" content="https://metrics.mozilla.com/firefox-hardware-report/" />
+    <meta property="og:site_name" content="Firefox Hardware Report" />
   
     <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic' rel='stylesheet' type='text/css'>
@@ -35,8 +35,8 @@
     <div class='container container-charts'>
         <div class='row'>
             <div class='col-lg-12'>
-                <h1 class='text-center'>Firefox Hardware Survey</h1>
-                <p>The Firefox Hardware Survey is a public report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. Firefox collects raw, anonymous data that comes from users who have not disabled the Firefox Health Report feature in their browser. We use this data to prioritize development efforts and to power this survey. This survey aims to help web developers understand what hardware configurations they may wish to target for their&nbsp;sites.</p>
+                <h1 class='text-center'>Firefox Hardware Report</h1>
+                <p>The Firefox Hardware Report is a public monthly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop.  We want this information to be used by developers to improve the Firefox experience for users. </p>
             </div>
         </div>
 
@@ -139,12 +139,12 @@
         </div>
     </div>
     <div class='container container-prose'>
-        <h2>How is the survey created?</h2>
-        <p>Firefox collects information about your hardware and operating system configuration and sends it to us roughly daily. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing  indicators that might be used to identify individual users.
-        <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases&mdash;resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an <span class='it'>Other</span> bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Metrics website. For further details about our data retention policies, please refer to our <a href='https://www.mozilla.org/en-US/privacy/'>data policy</a>.</p>
+        <h2>How is the report created?</h2>
+        <p>The data for this report comes from Firefox’s built-in Telemetry data system.  Firefox automatically collects information about desktop hardware and operating system configurations and sends this to Mozilla roughly daily, unless users disable this collection. This raw data is processed to remove corrupted or inaccurate entries and is then aggregated. This aggregation anonymizes the data, removing indicators that might be used to identify individual users.</p>
+        <p>During the aggregation step, less common screen resolutions and OS versions are handled as special cases—resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an “Other” bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Metrics website.</p>
         <p>&nbsp;</p>
         <h2>The team</h2>
-        <p>To learn more about this survey, take a look at our <a href='#'>blog post</a>. The website's code is <a href='https://github.com/mozilla/firefox-hardware-survey'>available on GitHub</a> and the raw data is <a href='https://metrics.mozilla.com/firefox-hardware-survey/data/hwsurvey-weekly-new-fields.json'>available from here.</a></p>
+        <p>To learn more about this report, take a look at our <a href='https://hacks.mozilla.org/2016/12/firefox-hardware-report/'>blog post</a>. The website's code is <a href='https://github.com/mozilla/firefox-hardware-report'>available on GitHub</a>.</p>
         
         <div class='row text-center team'>
           <div class='col-sm-3'>
@@ -154,7 +154,7 @@
               </a>
             </div>
             <b>Andre Vrignaud</b><br />
-            Product manager<br />
+            Product manager, Games strategy<br />
             <a href='https://twitter.com/andrevrignaud'>@andrevrignaud</a>
           </div>
 
@@ -165,7 +165,7 @@
               </a>
             </div>
             <b>Rebecca Weiss</b><br />
-            Data<br />
+            Manager, Product data science<br />
             <a href='https://github.com/rjweiss'>@rjweiss</a>
           </div>
 
@@ -197,6 +197,11 @@
         <a href='https://mozilla.org'>
           <img src='images/mozilla.png' alt='Mozilla' title='Mozilla'>
         </a>
+        <p class='legal'>
+          <a href='https://www.mozilla.org/privacy/websites'>Privacy</a> &nbsp;
+          <a href='https://www.mozilla.org/about/legal/terms/mozilla'>Legal</a> &nbsp;
+          <a href='https://www.mozilla.org/en-US/privacy/websites/#cookies'>Cookies</a>
+        </p>
       </div>
     </div>
     <script src='js/main.js'></script>

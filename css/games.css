@@ -403,6 +403,10 @@ circle {
   padding-left: 80px;
 }
 
+.legal {
+  margin-top: 20px;
+}
+
 @media (max-width:450px) {
   .mg-x-axis text,.mg-y-axis text {
     font-size: .8rem;

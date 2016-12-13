@@ -95,24 +95,6 @@
     }
   }
 
-  // on category click
-  //     d3.selectAll('.category')
-  //       .on('click', function() {
-  //         d3.event.preventDefault();
-  // 
-  //         var section = d3.select(this).attr('href').slice(6);
-  //         document.location.hash = section;
-  // 
-  //         //hide hero charts
-  //         // d3.selectAll('.hero, .hero-controls-bar')
-  // //           .style('display', 'none');
-  //         
-  //         //show detail charts
-  //         reorderCharts(section);
-  // 
-  //         return false;
-  //     });
-
   function reorderCharts(section) {
     if (section == 'all') {
       d3.selectAll('.chart').style('display', 'block');
@@ -419,16 +401,6 @@
 
   function drawCharts(data) {
     var target;
-
-    /*var cpu_speed = topX('cpu_speed_', global.data[0]);
-      var cpu_speed_keys = [];
-      var cpu_speed_labels = [];
-      cpu_speed.forEach(function(d, i) {
-        cpu_speed_keys.push(d.key);
-        var nicy = d.key.replace('cpu_speed_', '');
-          
-        cpu_speed_labels.push((nicy == 'Other') ? nicy : nicy + ' GHz');
-      });*/
 
     target = '#detail-processor-speed';
     MG.data_graphic({
