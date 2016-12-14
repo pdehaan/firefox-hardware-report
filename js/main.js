@@ -11,7 +11,7 @@
     color['Win_10'] = '#fdb813',
     color['Win_XP'] = '#fdd413',
     color['Win_8-1'] = '#fdf513',
-    color['OS_X'] = '#75cbff',
+    color['macOS'] = '#75cbff',
     color['Other'] = '#454545',
     color['Has_Flash'] = '#b4b4b4',
     color['No_Flash'] = '#f1f1f1';
@@ -143,7 +143,7 @@
       key: 'Win_8-1',
       value: data_this_month['os_Windows_NT-6.3']
     }, {
-      key: 'OS_X',
+      key: 'macOS',
       value: data_this_month['os_Darwin']
     }];
     heroChart(data_os, '#operating-systems');
