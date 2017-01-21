@@ -428,3 +428,9 @@ circle {
     padding-left: 15px;
   }
 }
+
+.data-last-updated {
+  font-size: 0.9rem;
+  font-style: italic;
+  margin-top: 40px;
+}
