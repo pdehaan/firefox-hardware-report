@@ -18,6 +18,7 @@
 
   var global = {
     heroIndex: 0,
+    formatter: d3.timeFormat("%b %d, %Y"),
     chart: {
       width: 400,
       height: 660,
@@ -187,10 +188,8 @@
     var rects = svg.selectAll('rect.bar');
     var x_marker = 0;
 
-
-    var formatter = d3.timeFormat("%b %d, %Y");
-    d3.select('.formatted-date').html(formatter(global.data[global.heroIndex]
-      .date));
+    d3.select('.formatted-date')
+        .html(global.formatter(global.data[global.heroIndex].date));
 
     //updating?
     if (rects.nodes().length > 0) {
@@ -335,8 +334,8 @@
   }
 
 
-  d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
-    //d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
+  //d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
+  d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
     data_gfx.map(function(d) {
       //consolidate Mac releases
       d['os_Darwin'] = 0;
@@ -375,6 +374,10 @@
     //take first one and use that to build the stacked bar charts
     global.data = data_gfx;
     drawHeroCharts(global.data[global.heroIndex]);
+
+    // update last updated date
+    d3.select('.data-last-updated span')
+        .html(global.formatter(global.data[0].date));
 
     //draw the rest of the charts
     drawCharts([data_gfx]);
@@ -424,7 +427,8 @@
         'grouped_cpu_speed_2.3_to_2.69',
         'grouped_cpu_speed_2.7_to_2.99',
         'grouped_cpu_speed_3.0_to_3.29',
-        'grouped_cpu_speed_3.3_to_3.69', 'cpu_speed_Other'
+        'grouped_cpu_speed_3.3_to_3.69',
+        'cpu_speed_Other'
       ],
       legend: ['Less than 1.4 GHz', '1.4 GHz to 1.49 GHz',
         '1.5 GHz to 1.69 GHz', '1.7 GHz to 1.99 GHz',
