@@ -30,32 +30,37 @@ Reported Data
 -------------
 The following is a list of the reported dimensions for the aggregated data:
 
-* `browser_arch`: the architecture of the browser, either `x86` or `x86-64`.
-* `cores`: the number of CPU cores.
-* `cpu`: the name of the CPU vendor.
-* `cpu_speed`: the speed of the CPU in GHz, rounded to the first decimal number.
-* `cpu_cores_speed`: the number of cores aggregated with the speed of the CPU in GHz, rounded to the first decimal number.
-* `gpu`: the name of the vendor for the main video card.
-* `gpu_model`: the model for the main video card, derived from the reported vendor and device identifiers.
-* `display`: the resolution of the main screen, as a "WIDTHxHEIGHT" string. The width can be prefixed with a `~`, indicating that the resolution was rounded to the nearest hundredth.
+* `browserArch`: the architecture of the browser, either `x86` or `x86-64`.
+* `cpuCores`: the number of CPU cores.
+* `cpuVendor`: the name of the CPU vendor.
+* `cpuSpeed`: the speed of the CPU in GHz, rounded to the first decimal number.
+* `cpuCoresSpeed`: the number of cores aggregated with the speed of the CPU in GHz, rounded to the first decimal number.
+* `gpuVendor`: the name of the vendor for the main video card.
+* `gpuModel`: the model for the main video card, derived from the reported vendor and device identifiers.
+* `resolution`: the resolution of the main screen, as a "WIDTHxHEIGHT" string. The width can be prefixed with a `~`, indicating that the resolution was rounded to the nearest hundredth.
 * `ram`: the amount of installed RAM memory, in Gb.
-* `os`: the name and version of the installed Operating System.
-* `os_arch`: the architecture of the Operating System, either `x86` or `x86-64`.
-* `has_flash`: either `True` or `False`, depending on whether or not the Flash plugin is present.
+* `osName`: the name and version of the installed Operating System.
+* `osArch`: the architecture of the Operating System, either `x86` or `x86-64`.
+* `hasFlash`: either `True` or `False`, depending on whether or not the Flash plugin is present.
 
 **Example**
 ```json
 [
   {
-    "browser_arch_x86": 0.6,
-    "browser_arch_x86-64": 0.4,
-    "cores_1": 0.1,
-    "cores_2": 0.4,
-    "cores_4": 0.2,
-    "cores_Other": 0.3,
+    "browserArch_x86": 0.6,
+    "browserArch_x86-64": 0.4,
+    "cpuCores_1": 0.1,
+    "cpuCores_2": 0.4,
+    "cpuCores_4": 0.2,
+    "cpuCores_Other": 0.3,
     "date": "2016-05-01",
   },
 ]
 ```
 
 Means that 60% of the reference user population reported the use of Firefox x86 while 40% reported the use of Firefox x86-64. The reported number of CPU cores are a bit more fragmented: 10% report 1 core, 40% 2 cores and 20% 4 cores. Moreover, 30% of the users report a less common number of cores, so they are grouped together in the "Other" bucket.
+
+Changelog
+---------
+
+* 6ea4922162eddd85d890f18a2538d5edc18b8039 - Renamed the data points to use the camelCase (e.g. *os_arch_* becomes *osArch_*);
