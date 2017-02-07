@@ -8,6 +8,9 @@ The data for this report comes from Firefox’s built-in Telemetry data system. 
 
 During the aggregation step, less common screen resolutions and OS versions are handled as special cases—resolutions are rounded to the nearest hundred and version numbers are collapsed together in a generic group. Any reported configurations that account for less than 1% of the data are grouped together in an “Other” bucket. At the end of the process, the aggregated, anonymized data is exported to a public JSON file and published on the Mozilla Metrics website.
 
+# Helpful links
+* [Data file format](https://github.com/mozilla/firefox-hardware-survey/blob/master/report/format.md)
+
 # About us
 Andre Vrignaud — Product manager
 
