@@ -27,39 +27,39 @@
       xax_count: 4
     },
     gpu_model_nice: {
-      'gpu_model_gen7.5-haswell-gt2': 'Haswell (GT2)',
-      'gpu_model_gen7-ivybridge-gt2': 'Ivy Bridge (GT2)',
-      'gpu_model_gen6-sandybridge-gt2': 'Sandy Bridge (GT2)',
-      'gpu_model_gen6-sandybridge-gt1': 'Sandy Bridge (GT1)',
-      'gpu_model_gen7-ivybridge-gt1': 'Ivy Bridge (GT1)',
-      'gpu_model_gen4.5-gma4500hd': 'GMA 4500HD',
-      'gpu_model_gen5-ironlake': 'Ironlake',
-      'gpu_model_gen7-baytrail': 'Bay Trail',
-      'gpu_model_gen4.5-gma4500': 'GMA 4500',
-      'gpu_model_gen8-broadwell-gt2': 'Broadwell (GT2)',
-      'gpu_model_gen3-gma3100': 'GMA 3100',
-      'gpu_model_gen3-gma950': 'GMA 950',
-      'gpu_model_gen7.5-haswell-gt21': 'Haswell (GT21)',
-      'gpu_model_gen7-ivybridge-gt22': 'Ivy Bridge (GT22)',
-      'gpu_model_gen6-sandybridge-gt23': 'Sandy Bridge (GT23)',
-      'gpu_model_gen6-sandybridge-gt14': 'Sandy Bridge (GT14)',
-      'gpu_model_gen7-ivybridge-gt15': 'Sandy Bridge (GT15)',
-      'gpu_model_gen4.5-gma4500hd6': 'GMA 4500HD 6',
-      'gpu_model_gen5-ironlake7': 'Ironlake',
-      'gpu_model_gen7-baytrail8': 'Bay Trail 8',
-      'gpu_model_gen4.5-gma45009': 'GMA 4500 9',
-      'gpu_model_gen8-broadwell-gt210': 'Broadwell (GT 210)',
-      'gpu_model_gen3-gma310011': 'GMA 310011',
-      'gpu_model_EVERGREEN-PALM': 'Evergreen (Palm)†',
-      'gpu_model_gen9-skylake-gt2': 'Skylake (GT2)',
-      'gpu_model_EVERGREEN-CEDAR': 'Evergreen (Cedar)†',
-      'gpu_model_CAYMAN-ARUBA': 'Cayman (Aruba)†',
-      'gpu_model_gen4-gma3500': 'GMA 3500',
-      'gpu_model_Tesla-GT218': 'GeForce GT218*',
-      'gpu_model_NV40-C61': 'GeForce NV40*',
-      'gpu_model_gen7.5-haswell-gt3': 'Haswell (GT3)',
-      'gpu_model_gen7.5-haswell-gt1': 'Haswell (GT1)',
-      'gpu_model_EVERGREEN-TURKS': 'Evergreen (Turks)†'
+      'gpuModel_gen7.5-haswell-gt2': 'Haswell (GT2)',
+      'gpuModel_gen7-ivybridge-gt2': 'Ivy Bridge (GT2)',
+      'gpuModel_gen6-sandybridge-gt2': 'Sandy Bridge (GT2)',
+      'gpuModel_gen6-sandybridge-gt1': 'Sandy Bridge (GT1)',
+      'gpuModel_gen7-ivybridge-gt1': 'Ivy Bridge (GT1)',
+      'gpuModel_gen4.5-gma4500hd': 'GMA 4500HD',
+      'gpuModel_gen5-ironlake': 'Ironlake',
+      'gpuModel_gen7-baytrail': 'Bay Trail',
+      'gpuModel_gen4.5-gma4500': 'GMA 4500',
+      'gpuModel_gen8-broadwell-gt2': 'Broadwell (GT2)',
+      'gpuModel_gen3-gma3100': 'GMA 3100',
+      'gpuModel_gen3-gma950': 'GMA 950',
+      'gpuModel_gen7.5-haswell-gt21': 'Haswell (GT21)',
+      'gpuModel_gen7-ivybridge-gt22': 'Ivy Bridge (GT22)',
+      'gpuModel_gen6-sandybridge-gt23': 'Sandy Bridge (GT23)',
+      'gpuModel_gen6-sandybridge-gt14': 'Sandy Bridge (GT14)',
+      'gpuModel_gen7-ivybridge-gt15': 'Sandy Bridge (GT15)',
+      'gpuModel_gen4.5-gma4500hd6': 'GMA 4500HD 6',
+      'gpuModel_gen5-ironlake7': 'Ironlake',
+      'gpuModel_gen7-baytrail8': 'Bay Trail 8',
+      'gpuModel_gen4.5-gma45009': 'GMA 4500 9',
+      'gpuModel_gen8-broadwell-gt210': 'Broadwell (GT 210)',
+      'gpuModel_gen3-gma310011': 'GMA 310011',
+      'gpuModel_EVERGREEN-PALM': 'Evergreen (Palm)†',
+      'gpuModel_gen9-skylake-gt2': 'Skylake (GT2)',
+      'gpuModel_EVERGREEN-CEDAR': 'Evergreen (Cedar)†',
+      'gpuModel_CAYMAN-ARUBA': 'Cayman (Aruba)†',
+      'gpuModel_gen4-gma3500': 'GMA 3500',
+      'gpuModel_Tesla-GT218': 'GeForce GT218*',
+      'gpuModel_NV40-C61': 'GeForce NV40*',
+      'gpuModel_gen7.5-haswell-gt3': 'Haswell (GT3)',
+      'gpuModel_gen7.5-haswell-gt1': 'Haswell (GT1)',
+      'gpuModel_EVERGREEN-TURKS': 'Evergreen (Turks)†'
     }
   };
 
@@ -112,49 +112,49 @@
   function drawHeroCharts(data_this_month) {
     var data_cpu = [{
       key: 'Intel',
-      value: data_this_month.cpu_GenuineIntel
+      value: data_this_month.cpuVendor_GenuineIntel
     }, {
       key: 'AMD',
-      value: data_this_month.cpu_AuthenticAMD
+      value: data_this_month.cpuVendor_AuthenticAMD
     }];
     heroChart(data_cpu, '#processor');
 
     var data_gpu = [{
       key: 'Intel',
-      value: data_this_month.gpu_Intel
+      value: data_this_month.gpuVendor_Intel
     }, {
       key: 'AMD',
-      value: data_this_month.gpu_AMD
+      value: data_this_month.gpuVendor_AMD
     }, {
       key: 'NVIDIA',
-      value: data_this_month.gpu_NVIDIA
+      value: data_this_month.gpuVendor_NVIDIA
     }];
     heroChart(data_gpu, '#pc-video-card');
 
     var data_os = [{
       key: 'Win_7',
-      value: data_this_month['os_Windows_NT-6.1']
+      value: data_this_month['osName_Windows_NT-6.1']
     }, {
       key: 'Win_10',
-      value: data_this_month['os_Windows_NT-10.0']
+      value: data_this_month['osName_Windows_NT-10.0']
     }, {
       key: 'Win_XP',
-      value: data_this_month['os_Windows_NT-5.1']
+      value: data_this_month['osName_Windows_NT-5.1']
     }, {
       key: 'Win_8-1',
-      value: data_this_month['os_Windows_NT-6.3']
+      value: data_this_month['osName_Windows_NT-6.3']
     }, {
       key: 'macOS',
-      value: data_this_month['os_Darwin']
+      value: data_this_month['osName_Darwin']
     }];
     heroChart(data_os, '#operating-systems');
 
     var data_flash = [{
       key: 'Has_Flash',
-      value: data_this_month.has_flash_True
+      value: data_this_month.hasFlash_True
     }, {
       key: 'No_Flash',
-      value: data_this_month.has_flash_False
+      value: data_this_month.hasFlash_False
     }];
     heroChart(data_flash, '#flash');
   }
@@ -334,32 +334,32 @@
   }
 
 
-  //d3.json('data/hwsurvey-weekly-new-fields.json', function(data_gfx) {
+  //d3.json('data/hwsurvey-weekly-full.json', function(data_gfx) {
   d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
     data_gfx.map(function(d) {
       //consolidate Mac releases
-      d['os_Darwin'] = 0;
-      d['os_Darwin'] += d['os_Darwin-15.6.0'] || 0;
-      d['os_Darwin'] += d['os_Darwin-14.5.0'] || 0;
-      d['os_Darwin'] += d['os_Darwin-Other'] || 0;
+      d['osName_Darwin'] = 0;
+      d['osName_Darwin'] += d['osName_Darwin-15.6.0'] || 0;
+      d['osName_Darwin'] += d['osName_Darwin-14.5.0'] || 0;
+      d['osName_Darwin'] += d['osName_Darwin-Other'] || 0;
 
       //group CPU speeds
-      d['grouped_cpu_speed_1.4_or_less'] = d['cpu_speed_1.3'];
-      d['grouped_cpu_speed_1.4_to_1.49'] = d['cpu_speed_1.4'];
-      d['grouped_cpu_speed_1.5_to_1.69'] = d['cpu_speed_1.5'] + d[
-        'cpu_speed_1.6'];
-      d['grouped_cpu_speed_1.7_to_1.99'] = d['cpu_speed_1.7'] + d[
-        'cpu_speed_1.8'] + d['cpu_speed_1.9'];
-      d['grouped_cpu_speed_2_to_2.29'] = d['cpu_speed_2.0'] + d[
-        'cpu_speed_2.1'] + d['cpu_speed_2.2'];
-      d['grouped_cpu_speed_2.3_to_2.69'] = d['cpu_speed_2.3'] + d[
-        'cpu_speed_2.4'] + d['cpu_speed_2.5'] + d['cpu_speed_2.6'];
-      d['grouped_cpu_speed_2.7_to_2.99'] = d['cpu_speed_2.7'] + d[
-        'cpu_speed_2.8'] + d['cpu_speed_2.9'];
-      d['grouped_cpu_speed_3.0_to_3.29'] = d['cpu_speed_3.0'] + d[
-        'cpu_speed_3.1'] + d['cpu_speed_3.2'];
-      d['grouped_cpu_speed_3.3_to_3.69'] = d['cpu_speed_3.3'] + d[
-        'cpu_speed_3.4'] + d['cpu_speed_3.5'] + d['cpu_speed_3.6'];
+      d['grouped_cpuSpeed_1.4_or_less'] = d['cpuSpeed_1.3'];
+      d['grouped_cpuSpeed_1.4_to_1.49'] = d['cpuSpeed_1.4'];
+      d['grouped_cpuSpeed_1.5_to_1.69'] = d['cpuSpeed_1.5'] + d[
+        'cpuSpeed_1.6'];
+      d['grouped_cpuSpeed_1.7_to_1.99'] = d['cpuSpeed_1.7'] + d[
+        'cpuSpeed_1.8'] + d['cpuSpeed_1.9'];
+      d['grouped_cpuSpeed_2_to_2.29'] = d['cpuSpeed_2.0'] + d[
+        'cpuSpeed_2.1'] + d['cpuSpeed_2.2'];
+      d['grouped_cpuSpeed_2.3_to_2.69'] = d['cpuSpeed_2.3'] + d[
+        'cpuSpeed_2.4'] + d['cpuSpeed_2.5'] + d['cpuSpeed_2.6'];
+      d['grouped_cpuSpeed_2.7_to_2.99'] = d['cpuSpeed_2.7'] + d[
+        'cpuSpeed_2.8'] + d['cpuSpeed_2.9'];
+      d['grouped_cpuSpeed_3.0_to_3.29'] = d['cpuSpeed_3.0'] + d[
+        'cpuSpeed_3.1'] + d['cpuSpeed_3.2'];
+      d['grouped_cpuSpeed_3.3_to_3.69'] = d['cpuSpeed_3.3'] + d[
+        'cpuSpeed_3.4'] + d['cpuSpeed_3.5'] + d['cpuSpeed_3.6'];
     });
 
     //sort by date
@@ -371,7 +371,7 @@
     });
     console.log(data_gfx);
 
-    //take first one and use that to build the stacked bar charts
+    // take first one and use that to build the stacked bar charts
     global.data = data_gfx;
     drawHeroCharts(global.data[global.heroIndex]);
 
@@ -417,18 +417,18 @@
       yax_count: 10,
       right: global.chart.right,
       target: target,
-      //y_accessor: cpu_speed_keys,
-      //legend: cpu_speed_labels,
-      y_accessor: ['grouped_cpu_speed_1.4_or_less',
-        'grouped_cpu_speed_1.4_to_1.49',
-        'grouped_cpu_speed_1.5_to_1.69',
-        'grouped_cpu_speed_1.7_to_1.99',
-        'grouped_cpu_speed_2_to_2.29',
-        'grouped_cpu_speed_2.3_to_2.69',
-        'grouped_cpu_speed_2.7_to_2.99',
-        'grouped_cpu_speed_3.0_to_3.29',
-        'grouped_cpu_speed_3.3_to_3.69',
-        'cpu_speed_Other'
+      //y_accessor: cpuSpeed_keys,
+      //legend: cpuSpeed_labels,
+      y_accessor: ['grouped_cpuSpeed_1.4_or_less',
+        'grouped_cpuSpeed_1.4_to_1.49',
+        'grouped_cpuSpeed_1.5_to_1.69',
+        'grouped_cpuSpeed_1.7_to_1.99',
+        'grouped_cpuSpeed_2_to_2.29',
+        'grouped_cpuSpeed_2.3_to_2.69',
+        'grouped_cpuSpeed_2.7_to_2.99',
+        'grouped_cpuSpeed_3.0_to_3.29',
+        'grouped_cpuSpeed_3.3_to_3.69',
+        'cpuSpeed_Other'
       ],
       legend: ['Less than 1.4 GHz', '1.4 GHz to 1.49 GHz',
         '1.5 GHz to 1.69 GHz', '1.7 GHz to 1.99 GHz',
@@ -441,20 +441,24 @@
       full_width: true,
     });
 
-    var cores = topX('cores_', global.data[0]);
+    var cores = topX('cpuCores_', global.data[0]);
     var cores_keys = [];
     var cores_labels = [];
     cores.forEach(function(d, i) {
       cores_keys.push(d.key);
-      var nicy = d.key.replace('cores_', '');
+      var nicy = d.key.replace('cpuCores_', '');
 
-      cores_labels.push((nicy == 'Other') ? '3 or 8+ cores' : (nicy ==
-        1) ? nicy + ' core' : nicy + ' cores');
+      cores_labels.push((nicy == 'Other')
+        ? '3 or 8+ cores'
+        : (nicy == 1)
+          ? nicy + ' core'
+          : nicy + ' cores');
     });
     target = '#detail-processor-cores';
     MG.data_graphic({
       title: "CPU Cores",
       data: data,
+      chart_type: 'missing-data',
       format: 'perc',
       animate_on_load: true,
       width: global.chart.width,
@@ -485,20 +489,20 @@
       mouseout: mouseout(target),
       max_y: 1,
       x_accesor: 'date',
-      y_accessor: ['gpu_Intel', 'gpu_NVIDIA', 'gpu_AMD'],
+      y_accessor: ['gpuVendor_Intel', 'gpuVendor_NVIDIA', 'gpuVendor_AMD'],
       legend: ['Intel', 'NVIDIA', 'AMD']
     });
 
     target = '#detail-operating-systems';
-    var os = topX('os_', global.data[0]);
+    var os = topX('osName_', global.data[0]);
     var os_keys = [];
     var os_labels = [];
     os.forEach(function(d, i) {
-      if (d.key == 'os_Darwin')
+      if (d.key == 'osName_Darwin')
         return;
 
       os_keys.push(d.key);
-      os_labels.push(d.key.replace('os_', ''));
+      os_labels.push(d.key.replace('osName_', ''));
     });
     MG.data_graphic({
       title: "Operating System",
@@ -535,17 +539,17 @@
       mouseout: mouseout(target),
       max_y: 1,
       x_accesor: 'date',
-      y_accessor: ['cpu_GenuineIntel', 'cpu_AuthenticAMD'],
+      y_accessor: ['cpuVendor_GenuineIntel', 'cpuVendor_AuthenticAMD'],
       legend: ['Intel', 'AMD']
     });
 
     target = '#detail-display-resolution';
-    var display_resolutions = topX('display_', global.data[0]);
+    var display_resolutions = topX('resolution_', global.data[0]);
     var display_resolutions_keys = [];
     var display_resolutions_labels = [];
     display_resolutions.forEach(function(d, i) {
       display_resolutions_keys.push(d.key);
-      display_resolutions_labels.push(d.key.replace('display_', ''));
+      display_resolutions_labels.push(d.key.replace('resolution_', ''));
     });
     MG.data_graphic({
       title: "Display Resolution",
@@ -612,7 +616,7 @@
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       x_accesor: 'date',
-      y_accessor: ['browser_arch_x86', 'browser_arch_x86-64'],
+      y_accessor: ['browserArch_x86', 'browserArch_x86-64'],
       legend: ['32-bit', '64-bit'],
       max_y: 1,
       full_width: true,
@@ -631,7 +635,7 @@
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       target: target,
-      y_accessor: ['osarch_x86', 'osarch_x86-64'],
+      y_accessor: ['osArch_x86', 'osArch_x86-64'],
       legend: ['32-bit', '64-bit'],
       max_y: 1,
       full_width: true,
@@ -647,7 +651,7 @@
       xax_count: global.chart.xax_count,
       right: global.chart.right,
       target: '#detail-flash',
-      y_accessor: ['has_flash_True'],
+      y_accessor: ['hasFlash_True'],
       legend: ['Has Flash'],
       max_y: 1,
       area: true,
@@ -663,11 +667,11 @@
   function draw_gpu_models() {
     var target = '#detail-gpu-model';
 
-    var gpu_models = topX('gpu_model_', global.data[0]);
+    var gpu_models = topX('gpuModel_', global.data[0]);
     var gpu_models_keys = [];
     var gpu_models_labels = [];
     gpu_models.forEach(function(d, i) {
-      if (d.key == 'gpu_model_Other' || d.key == 'gpu_model_Unknown')
+      if (d.key == 'gpuModel_Other' || d.key == 'gpuModel_Unknown')
         return;
 
       gpu_models_keys.push(d.key);
