@@ -458,7 +458,6 @@
     MG.data_graphic({
       title: "CPU Cores",
       data: data,
-      chart_type: 'missing-data',
       format: 'perc',
       animate_on_load: true,
       width: global.chart.width,
