@@ -7,14 +7,14 @@
   color['Intel'] = '#2bacfb';
   color['AMD'] = '#f44d29';
   color['NVIDIA'] = '#31d620',
-    color['Win_7'] = '#fd9213',
-    color['Win_10'] = '#fdb813',
-    color['Win_XP'] = '#fdd413',
-    color['Win_8-1'] = '#fdf513',
-    color['macOS'] = '#75cbff',
-    color['Other'] = '#454545',
-    color['Has_Flash'] = '#b4b4b4',
-    color['No_Flash'] = '#f1f1f1';
+  color['Win_7'] = '#fd9213',
+  color['Win_10'] = '#fdb813',
+  color['Win_XP'] = '#fdd413',
+  color['Win_8-1'] = '#fdf513',
+  color['macOS'] = '#75cbff',
+  color['Other'] = '#454545',
+  color['Has_Flash'] = '#b4b4b4',
+  color['No_Flash'] = '#f1f1f1';
 
   var global = {
     heroIndex: 0,
@@ -26,40 +26,45 @@
       right: 120,
       xax_count: 4
     },
-    gpu_model_nice: {
-      'gpuModel_gen7.5-haswell-gt2': 'Haswell (GT2)',
-      'gpuModel_gen7-ivybridge-gt2': 'Ivy Bridge (GT2)',
-      'gpuModel_gen6-sandybridge-gt2': 'Sandy Bridge (GT2)',
-      'gpuModel_gen6-sandybridge-gt1': 'Sandy Bridge (GT1)',
-      'gpuModel_gen7-ivybridge-gt1': 'Ivy Bridge (GT1)',
-      'gpuModel_gen4.5-gma4500hd': 'GMA 4500HD',
-      'gpuModel_gen5-ironlake': 'Ironlake',
-      'gpuModel_gen7-baytrail': 'Bay Trail',
-      'gpuModel_gen4.5-gma4500': 'GMA 4500',
-      'gpuModel_gen8-broadwell-gt2': 'Broadwell (GT2)',
-      'gpuModel_gen3-gma3100': 'GMA 3100',
-      'gpuModel_gen3-gma950': 'GMA 950',
-      'gpuModel_gen7.5-haswell-gt21': 'Haswell (GT21)',
-      'gpuModel_gen7-ivybridge-gt22': 'Ivy Bridge (GT22)',
-      'gpuModel_gen6-sandybridge-gt23': 'Sandy Bridge (GT23)',
-      'gpuModel_gen6-sandybridge-gt14': 'Sandy Bridge (GT14)',
-      'gpuModel_gen7-ivybridge-gt15': 'Sandy Bridge (GT15)',
-      'gpuModel_gen4.5-gma4500hd6': 'GMA 4500HD 6',
-      'gpuModel_gen5-ironlake7': 'Ironlake',
-      'gpuModel_gen7-baytrail8': 'Bay Trail 8',
-      'gpuModel_gen4.5-gma45009': 'GMA 4500 9',
-      'gpuModel_gen8-broadwell-gt210': 'Broadwell (GT 210)',
-      'gpuModel_gen3-gma310011': 'GMA 310011',
-      'gpuModel_EVERGREEN-PALM': 'Evergreen (Palm)†',
-      'gpuModel_gen9-skylake-gt2': 'Skylake (GT2)',
-      'gpuModel_EVERGREEN-CEDAR': 'Evergreen (Cedar)†',
-      'gpuModel_CAYMAN-ARUBA': 'Cayman (Aruba)†',
-      'gpuModel_gen4-gma3500': 'GMA 3500',
-      'gpuModel_Tesla-GT218': 'GeForce GT218*',
-      'gpuModel_NV40-C61': 'GeForce NV40*',
-      'gpuModel_gen7.5-haswell-gt3': 'Haswell (GT3)',
-      'gpuModel_gen7.5-haswell-gt1': 'Haswell (GT1)',
-      'gpuModel_EVERGREEN-TURKS': 'Evergreen (Turks)†'
+    ignoredGpuVendors: {
+      'Intel': false,
+      'NVIDIA': false,
+      'AMD': false,
+    },
+    gpuModelNice: {
+      'gpuModel_gen7.5-haswell-gt2': {nice: 'Haswell (GT2)', vendor: 'Intel'},
+      'gpuModel_gen7-ivybridge-gt2': {nice: 'Ivy Bridge (GT2)', vendor: 'Intel'},
+      'gpuModel_gen6-sandybridge-gt2': {nice: 'Sandy Bridge (GT2)', vendor: 'Intel'},
+      'gpuModel_gen6-sandybridge-gt1': {nice: 'Sandy Bridge (GT1)', vendor: 'Intel'},
+      'gpuModel_gen7-ivybridge-gt1': {nice: 'Ivy Bridge (GT1)', vendor: 'Intel'},
+      'gpuModel_gen4.5-gma4500hd': {nice: 'GMA 4500HD', vendor: 'Intel'},
+      'gpuModel_gen5-ironlake': {nice: 'Ironlake', vendor: 'Intel'},
+      'gpuModel_gen7-baytrail': {nice: 'Bay Trail', vendor: 'Intel'},
+      'gpuModel_gen4.5-gma4500': {nice: 'GMA 4500', vendor: 'Intel'},
+      'gpuModel_gen8-broadwell-gt2': {nice: 'Broadwell (GT2)', vendor: 'Intel'},
+      'gpuModel_gen3-gma3100': {nice: 'GMA 3100', vendor: 'Intel'},
+      'gpuModel_gen3-gma950': {nice: 'GMA 950', vendor: 'Intel'},
+      'gpuModel_gen7.5-haswell-gt21': {nice: 'Haswell (GT21)', vendor: 'Intel'},
+      'gpuModel_gen7-ivybridge-gt22': {nice: 'Ivy Bridge (GT22)', vendor: 'Intel'},
+      'gpuModel_gen6-sandybridge-gt23': {nice: 'Sandy Bridge (GT23)', vendor: 'Intel'},
+      'gpuModel_gen6-sandybridge-gt14': {nice: 'Sandy Bridge (GT14)', vendor: 'Intel'},
+      'gpuModel_gen7-ivybridge-gt15': {nice: 'Sandy Bridge (GT15)', vendor: 'Intel'},
+      'gpuModel_gen4.5-gma4500hd6': {nice: 'GMA 4500HD 6', vendor: 'Intel'},
+      'gpuModel_gen5-ironlake7': {nice: 'Ironlake', vendor: 'Intel'},
+      'gpuModel_gen7-baytrail8': {nice: 'Bay Trail 8', vendor: 'Intel'},
+      'gpuModel_gen4.5-gma45009': {nice: 'GMA 4500 9', vendor: 'Intel'},
+      'gpuModel_gen8-broadwell-gt210': {nice: 'Broadwell (GT 210)', vendor: 'Intel'},
+      'gpuModel_gen3-gma310011': {nice: 'GMA 310011', vendor: 'Intel'},
+      'gpuModel_EVERGREEN-PALM': {nice: 'Evergreen (Palm)†', vendor: 'AMD'},
+      'gpuModel_gen9-skylake-gt2': {nice: 'Skylake (GT2)', vendor: 'Intel'},
+      'gpuModel_EVERGREEN-CEDAR': {nice: 'Evergreen (Cedar)†', vendor: 'AMD'},
+      'gpuModel_CAYMAN-ARUBA': {nice: 'Cayman (Aruba)†', vendor: 'AMD'},
+      'gpuModel_gen4-gma3500': {nice: 'GMA 3500', vendor: 'Intel'},
+      'gpuModel_Tesla-GT218': {nice: 'GeForce GT218*', vendor: 'NVIDIA'},
+      'gpuModel_NV40-C61': {nice: 'GeForce NV40*', vendor: 'NVIDIA'},
+      'gpuModel_gen7.5-haswell-gt3': {nice: 'Haswell (GT3)', vendor: 'Intel'},
+      'gpuModel_gen7.5-haswell-gt1': {nice: 'Haswell (GT1)', vendor: 'Intel'},
+      'gpuModel_EVERGREEN-TURKS': {nice: 'Evergreen (Turks)†', vendor: 'AMD'}
     }
   };
 
@@ -670,16 +675,29 @@
     var gpu_models_keys = [];
     var gpu_models_labels = [];
     gpu_models.forEach(function(d, i) {
+      if(global.gpuModelNice[d.key] == undefined 
+          || global.gpuModelNice[d.key] == undefined
+          || global.ignoredGpuVendors[global.gpuModelNice[d.key].vendor] == true
+        ) {
+        return;
+      }
+
       if (d.key == 'gpuModel_Other' || d.key == 'gpuModel_Unknown')
         return;
 
       gpu_models_keys.push(d.key);
-      gpu_models_labels.push(global.gpu_model_nice[d.key]);
+      gpu_models_labels.push(global.gpuModelNice[d.key].nice);
     });
+
+    var chart_type = (gpu_models_keys.length == 0)
+      ? 'missing-data'
+      : 'line';
 
     var args = {
       title: "GPU Model",
       data: [global.data],
+      chart_type: chart_type,
+      missing_text: 'No data, choose a vendor on the right.',
       format: 'perc',
       animate_on_load: true,
       width: global.chart.width,
@@ -716,18 +734,75 @@
         //original line ID          
         var line_id = d3.select(this).node().classList[0].match(r);
 
+        //remove any old vendor ids
+        d3.select(this)
+          .classed('vendor-intel', false)
+          .classed('vendor-amd', false)
+          .classed('vendor-nvidia', false)
+
         //set vendor for legend labels
         d3.select(this)
           .classed(vendor, true)
 
         //cascade change to associated line and circle too
         d3.select(target).selectAll('path.mg-line' + line_id + '-color')
+          .classed('vendor-intel-line', false)
+          .classed('vendor-amd-line', false)
+          .classed('vendor-nvidia-line', false)
           .classed(vendor + '-line', true);
 
         d3.select(target).selectAll('circle.mg-line' + line_id + '-color')
+          .classed('vendor-intel', false)
+          .classed('vendor-amd', false)
+          .classed('vendor-nvidia', false)
+          .classed('vendor-intel-line', false)
+          .classed('vendor-amd-line', false)
+          .classed('vendor-nvidia-line', false)
           .classed(vendor, true)
           .classed(vendor + '-line', true);
       });
+  }
+
+  d3.select('.intel-toggle')
+    .on('click', function() {
+      d3.event.preventDefault();
+      toggleGpuVendor('Intel', d3.select(this));
+
+      return false;
+    });
+
+  d3.select('.nvidia-toggle')
+    .on('click', function() {
+      d3.event.preventDefault();
+      toggleGpuVendor('NVIDIA', d3.select(this));
+
+      return false;
+    });
+
+  d3.select('.amd-toggle')
+    .on('click', function() {
+      d3.event.preventDefault();
+      toggleGpuVendor('AMD', d3.select(this));
+
+      return false;
+    });
+
+  function toggleGpuVendor(vendor, e) {
+      if(e.classed('showing')) {
+        global.ignoredGpuVendors[vendor] = true;
+        draw_gpu_models();
+
+        e.classed('showing', false)
+          .classed('hiding', true)
+          .classed('active', false);
+      } else {
+        global.ignoredGpuVendors[vendor] = false;
+        draw_gpu_models();
+
+        e.classed('hiding', false)
+          .classed('showing', true)
+          .classed('active', true);
+      }
   }
 
   d3.select('.hero-left')

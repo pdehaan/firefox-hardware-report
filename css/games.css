@@ -142,27 +142,39 @@ h2 {
   cursor: pointer;
 }
 
-.vendor-intel,.cores-2 {
+.showing.intel-toggle {
+  background-color: #87CEFA;
+}
+
+.showing.amd-toggle {
+  background-color: #f57070;
+}
+
+.showing.nvidia-toggle {
+  background-color: #18ff00;
+}
+
+.vendor-intel {
   fill: #87CEFA !important;
 }
 
-.vendor-amd,.cores-4 {
+.vendor-amd {
   fill: #f57070 !important;
 }
 
-.vendor-nvidia,.cores-other {
+.vendor-nvidia {
   fill: #18ff00 !important;
 }
 
-.vendor-intel-line,.cores-2-line {
+.vendor-intel-line {
   stroke: #87CEFA !important;
 }
 
-.vendor-amd-line,.cores-4-line {
+.vendor-amd-line {
   stroke: #f57070 !important;
 }
 
-.vendor-nvidia-line,.cores-other-line {
+.vendor-nvidia-line {
   stroke: #18ff00 !important;
 }
 
@@ -405,6 +417,26 @@ circle {
 
 .legal {
   margin-top: 20px;
+}
+
+.pill {
+  margin: auto 10px auto 10px;
+}
+
+a.pill {
+  color: white;
+  text-decoration: none;
+  padding: 2px 8px 2px 8px;
+}
+
+a.active {
+  border: 0;
+  color: #fff;
+  text-decoration: none;
+}
+
+.mg-missing-text {
+  transform: translate(-62px);
 }
 
 @media (max-width:450px) {
