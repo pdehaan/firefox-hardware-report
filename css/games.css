@@ -382,11 +382,8 @@ h2 {
   color: #a0a0a0;
   margin-top: 80px;
   background-color: #131313;
+  padding-top: 12px;
   padding-bottom: 12px;
-}
-
-.detail-prose p {
-  margin: 10px 0;
 }
 
 .mg-x-axis text,.mg-y-axis text {
