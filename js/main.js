@@ -763,6 +763,26 @@
       });
   }
 
+  d3.selectAll('.save-as-png').on("click", function() {
+     d3.event.preventDefault();
+     var id = d3.select(this).attr('data-chart');
+
+     // generate style definitions on the svg element, do it now to avoid adding potentially unnecessary dom elements to all charts on page load
+     generateStyleDefs(d3.select('#' + id).select('svg').node());
+
+     var chart = d3.select('#' + id).select('svg');
+        var html = chart
+          .attr("version", 1.1)
+          .attr("xmlns", "http://www.w3.org/2000/svg")
+          .node().parentNode.innerHTML;
+
+        var width = chart.attr("width")
+        var height = chart.attr("height")
+
+        var imgsrc = 'data:image/svg+xml;base64,'+ btoa(unescape(encodeURIComponent(html)));  
+        saveSvg(imgsrc, width, height, id);
+  });
+
   d3.select('.intel-toggle')
     .on('click', function() {
       d3.event.preventDefault();
@@ -850,4 +870,65 @@
         return (width > 450) ? 450 : width;
       });
   };
+
+// todo credit, forgot which kindred spirit i borrowed this from
+function generateStyleDefs(svgDomElement) {
+  var styleDefs = "";
+  var sheets = document.styleSheets;
+  for (var i = 0; i < sheets.length; i++) {
+    var rules = sheets[i].cssRules;
+    if(rules == null) rules = [];
+    for (var j = 0; j < rules.length; j++) {
+      var rule = rules[j];
+      if (rule.style) {
+        var selectorText = rule.selectorText;
+        var elems = svgDomElement.querySelectorAll(selectorText);
+
+        if (elems.length) {
+          styleDefs += selectorText + " { " + rule.style.cssText + " }\n";
+        }
+      }
+    }
+  }
+
+  var s = document.createElement('style');
+  s.setAttribute('type', 'text/css');
+  s.innerHTML = "<![CDATA[\n" + styleDefs + "\n]]>";
+  //somehow cdata section doesn't always work; you could use this instead:
+  //s.innerHTML = styleDefs;
+
+  var defs = document.createElement('defs');
+  defs.appendChild(s);
+  svgDomElement.insertBefore(defs, svgDomElement.firstChild);
+}
+
+// https://github.com/mozilla/metrics-graphics/issues/550
+function saveSvg(imgsrc, width, height, id) {
+  if (!id) {
+    return false
+  }
+
+  var canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  var context = canvas.getContext('2d');
+
+  var image = new Image;
+  image.onload = function() {
+    context.drawImage(image, 0, 0);
+
+    var canvasdata = canvas.toDataURL('image/png');
+
+    var pngimg = '<img src="'+canvasdata+'">'; 
+    d3.select("#pngdataurl").html(pngimg);
+
+    var a = document.createElement('a');
+    a.download = id + '.png';
+    a.href = canvasdata;
+    a.click();
+  };
+
+  image.src = imgsrc;
+}
+
 }());

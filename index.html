@@ -25,6 +25,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
     <script src="js/jquery-ui.min.js"></script>
+    <!--<script src="js/html2canvas.js"></script>-->
     <script src="https://d3js.org/d3.v4.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
     <script src='js/metricsgraphics.min.js'></script>
@@ -101,60 +102,93 @@
             <a href='#' class='intel-toggle showing pill active'>Intel</a> 
             <a href='#' class='nvidia-toggle showing pill active'>NVIDIA</a> 
             <a href='#' class='amd-toggle showing pill active'>AMD</a>
+            <br /><br />
+
+            <a class='save-as-png' data-chart='detail-gpu-model' href='#'>Save Chart</a>
           </div>
         </div>
         <div class='row graphics chart'>
             <div class='col-lg-6 text-center graphic' id='detail-pc-video-card'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>The share of GPU vendors shows little change over the course of 2016, with Intel chipsets making up nearly two-thirds of all GPUs.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>The share of GPU vendors shows little change over the course of 2016, with Intel chipsets making up nearly two-thirds of all GPUs.</p>
+              <a class='save-as-png' data-chart='detail-pc-video-card' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row graphics chart'>  
             <div class='col-lg-6 text-center graphic' id='detail-display-resolution'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>Two display resolutions&mdash;1366x768px and 1920x1080px&mdash;stand out as the most highly used resolutions, with the latter showing an upward trend.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>Two display resolutions&mdash;1366x768px and 1920x1080px&mdash;stand out as the most highly used resolutions, with the latter showing an upward trend.</p>
+              <a class='save-as-png' data-chart='detail-display-resolution' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row cpu-and-memory chart'>
           <div class='col-lg-12 detail-header' id='goto-cpu-and-memory'></div>
             <div class='col-lg-6 text-center graphic' id='detail-processor'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>The share of CPU vendors shows little change over the course of 2016, with Intel making up nearly 86% of all CPUs.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>The share of CPU vendors shows little change over the course of 2016, with Intel making up nearly 86% of all CPUs.</p>
+              <a class='save-as-png' data-chart='detail-processor' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row cpu-and-memory chart'>
             <div class='col-lg-6 text-center graphic' id='detail-processor-cores'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>Nearly 70% of users have machines with two physical cores.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>Nearly 70% of users have machines with two physical cores.</p>
+              <a class='save-as-png' data-chart='detail-processor-cores' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row cpu-and-memory chart'>    
             <div class='col-lg-6 text-center graphic' id='detail-processor-speed'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>A quarter of users have processors with clock speeds between 2.3 GHz and 2.69 GHz.</p>
+              <a class='save-as-png' data-chart='detail-processor-speed' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row cpu-and-memory chart'>
             <div class='col-lg-6 text-center graphic' id='detail-ram'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>A third of users have 4GB of memory, trending up. The number of users with 8GB of memory is also trending up.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>A third of users have 4GB of memory, trending up. The number of users with 8GB of memory is also trending up.</p>
+              <a class='save-as-png' data-chart='detail-ram' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row os-and-architecture chart'>
           <div class='col-lg-12 detail-header' id='goto-os-and-architecture'></div>
             <div class='col-lg-6 text-center graphic' id='detail-operating-systems'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>Users on Windows 10&mdash;indicated with the label Windows_NT-10.0&mdash;showed a noticeable increase in the first half of 2016. A table of Windows NT versions to product names <a href='https://en.wikipedia.org/wiki/Windows_NT'>is available here</a>. Only Ubuntu and Mozilla builds of Linux are currently being tracked.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>Users on Windows 10&mdash;indicated with the label Windows_NT-10.0&mdash;showed a noticeable increase in the first half of 2016. A table of Windows NT versions to product names <a href='https://en.wikipedia.org/wiki/Windows_NT'>is available here</a>. Only Ubuntu and Mozilla builds of Linux are currently being tracked.</p>
+              <a class='save-as-png' data-chart='detail-operating-systems' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row os-and-architecture chart'>
             <div class='col-lg-6 text-center graphic' id='detail-browser-share-32-64'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>The share of 32-to-64-bit browsers showed no remarkable change during 2016.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>The share of 32-to-64-bit browsers showed no remarkable change during 2016.</p>
+              <a class='save-as-png' data-chart='detail-browser-share-32-64' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row os-and-architecture chart'>
             <div class='col-lg-6 text-center graphic' id='detail-browser-share-os-32-64'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>The share of 32-to-64-bit operating systems showed no remarkable change during 2016. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the <i>environment.system.isWow64</i> Telemetry field.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>The share of 32-to-64-bit operating systems showed no remarkable change during 2016. Note that this metric likely undercounts non-Windows OSs, seeing as it relies on the <i>environment.system.isWow64</i> Telemetry field.</p>
+              <a class='save-as-png' data-chart='detail-browser-share-os-32-64' href='#'>Save Chart</a>
+            </div>
         </div>
         <div class='row plugins chart'>
           <div class='col-lg-12 detail-header' id='goto-plugins'></div>
             <div class='col-lg-6 text-center graphic' id='detail-flash'></div>
             <div class='col-lg-2'></div>
-            <div class='col-lg-4 detail-prose'><p>Flash availability on Firefox shows a downward trend.</p></div>
+            <div class='col-lg-4 detail-prose'>
+              <p>Flash availability on Firefox shows a downward trend.</p>
+              <a class='save-as-png' data-chart='detail-flash' href='#'>Save Chart</a>
+            </div>
         </div>
     </div>
     <div class='container container-prose'>

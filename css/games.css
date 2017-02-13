@@ -144,14 +144,17 @@ h2 {
 
 .showing.intel-toggle {
   background-color: #87CEFA;
+  text-shadow: 1px 1px 4px #588dad;
 }
 
 .showing.amd-toggle {
   background-color: #f57070;
+  text-shadow: 1px 1px 4px #a34444;
 }
 
 .showing.nvidia-toggle {
   background-color: #18ff00;
+  text-shadow: 1px 1px 4px #14bb03;
 }
 
 .vendor-intel {
@@ -379,6 +382,7 @@ h2 {
   color: #a0a0a0;
   margin-top: 80px;
   background-color: #131313;
+  padding-bottom: 12px;
 }
 
 .detail-prose p {
@@ -387,6 +391,7 @@ h2 {
 
 .mg-x-axis text,.mg-y-axis text {
   font-size: .95rem;
+  font-family: 'Open Sans';
 }
 
 .detail-header {
@@ -408,7 +413,7 @@ circle {
 
 .mg-line-legend text {
   font-size: .75rem;
-  
+  font-family: 'Open Sans';
 }
 
 .hero-p {
