@@ -224,20 +224,20 @@ h2 {
 }
 
 #detail-pc-video-card .mg-line1-color {
-  stroke: #87CEFA;
+  stroke: #87CEFA !important;
 }
 
 #detail-pc-video-card .mg-hover-line1-color {
-  fill: #87CEFA;
+  fill: #87CEFA !important;
 }
 
 #detail-pc-video-card .mg-line1-legend-color {
-  color: #87CEFA;
-  fill: #87CEFA;
+  color: #87CEFA !important;
+  fill: #87CEFA !important;
 }
 
 #detail-pc-video-card .mg-area1-color {
-  fill: #87CEFA;
+  fill: #87CEFA !important;
 }
 
 .mg-line6-color {
@@ -387,7 +387,7 @@ h2 {
 }
 
 .mg-x-axis text,.mg-y-axis text {
-  font-size: .95rem;
+  font-size: .85rem;
   font-family: 'Open Sans';
 }
 

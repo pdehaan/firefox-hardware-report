@@ -32,6 +32,18 @@
       'NVIDIA': false,
       'AMD': false,
     },
+    osNice: {
+      'osName_Windows_NT-6.1': 'Windows 7',
+      'osName_Windows_NT-10.0': 'Windows 10',
+      'osName_Windows_NT-5.1': 'Windows XP',
+      'osName_Windows_NT-6.3': 'Windows 8.1',
+      'osName_Darwin-Other': 'macOS',
+      'osName_Windows_NT-6.0': 'Windows Vista',
+      'osName_Linux-Other': 'Linux',
+      'osName_Windows_NT-6.2': 'Windows 8',
+      'osName_Darwin-15.6.0': 'macOS 15.6',
+      'osName_Other': 'Other',
+    },
     gpuModelNice: {
       'gpuModel_gen7.5-haswell-gt2': {nice: 'Haswell (GT2)', vendor: 'Intel'},
       'gpuModel_gen7-ivybridge-gt2': {nice: 'Ivy Bridge (GT2)', vendor: 'Intel'},
@@ -340,7 +352,7 @@
   }
 
 
-  //d3.json('data/hwsurvey-weekly-full.json', function(data_gfx) {
+  //d3.json('data/hwsurvey-weekly.json', function(data_gfx) {
   d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
     data_gfx.map(function(d) {
       //consolidate Mac releases
@@ -510,7 +522,7 @@
         return;
 
       os_keys.push(d.key);
-      os_labels.push(d.key.replace('osName_', ''));
+      os_labels.push(global.osNice[d.key]);
     });
     MG.data_graphic({
       title: "Operating System",
@@ -792,6 +804,7 @@
         var height = chart.attr("height")
 
         var imgsrc = 'data:image/svg+xml;base64,'+ btoa(unescape(encodeURIComponent(html)));  
+        saveSvg(imgsrc, width, height, id, 'black');
         saveSvg(imgsrc, width, height, id);
   });
 
@@ -883,7 +896,7 @@
       });
   };
 
-// todo credit, forgot which kindred spirit i borrowed this from
+// todo credit, forgot which kindred spirit i adapted this from
 function generateStyleDefs(svgDomElement) {
   var styleDefs = "";
   var sheets = document.styleSheets;
@@ -902,6 +915,20 @@ function generateStyleDefs(svgDomElement) {
       var rule = rules[j];
       if (rule.style) {
         var selectorText = rule.selectorText;
+        
+        if(selectorText && selectorText[0] == '#') {
+          var bits = selectorText.split(' ');
+          if(bits.length > 1) {
+            bits.forEach(function(d, i) {
+              //if we're targeting this chart in the selector, strip qualifier
+              if(d == '#' + svgDomElement.parentNode.id) {
+                selectorText = bits[i + 1];
+              }
+            });
+          }
+        }   
+
+        //does this selector apply to this chart
         var elems = svgDomElement.querySelectorAll(selectorText);
 
         if (elems.length) {
@@ -922,7 +949,7 @@ function generateStyleDefs(svgDomElement) {
   svgDomElement.insertBefore(defs, svgDomElement.firstChild);
 }
 
-function saveSvg(imgsrc, width, height, id) {
+function saveSvg(imgsrc, width, height, id, background) {
   if (!id) {
     return false
   }
@@ -930,21 +957,30 @@ function saveSvg(imgsrc, width, height, id) {
   var canvas = document.createElement('canvas');
   canvas.width = width;
   canvas.height = height;
+  canvas.style.backgroundColor = 'rgba(0, 0, 0, 1)';
+  
   var context = canvas.getContext('2d');
+
+  if(background) {
+    context.rect(0, 0, width, height);
+    context.fillStyle = 'black';
+    context.fill();
+  }
 
   var image = new Image;
   image.src = imgsrc;
   image.onload = function() {
     context.drawImage(image, 0, 0);
-    var canvasdata = canvas.toDataURL('image/png');
-    var pngimg = '<img src="'+canvasdata+'">'; 
-    d3.select('#pngdataurl').html(pngimg);
+    var canvas_data = canvas.toDataURL('image/png');
+    var png = '<img src="' + canvas_data + '">'; 
+    d3.select('#pngdataurl').html(png);
 
     //var a = document.createElement('a');
     d3.select('body').append('a')
       .attr('download', id + '.png')
-      .attr('href', canvasdata)
-      .node().click()
+      .attr('href', canvas_data)
+      .node()
+      .click()
   };
 }
 
