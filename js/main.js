@@ -888,7 +888,15 @@ function generateStyleDefs(svgDomElement) {
   var styleDefs = "";
   var sheets = document.styleSheets;
   for (var i = 0; i < sheets.length; i++) {
+    try {
+      sheets[i].cssRules;
+    } catch(e) {
+      console.log('skipping', sheets[i]);
+      continue;
+    }
+
     var rules = sheets[i].cssRules;
+
     if(rules == null) rules = [];
     for (var j = 0; j < rules.length; j++) {
       var rule = rules[j];
@@ -914,7 +922,6 @@ function generateStyleDefs(svgDomElement) {
   svgDomElement.insertBefore(defs, svgDomElement.firstChild);
 }
 
-// https://github.com/mozilla/metrics-graphics/issues/550
 function saveSvg(imgsrc, width, height, id) {
   if (!id) {
     return false
@@ -926,21 +933,19 @@ function saveSvg(imgsrc, width, height, id) {
   var context = canvas.getContext('2d');
 
   var image = new Image;
+  image.src = imgsrc;
   image.onload = function() {
     context.drawImage(image, 0, 0);
-
     var canvasdata = canvas.toDataURL('image/png');
-
     var pngimg = '<img src="'+canvasdata+'">'; 
-    d3.select("#pngdataurl").html(pngimg);
+    d3.select('#pngdataurl').html(pngimg);
 
-    var a = document.createElement('a');
-    a.download = id + '.png';
-    a.href = canvasdata;
-    a.click();
+    //var a = document.createElement('a');
+    d3.select('body').append('a')
+      .attr('download', id + '.png')
+      .attr('href', canvasdata)
+      .node().click()
   };
-
-  image.src = imgsrc;
 }
 
 }());
