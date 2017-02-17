@@ -37,11 +37,11 @@
       'osName_Windows_NT-10.0': 'Windows 10',
       'osName_Windows_NT-5.1': 'Windows XP',
       'osName_Windows_NT-6.3': 'Windows 8.1',
-      'osName_Darwin-Other': 'macOS',
+      'osName_Darwin-Other': 'macOS Other',
       'osName_Windows_NT-6.0': 'Windows Vista',
       'osName_Linux-Other': 'Linux',
       'osName_Windows_NT-6.2': 'Windows 8',
-      'osName_Darwin-15.6.0': 'macOS 15.6',
+      'osName_Darwin-15.6.0': 'macOS El Capitan',
       'osName_Other': 'Other',
     },
     gpuModelNice: {
