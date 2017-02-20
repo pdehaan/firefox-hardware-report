@@ -72,7 +72,7 @@ h1 {
   font-family: 'Open Sans',sans-serif,Arial;
   font-size: 46px;
   font-weight: 300;
-  margin: 5px 0;
+  margin: 5px auto 10px auto;
   text-align: center;
 }
 
