@@ -351,6 +351,13 @@
       });
   }
 
+  var markers = [
+      {
+          'label': 'XP and Vista users move to ESR, thus leaving dataset',
+          'date': new Date('2017-03-05T00:00:00.000Z'),
+      },
+  ];
+
 
   //d3.json('data/hwsurvey-weekly.json', function(data_gfx) {
   d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
@@ -457,6 +464,7 @@
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       full_width: true,
+      markers: markers,
     });
 
     var cores = topX('cpuCores_', global.data[0]);
@@ -489,6 +497,7 @@
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       full_width: true,
+      markers: markers,
     });
 
     target = '#detail-pc-video-card'
@@ -509,7 +518,8 @@
       max_y: 1,
       x_accesor: 'date',
       y_accessor: ['gpuVendor_Intel', 'gpuVendor_NVIDIA', 'gpuVendor_AMD'],
-      legend: ['Intel', 'NVIDIA', 'AMD']
+      legend: ['Intel', 'NVIDIA', 'AMD'],
+      markers: markers,
     });
 
     target = '#detail-operating-systems';
@@ -540,7 +550,8 @@
       mouseout: mouseout(target),
       x_accesor: 'date',
       y_accessor: os_keys,
-      legend: os_labels
+      legend: os_labels,
+      markers: markers,
     });
 
     target = '#detail-processor';
@@ -561,7 +572,8 @@
       max_y: 1,
       x_accesor: 'date',
       y_accessor: ['cpuVendor_GenuineIntel', 'cpuVendor_AuthenticAMD'],
-      legend: ['Intel', 'AMD']
+      legend: ['Intel', 'AMD'],
+      markers: markers,
     });
 
     target = '#detail-display-resolution';
@@ -589,7 +601,8 @@
       mouseout: mouseout(target),
       x_accesor: 'date',
       y_accessor: display_resolutions_keys,
-      legend: display_resolutions_labels
+      legend: display_resolutions_labels,
+      markers: markers,
     });
 
     target = '#detail-ram';
@@ -619,7 +632,8 @@
       mouseout: mouseout(target),
       x_accesor: 'date',
       y_accessor: ram_keys,
-      legend: ram_labels
+      legend: ram_labels,
+      markers: markers,
     });
 
     // gives us the top gpu models
@@ -644,6 +658,7 @@
       legend: ['32-bit', '64-bit'],
       max_y: 1,
       full_width: true,
+      markers: markers,
     });
 
     target = '#detail-browser-share-os-32-64';
@@ -664,6 +679,7 @@
       legend: ['32-bit', '64-bit'],
       max_y: 1,
       full_width: true,
+      markers: markers,
     });
 
     MG.data_graphic({
@@ -682,6 +698,7 @@
       max_y: 1,
       area: true,
       full_width: true,
+      markers: markers,
     });
   }
 
@@ -733,7 +750,8 @@
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       y_accessor: gpu_models_keys,
-      legend: gpu_models_labels
+      legend: gpu_models_labels,
+      markers: markers,
     };
 
     MG.data_graphic(args);
