@@ -387,7 +387,6 @@
       if (a.date > b.date) return -1;
       return 0;
     });
-    console.log(data_gfx);
 
     // take first one and use that to build the stacked bar charts
     global.data = data_gfx;
