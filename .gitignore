@@ -1,14 +1,11 @@
-
-data/hwsurvey-FF43-Resolution.csv
-
-data/hwsurvey-FF43-GFXStrings.csv
-
-data/hwsurvey-FF43.json
-
-data/hwsurvey-weekly-to20160326.json
-
-data/hwsurvey-weekly.json
-
+# Misc
 .DS_Store
 
+# Node
+node_modules
+
+# Data
+data/hwsurvey-FF43-Resolution.csv
+data/hwsurvey-FF43-GFXStrings.csv
 *.json
+!package.json

@@ -1,0 +1,9 @@
+{
+  "name": "firefox-hardware-report",
+  "scripts": {
+    "start": "http-server -p $PORT"
+  },
+  "dependencies": {
+    "http-server": "^0.10.0"
+  }
+}
