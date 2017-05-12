@@ -32,6 +32,9 @@
       'NVIDIA': false,
       'AMD': false,
     },
+
+    // Mappings:
+    // Darwin: https://en.wikipedia.org/wiki/Darwin_(operating_system)#Release_history
     osNice: {
       'osName_Windows_NT-6.1': 'Windows 7',
       'osName_Windows_NT-10.0': 'Windows 10',
@@ -41,9 +44,12 @@
       'osName_Windows_NT-6.0': 'Windows Vista',
       'osName_Linux-Other': 'Linux',
       'osName_Windows_NT-6.2': 'Windows 8',
+      'osName_Darwin-14.5.0': 'macOS Yosemite',
       'osName_Darwin-15.6.0': 'macOS El Capitan',
+      'osName_Darwin-16.5.0': 'macOS Sierra',
       'osName_Other': 'Other',
     },
+
     gpuModelNice: {
       'gpuModel_gen7.5-haswell-gt2': {nice: 'Haswell (GT2)', vendor: 'Intel'},
       'gpuModel_gen7-ivybridge-gt2': {nice: 'Ivy Bridge (GT2)', vendor: 'Intel'},
@@ -531,7 +537,7 @@
         return;
 
       os_keys.push(d.key);
-      os_labels.push(global.osNice[d.key]);
+      os_labels.push(global.osNice[d.key] || d.key.replace('osName_', ''));
     });
     MG.data_graphic({
       title: "Operating System",
@@ -544,6 +550,7 @@
       xax_count: global.chart.xax_count,
       yax_count: 10,
       right: global.chart.right,
+      bottom: 100,
       target: target,
       full_width: true,
       mouseover: mouseover(target),
