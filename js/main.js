@@ -1,3 +1,5 @@
+var MG = require('metrics-graphics');
+
 (function() {
   'use strict'
 

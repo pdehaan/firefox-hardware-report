@@ -4,4 +4,4 @@
 
 # Run
 
-`PORT=8080 npm start`
+`npm run start-local`

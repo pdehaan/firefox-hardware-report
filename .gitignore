@@ -4,6 +4,9 @@
 # Node
 node_modules
 
+# Webpack
+build/
+
 # Data
 data/hwsurvey-FF43-Resolution.csv
 data/hwsurvey-FF43-GFXStrings.csv
