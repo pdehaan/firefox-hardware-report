@@ -90,6 +90,14 @@ h2 {
   filter: grayscale(0);
 }
 
+.team .name, .team .role {
+  display: block;
+}
+
+.team .name {
+  font-weight: bold;
+}
+
 .transparent-rollover-rect {
   fill: #fff;
 }
