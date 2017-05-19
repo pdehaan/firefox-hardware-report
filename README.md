@@ -12,10 +12,11 @@ During the aggregation step, less common screen resolutions and OS versions are 
 * [Data file format](https://github.com/mozilla/firefox-hardware-report/blob/master/report/format.md)
 
 # About us
-Andre Vrignaud — Product manager
+
+[Andre Vrignaud](https://github.com/avrignaud) — Product manager
 
 [Rebecca Weiss](https://github.com/rjweiss) — Data
 
-[Alessio Placitelli](https://github.com/Dexterp37) — Data engineering
+[Frank Bertsch](https://github.com/fbertsch) - Data engineering
 
-[Ali Almossawi](https://github.com/almossawi) — Data visualization
+[John Karahalis](https://github.com/openjck) - Web development
