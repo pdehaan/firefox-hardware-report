@@ -2,13 +2,16 @@
   "name": "firefox-hardware-report",
   "scripts": {
     "postinstall": "webpack",
-    "start": "http-server -p $PORT",
+    "start": "node server",
     "start-local": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
     "css-loader": "^0.28.1",
-    "http-server": "^0.10.0",
+    "express": "^4.15.3",
+    "express-force-ssl": "^0.3.2",
+    "hsts": "^2.0.0",
     "metrics-graphics": "^2.11.0",
+    "morgan": "^1.8.1",
     "style-loader": "^0.17.0",
     "webpack": "^2.5.1",
     "webpack-dev-server": "^2.4.5"
