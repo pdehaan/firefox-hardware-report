@@ -7,6 +7,10 @@ const serveStatic = require('serve-static');
 
 const app = express();
 
+// Trust the X-Forwarded-Proto header. If this isn't enabled, Heroku will enter
+// an infinite redirect loop.
+app.set('forceSSLOptions', { trustXFPHeader: true });
+
 // Log requests
 app.use(morgan('common'));
 
