@@ -1,4 +1,12 @@
-var MG = require('metrics-graphics');
+import MG from 'metrics-graphics';
+
+// d3
+import { curveCatmullRom as d3CurveCatmullRom } from 'd3-shape';
+import { event as d3Event, select as d3Select, selectAll as d3SelectAll } from 'd3-selection'
+import { json as d3Json } from 'd3-request';
+import { scaleLinear as d3ScaleLinear } from 'd3-scale';
+import { timeFormat as d3TimeFormat } from 'd3-time-format';
+
 
 (function() {
   'use strict'
@@ -19,9 +27,9 @@ var MG = require('metrics-graphics');
   color['No_Flash'] = '#f1f1f1';
 
   var global = {
-    interpolate: d3.curveCatmullRom.alpha(0.5),
+    interpolate: d3CurveCatmullRom.alpha(0.5),
     heroIndex: 0,
-    formatter: d3.timeFormat("%b %d, %Y"),
+    formatter: d3TimeFormat("%b %d, %Y"),
     chart: {
       width: 400,
       height: 660,
@@ -95,9 +103,9 @@ var MG = require('metrics-graphics');
       var hiding_these = '';
       var r = /\d+/;
 
-      d3.selectAll(target + ' .mg-line-rollover-circle').nodes().forEach(
+      d3SelectAll(target + ' .mg-line-rollover-circle').nodes().forEach(
         function(d) {
-          if (d3.select(d).style('opacity') === '0' || d3.select(d).attr(
+          if (d3Select(d).style('opacity') === '0' || d3Select(d).attr(
             'r') === '0') {
             var line_id = d.classList[0].match(r);
             hiding_these += 'path.mg-line' + line_id + ',';
@@ -106,32 +114,32 @@ var MG = require('metrics-graphics');
           }
         });
 
-      d3.select(target).selectAll(hiding_these.slice(0, -1))
+      d3Select(target).selectAll(hiding_these.slice(0, -1))
         .style('opacity', '0.3');
 
       //update color of hover text with vendor color if applicable
-      d3.select(target).selectAll('.mg-active-datapoint tspan tspan')
+      d3Select(target).selectAll('.mg-active-datapoint tspan tspan')
         .style('fill', 'white');
     }
   }
 
   var mouseout = function(target) {
     return function() {
-      d3.select(target).selectAll('path, .mg-line-legend text')
+      d3Select(target).selectAll('path, .mg-line-legend text')
         .style('opacity', '1');
     }
   }
 
   function reorderCharts(section) {
     if (section == 'all') {
-      d3.selectAll('.chart').style('display', 'block');
+      d3SelectAll('.chart').style('display', 'block');
       return;
     }
 
-    d3.selectAll('.chart')
+    d3SelectAll('.chart')
       .style('display', 'none');
 
-    d3.selectAll('.chart.' + section)
+    d3SelectAll('.chart.' + section)
       .style('display', 'block');
   }
 
@@ -206,15 +214,15 @@ var MG = require('metrics-graphics');
       bar_y_position = 15,
       bar_height = 22;
 
-    x_scale_stacked_bar = d3.scaleLinear()
+    x_scale_stacked_bar = d3ScaleLinear()
       .domain([0, 1])
       .range([0, width - x_padding_right]);
 
-    var svg = d3.select(target).select('svg');
+    var svg = d3Select(target).select('svg');
     var rects = svg.selectAll('rect.bar');
     var x_marker = 0;
 
-    d3.select('.formatted-date')
+    d3Select('.formatted-date')
         .html(global.formatter(global.data[global.heroIndex].date));
 
     //updating?
@@ -367,8 +375,7 @@ var MG = require('metrics-graphics');
   ];
 
 
-  //d3.json('data/hwsurvey-weekly.json', function(data_gfx) {
-  d3.json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
+  d3Json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
     data_gfx.map(function(d) {
       //consolidate Mac releases
       d['osName_Darwin'] = 0;
@@ -408,7 +415,7 @@ var MG = require('metrics-graphics');
     drawHeroCharts(global.data[global.heroIndex]);
 
     // update last updated date
-    d3.select('.data-last-updated span')
+    d3Select('.data-last-updated span')
         .html(global.formatter(global.data[0].date));
 
     //draw the rest of the charts
@@ -723,7 +730,7 @@ var MG = require('metrics-graphics');
     var gpu_models_keys = [];
     var gpu_models_labels = [];
     gpu_models.forEach(function(d, i) {
-      if(global.gpuModelNice[d.key] == undefined 
+      if(global.gpuModelNice[d.key] == undefined
           || global.gpuModelNice[d.key] == undefined
           || global.ignoredGpuVendors[global.gpuModelNice[d.key].vendor] == true
         ) {
@@ -767,41 +774,41 @@ var MG = require('metrics-graphics');
 
     //color lines based on vendor
     var r = /\d+/;
-    d3.select(target).selectAll('.mg-line-legend text')
+    d3Select(target).selectAll('.mg-line-legend text')
       .each(function() {
         var line_id_to_set;
         var vendor;
 
         //get text
-        if (d3.select(this).node().innerHTML.indexOf('*') !== -1) {
+        if (d3Select(this).node().innerHTML.indexOf('*') !== -1) {
           vendor = 'vendor-nvidia';
-        } else if (d3.select(this).node().innerHTML.indexOf('†') !== -1) {
+        } else if (d3Select(this).node().innerHTML.indexOf('†') !== -1) {
           vendor = 'vendor-amd';
         } else {
           vendor = 'vendor-intel';
         }
 
-        //original line ID          
-        var line_id = d3.select(this).node().classList[0].match(r);
+        //original line ID
+        var line_id = d3Select(this).node().classList[0].match(r);
 
         //remove any old vendor ids
-        d3.select(this)
+        d3Select(this)
           .classed('vendor-intel', false)
           .classed('vendor-amd', false)
           .classed('vendor-nvidia', false)
 
         //set vendor for legend labels
-        d3.select(this)
+        d3Select(this)
           .classed(vendor, true)
 
         //cascade change to associated line and circle too
-        d3.select(target).selectAll('path.mg-line' + line_id + '-color')
+        d3Select(target).selectAll('path.mg-line' + line_id + '-color')
           .classed('vendor-intel-line', false)
           .classed('vendor-amd-line', false)
           .classed('vendor-nvidia-line', false)
           .classed(vendor + '-line', true);
 
-        d3.select(target).selectAll('circle.mg-line' + line_id + '-color')
+        d3Select(target).selectAll('circle.mg-line' + line_id + '-color')
           .classed('vendor-intel', false)
           .classed('vendor-amd', false)
           .classed('vendor-nvidia', false)
@@ -813,14 +820,14 @@ var MG = require('metrics-graphics');
       });
   }
 
-  d3.selectAll('.save-as-png').on("click", function() {
-     d3.event.preventDefault();
-     var id = d3.select(this).attr('data-chart');
+  d3SelectAll('.save-as-png').on("click", function() {
+     d3Event.preventDefault();
+     var id = d3Select(this).attr('data-chart');
 
      // generate style definitions on the svg element, do it now to avoid adding potentially unnecessary dom elements to all charts on page load
-     generateStyleDefs(d3.select('#' + id).select('svg').node());
+     generateStyleDefs(d3Select('#' + id).select('svg').node());
 
-     var chart = d3.select('#' + id).select('svg');
+     var chart = d3Select('#' + id).select('svg');
         var html = chart
           .attr("version", 1.1)
           .attr("xmlns", "http://www.w3.org/2000/svg")
@@ -829,31 +836,31 @@ var MG = require('metrics-graphics');
         var width = chart.attr("width")
         var height = chart.attr("height")
 
-        var imgsrc = 'data:image/svg+xml;base64,'+ btoa(unescape(encodeURIComponent(html)));  
+        var imgsrc = 'data:image/svg+xml;base64,'+ btoa(unescape(encodeURIComponent(html)));
         saveSvg(imgsrc, width, height, id, 'black');
         saveSvg(imgsrc, width, height, id);
   });
 
-  d3.select('.intel-toggle')
+  d3Select('.intel-toggle')
     .on('click', function() {
-      d3.event.preventDefault();
-      toggleGpuVendor('Intel', d3.select(this));
+      d3Event.preventDefault();
+      toggleGpuVendor('Intel', d3Select(this));
 
       return false;
     });
 
-  d3.select('.nvidia-toggle')
+  d3Select('.nvidia-toggle')
     .on('click', function() {
-      d3.event.preventDefault();
-      toggleGpuVendor('NVIDIA', d3.select(this));
+      d3Event.preventDefault();
+      toggleGpuVendor('NVIDIA', d3Select(this));
 
       return false;
     });
 
-  d3.select('.amd-toggle')
+  d3Select('.amd-toggle')
     .on('click', function() {
-      d3.event.preventDefault();
-      toggleGpuVendor('AMD', d3.select(this));
+      d3Event.preventDefault();
+      toggleGpuVendor('AMD', d3Select(this));
 
       return false;
     });
@@ -876,9 +883,9 @@ var MG = require('metrics-graphics');
       }
   }
 
-  d3.select('.hero-left')
+  d3Select('.hero-left')
     .on('click', function() {
-      d3.event.preventDefault();
+      d3Event.preventDefault();
 
       global.heroIndex += 1;
       if (global.heroIndex >= global.data.length) {
@@ -895,9 +902,9 @@ var MG = require('metrics-graphics');
       drawHeroCharts(global.data[global.heroIndex]);
     });
 
-  d3.select('.hero-right')
+  d3Select('.hero-right')
     .on('click', function() {
-      d3.event.preventDefault();
+      d3Event.preventDefault();
 
       global.heroIndex -= 1;
       if (global.heroIndex < 0) {
@@ -915,9 +922,9 @@ var MG = require('metrics-graphics');
     });
 
   window.onresize = function(event) {
-    d3.selectAll('.hero svg')
+    d3SelectAll('.hero svg')
       .attr('width', function() {
-        var width = d3.select(this).node().parentElement.clientWidth;
+        var width = d3Select(this).node().parentElement.clientWidth;
         return (width > 450) ? 450 : width;
       });
   };
@@ -941,7 +948,7 @@ function generateStyleDefs(svgDomElement) {
       var rule = rules[j];
       if (rule.style) {
         var selectorText = rule.selectorText;
-        
+
         if(selectorText && selectorText[0] == '#') {
           var bits = selectorText.split(' ');
           if(bits.length > 1) {
@@ -952,7 +959,7 @@ function generateStyleDefs(svgDomElement) {
               }
             });
           }
-        }   
+        }
 
         //does this selector apply to this chart
         var elems = svgDomElement.querySelectorAll(selectorText);
@@ -984,7 +991,7 @@ function saveSvg(imgsrc, width, height, id, background) {
   canvas.width = width;
   canvas.height = height;
   canvas.style.backgroundColor = 'rgba(0, 0, 0, 1)';
-  
+
   var context = canvas.getContext('2d');
 
   if(background) {
@@ -998,11 +1005,11 @@ function saveSvg(imgsrc, width, height, id, background) {
   image.onload = function() {
     context.drawImage(image, 0, 0);
     var canvas_data = canvas.toDataURL('image/png');
-    var png = '<img src="' + canvas_data + '">'; 
-    d3.select('#pngdataurl').html(png);
+    var png = '<img src="' + canvas_data + '">';
+    d3Select('#pngdataurl').html(png);
 
     //var a = document.createElement('a');
-    d3.select('body').append('a')
+    d3Select('body').append('a')
       .attr('download', id + '.png')
       .attr('href', canvas_data)
       .node()

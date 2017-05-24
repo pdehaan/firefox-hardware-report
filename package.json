@@ -6,7 +6,11 @@
     "start-local": "webpack-dev-server --progress --colors"
   },
   "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-env": "^1.5.1",
     "css-loader": "^0.28.1",
+    "d3": "^4.9.1",
     "express": "^4.15.3",
     "express-force-ssl": "^0.3.2",
     "hsts": "^2.0.0",
