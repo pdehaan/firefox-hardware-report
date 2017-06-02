@@ -12,3 +12,4 @@ data/hwsurvey-FF43-Resolution.csv
 data/hwsurvey-FF43-GFXStrings.csv
 *.json
 !package.json
+!package-lock.json
