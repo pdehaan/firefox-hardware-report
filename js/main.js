@@ -376,50 +376,74 @@ import { timeFormat as d3TimeFormat } from 'd3-time-format';
 
 
   d3Json('https://analysis-output.telemetry.mozilla.org/game-hardware-survey/data/hwsurvey-weekly.json', function(data_gfx) {
-    data_gfx.map(function(d) {
-      //consolidate Mac releases
-      d['osName_Darwin'] = 0;
-      d['osName_Darwin'] += d['osName_Darwin-15.6.0'] || 0;
-      d['osName_Darwin'] += d['osName_Darwin-14.5.0'] || 0;
-      d['osName_Darwin'] += d['osName_Darwin-Other'] || 0;
 
-      //group CPU speeds
-      d['grouped_cpuSpeed_1.4_or_less'] = d['cpuSpeed_1.3'];
-      d['grouped_cpuSpeed_1.4_to_1.49'] = d['cpuSpeed_1.4'];
-      d['grouped_cpuSpeed_1.5_to_1.69'] = d['cpuSpeed_1.5'] + d[
-        'cpuSpeed_1.6'];
-      d['grouped_cpuSpeed_1.7_to_1.99'] = d['cpuSpeed_1.7'] + d[
-        'cpuSpeed_1.8'] + d['cpuSpeed_1.9'];
-      d['grouped_cpuSpeed_2_to_2.29'] = d['cpuSpeed_2.0'] + d[
-        'cpuSpeed_2.1'] + d['cpuSpeed_2.2'];
-      d['grouped_cpuSpeed_2.3_to_2.69'] = d['cpuSpeed_2.3'] + d[
-        'cpuSpeed_2.4'] + d['cpuSpeed_2.5'] + d['cpuSpeed_2.6'];
-      d['grouped_cpuSpeed_2.7_to_2.99'] = d['cpuSpeed_2.7'] + d[
-        'cpuSpeed_2.8'] + d['cpuSpeed_2.9'];
-      d['grouped_cpuSpeed_3.0_to_3.29'] = d['cpuSpeed_3.0'] + d[
-        'cpuSpeed_3.1'] + d['cpuSpeed_3.2'];
-      d['grouped_cpuSpeed_3.3_to_3.69'] = d['cpuSpeed_3.3'] + d[
-        'cpuSpeed_3.4'] + d['cpuSpeed_3.5'] + d['cpuSpeed_3.6'];
-    });
+    // The JSON was not returned or is not usable
+    if (!data_gfx || !Array.isArray(data_gfx) || data_gfx.length === 0) {
+      var main = document.getElementsByTagName('main')[0];
 
-    //sort by date
-    MG.convert.date(data_gfx, 'date');
-    data_gfx.sort(function(a, b) {
-      if (a.date < b.date) return 1;
-      if (a.date > b.date) return -1;
-      return 0;
-    });
+      var reports = document.getElementById('reports');
+      reports.style.display = 'none';
 
-    // take first one and use that to build the stacked bar charts
-    global.data = data_gfx;
-    drawHeroCharts(global.data[global.heroIndex]);
+      var div = document.createElement('div');
+      div.className = 'error';
 
-    // update last updated date
-    d3Select('.data-last-updated span')
-        .html(global.formatter(global.data[0].date));
+      var h2 = document.createElement('h2');
+      h2.innerHTML = 'Error';
 
-    //draw the rest of the charts
-    drawCharts([data_gfx]);
+      var p = document.createElement('p');
+      p.innerHTML = 'Error loading data. Wait a few minutes and trying again.';
+
+      div.appendChild(h2);
+      div.appendChild(p);
+      main.appendChild(div);
+
+    // The JSON was returned and the data is of the form we expect
+    } else {
+      data_gfx.map(function(d) {
+        //consolidate Mac releases
+        d['osName_Darwin'] = 0;
+        d['osName_Darwin'] += d['osName_Darwin-15.6.0'] || 0;
+        d['osName_Darwin'] += d['osName_Darwin-14.5.0'] || 0;
+        d['osName_Darwin'] += d['osName_Darwin-Other'] || 0;
+
+        //group CPU speeds
+        d['grouped_cpuSpeed_1.4_or_less'] = d['cpuSpeed_1.3'];
+        d['grouped_cpuSpeed_1.4_to_1.49'] = d['cpuSpeed_1.4'];
+        d['grouped_cpuSpeed_1.5_to_1.69'] = d['cpuSpeed_1.5'] + d[
+          'cpuSpeed_1.6'];
+        d['grouped_cpuSpeed_1.7_to_1.99'] = d['cpuSpeed_1.7'] + d[
+          'cpuSpeed_1.8'] + d['cpuSpeed_1.9'];
+        d['grouped_cpuSpeed_2_to_2.29'] = d['cpuSpeed_2.0'] + d[
+          'cpuSpeed_2.1'] + d['cpuSpeed_2.2'];
+        d['grouped_cpuSpeed_2.3_to_2.69'] = d['cpuSpeed_2.3'] + d[
+          'cpuSpeed_2.4'] + d['cpuSpeed_2.5'] + d['cpuSpeed_2.6'];
+        d['grouped_cpuSpeed_2.7_to_2.99'] = d['cpuSpeed_2.7'] + d[
+          'cpuSpeed_2.8'] + d['cpuSpeed_2.9'];
+        d['grouped_cpuSpeed_3.0_to_3.29'] = d['cpuSpeed_3.0'] + d[
+          'cpuSpeed_3.1'] + d['cpuSpeed_3.2'];
+        d['grouped_cpuSpeed_3.3_to_3.69'] = d['cpuSpeed_3.3'] + d[
+          'cpuSpeed_3.4'] + d['cpuSpeed_3.5'] + d['cpuSpeed_3.6'];
+      });
+
+      //sort by date
+      MG.convert.date(data_gfx, 'date');
+      data_gfx.sort(function(a, b) {
+        if (a.date < b.date) return 1;
+        if (a.date > b.date) return -1;
+        return 0;
+      });
+
+      // take first one and use that to build the stacked bar charts
+      global.data = data_gfx;
+      drawHeroCharts(global.data[global.heroIndex]);
+
+      // update last updated date
+      d3Select('.data-last-updated span')
+          .html(global.formatter(global.data[0].date));
+
+      //draw the rest of the charts
+      drawCharts([data_gfx]);
+    }
   });
 
   function topX(prefix, data) {

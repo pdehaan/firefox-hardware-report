@@ -3,6 +3,14 @@ html {
   background: #0253A7 url(../images/grain.jpg);
 }
 
+header {
+  margin-bottom: 10px;
+}
+
+header p {
+  margin-bottom: 0;
+}
+
 .mg-chart-title {
   font-family: 'Open Sans',sans-serif,Arial;
   font-size: 1.5rem;
@@ -11,8 +19,10 @@ html {
 
 .container-charts {
   background-image: url(../images/alpha.png);
-  margin: 20px auto 0;
+  margin: 0 auto;
   padding: 40px;
+  position: relative;
+  top: 40px;
 }
 
 .container-prose {
@@ -149,10 +159,6 @@ h3 {
 
 .mg-line-legend text {
   font-size: .88rem;
-}
-
-.header {
-  height: 20px;
 }
 
 #gpu-model .mg-chart-title,#processor-cores-speeds .mg-chart-title {
@@ -484,4 +490,13 @@ a.active {
   font-size: 0.9rem;
   font-style: italic;
   margin-top: 40px;
+}
+
+.error {
+  text-align: center;
+  margin: 80px auto;
+}
+
+.error h2 {
+  color: #e99695;
 }
