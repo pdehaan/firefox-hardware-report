@@ -1,5 +1,9 @@
-var $ = require('jquery');
-var MG = require('metrics-graphics');
+import $ from 'jquery';
+import MG from 'metrics-graphics';
+
+// jQuery UI
+import 'jquery-ui/ui/effect';
+import 'jquery-ui/ui/effects/effect-shake';
 
 // d3
 import { curveCatmullRom as d3CurveCatmullRom } from 'd3-shape';
@@ -9,7 +13,7 @@ import { scaleLinear as d3ScaleLinear } from 'd3-scale';
 import { timeFormat as d3TimeFormat } from 'd3-time-format';
 
 
-(function() {
+$(document).ready(function() {
   'use strict'
 
   var x_scale_stacked_bar;
@@ -1042,4 +1046,4 @@ function saveSvg(imgsrc, width, height, id, background) {
   };
 }
 
-}());
+});
