@@ -1,4 +1,5 @@
-import MG from 'metrics-graphics';
+var $ = require('jquery');
+var MG = require('metrics-graphics');
 
 // d3
 import { curveCatmullRom as d3CurveCatmullRom } from 'd3-shape';
