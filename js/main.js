@@ -35,7 +35,7 @@ $(document).ready(function() {
   var global = {
     interpolate: d3CurveCatmullRom.alpha(0.5),
     heroIndex: 0,
-    formatter: d3TimeFormat("%b %d, %Y"),
+    formatter: d3TimeFormat("%B %e, %Y"),
     chart: {
       width: 400,
       height: 660,
@@ -136,6 +136,48 @@ $(document).ready(function() {
     }
   }
 
+  /**
+   * Enable keyboard navigation for the summary charts. The left arrow key moves
+   * the charts backward in time and the right arrow key moves the charts
+   * forward in time.
+   */
+  document.onkeydown = function(e) {
+    e = e || window.event;
+
+    switch(e.which || e.keyCode) {
+      case 37: // Left arrow key
+        navigateHero('backward', document.getElementById('hero-backward'));
+        break;
+
+      case 39: // Right arrow key
+        navigateHero('forward', document.getElementById('hero-forward'));
+        break;
+
+      default:
+        return;
+    }
+  }
+
+  /**
+   * When the value of the select box near the top of the page changes,
+   * re-render the summary charts and update heroIndex so that the navigational
+   * buttons continue to work as expected.
+   */
+  $('#date-select-box').on('change', function() {
+    var selectedDate = new Date(this.value + 'T00:00:00');
+
+    // Find the dataset that matches the selected date
+    for (var i = 0; i < global.data.length; i++) {
+      var currentDate = global.data[i].date;
+      if (currentDate.getTime() === selectedDate.getTime()) {
+        global.heroIndex = i;
+        break;
+      }
+    }
+
+    drawHeroCharts(global.data[global.heroIndex]);
+  });
+
   function reorderCharts(section) {
     if (section == 'all') {
       d3SelectAll('.chart').style('display', 'block');
@@ -228,8 +270,8 @@ $(document).ready(function() {
     var rects = svg.selectAll('rect.bar');
     var x_marker = 0;
 
-    d3Select('.formatted-date')
-        .html(global.formatter(global.data[global.heroIndex].date));
+    var isoDateFormatter = d3TimeFormat('%Y-%m-%d');
+    d3Select('#date-select-box').property('value', isoDateFormatter(global.data[global.heroIndex].date));
 
     //updating?
     if (rects.nodes().length > 0) {
@@ -376,7 +418,7 @@ $(document).ready(function() {
   var markers = [
       {
           'label': 'XP and Vista users move to ESR, thus leaving dataset',
-          'date': new Date('2017-03-05T00:00:00.000Z'),
+          'date': new Date('2017-03-05T00:00:00'),
       },
   ];
 
@@ -405,6 +447,28 @@ $(document).ready(function() {
 
     // The JSON was returned and the data is of the form we expect
     } else {
+
+      var dates = [];
+      for (var i = 0; i < data_gfx.length; i++) {
+        dates.push(data_gfx[i].date);
+      }
+
+      // Descending sort
+      dates.sort(function(a, b) {
+        if (b < a) return -1;
+        if (b > a) return 1;
+        return 0;
+      });
+
+      // Populate #date-select-box with the dates available in the dataset
+      d3Select('#date-select-box')
+        .selectAll('option')
+        .data(dates)
+        .enter()
+          .append('option')
+          .attr('value', function(date) { return date; })
+          .text(function(date) { return global.formatter(new Date(date + 'T00:00:00')); });
+
       data_gfx.map(function(d) {
         //consolidate Mac releases
         d['osName_Darwin'] = 0;
@@ -913,43 +977,65 @@ $(document).ready(function() {
       }
   }
 
-  d3Select('.hero-left')
-    .on('click', function() {
-      d3Event.preventDefault();
+  function shakeButton(buttonElm) {
+    $(buttonElm)
+      .effect('shake', {
+        distance: 3,
+        times: 2
+      }, 500);
+  }
 
-      global.heroIndex += 1;
-      if (global.heroIndex >= global.data.length) {
-        global.heroIndex = global.data.length - 1;
-        $('.hero-left')
-          .effect('shake', {
-            distance: 3,
-            times: 2
-          }, 500);
-      } else if (global.heroIndex >= global.data.length) {
-        global.heroIndex = global.data.length - 1;
-      }
+  function navigateHero(direction, associatedButton) {
+    var currentHeroIndex = global.heroIndex;
+    var nextHeroIndex;
 
-      drawHeroCharts(global.data[global.heroIndex]);
-    });
+    switch(direction) {
+      case 'first':
+        nextHeroIndex = global.data.length - 1;
+        break;
+      case 'backward':
+        var currentPlusOne = currentHeroIndex + 1;
+        nextHeroIndex = currentPlusOne < global.data.length ? currentPlusOne : global.data.length - 1;
+        break;
+      case 'forward':
+        var currentMinusOne = currentHeroIndex - 1;
+        nextHeroIndex = currentMinusOne >= 0 ? currentMinusOne : 0;
+        break;
+      case 'last':
+        nextHeroIndex = 0;
+        break;
+      default:
+        nextHeroIndex = currentHeroIndex;
+        break;
+    }
 
-  d3Select('.hero-right')
-    .on('click', function() {
-      d3Event.preventDefault();
+    if (nextHeroIndex === currentHeroIndex) {
+      shakeButton(associatedButton);
+    }
 
-      global.heroIndex -= 1;
-      if (global.heroIndex < 0) {
-        global.heroIndex = 0;
-        $('.hero-right')
-          .effect('shake', {
-            distance: 3,
-            times: 2
-          }, 500);
-      } else if (global.heroIndex >= global.data.length) {
-        global.heroIndex = global.data.length - 1;
-      }
+    global.heroIndex = nextHeroIndex;
+    drawHeroCharts(global.data[global.heroIndex]);
+  }
 
-      drawHeroCharts(global.data[global.heroIndex]);
-    });
+  document.getElementById('hero-first').addEventListener('click', function(e) {
+    e.preventDefault();
+    navigateHero('first', this);
+  });
+
+  document.getElementById('hero-backward').addEventListener('click', function(e) {
+    e.preventDefault();
+    navigateHero('backward', this);
+  });
+
+  document.getElementById('hero-forward').addEventListener('click', function(e) {
+    e.preventDefault();
+    navigateHero('forward', this);
+  });
+
+  document.getElementById('hero-last').addEventListener('click', function(e) {
+    e.preventDefault();
+    navigateHero('last', this);
+  });
 
   window.onresize = function(event) {
     d3SelectAll('.hero svg')

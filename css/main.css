@@ -367,38 +367,27 @@ h3 {
   margin: 0 auto 20px;
 }
 
-.date-hero {
+#date-options {
+  display: flex;
+  justify-content: space-between;
+  width: 40%;
   font-size: 120%;
   margin: 20px auto;
 }
 
-.date-hero div {
-  margin-left: -40px;
-}
-
-.hero-left {
-  top: 0;
-  padding: 0 10px;
-  position: absolute;
-}
-
-.hero-right {
-  top: 0;
-  padding: 0 10px;
-  position: absolute;
-}
-
-.formatted-date {
-  opacity: .6;
-  margin: auto 20px auto 50px;
-}
-
-.date-hero a {
+#date-options a {
   text-decoration: none;
 }
 
-.date-hero a:hover {
+#date-options a:hover {
   color: #bde1ff;
+}
+
+#date-select-box {
+  color: #000;
+  font-size: 1rem;
+  min-width: 50px;
+  text-align: center;
 }
 
 .detail-prose {
