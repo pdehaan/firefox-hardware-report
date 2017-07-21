@@ -6,6 +6,7 @@ import 'jquery-ui/ui/effect';
 import 'jquery-ui/ui/effects/effect-shake';
 
 // d3
+import 'd3-transition';
 import { curveCatmullRom as d3CurveCatmullRom } from 'd3-shape';
 import { event as d3Event, select as d3Select, selectAll as d3SelectAll } from 'd3-selection'
 import { json as d3Json } from 'd3-request';
