@@ -1,4 +1,6 @@
 # Firefox Hardware Report
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/mozilla/firefox-hardware-report.svg)](https://greenkeeper.io/)
 The [Firefox Hardware Report](https://hardware.metrics.mozilla.com) is a public monthly report of the hardware used by a representative sample of the population from Firefox's release channel on desktop. This information can be used by developers to improve the Firefox experience for users. This repo contains the code for the Firefox Hardware Survey.
 
 # How is the report created?
