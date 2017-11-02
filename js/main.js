@@ -415,7 +415,7 @@ $(document).ready(function() {
       });
   }
 
-  var markers = [
+  var globalMarkers = [
       {
           'label': 'XP and Vista users move to ESR, thus leaving dataset',
           'date': new Date('2017-03-05T00:00:00'),
@@ -573,7 +573,7 @@ $(document).ready(function() {
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       full_width: true,
-      markers: markers,
+      markers: globalMarkers,
     });
 
     var cores = topX('cpuCores_', global.data[0]);
@@ -606,7 +606,7 @@ $(document).ready(function() {
       mouseover: mouseover(target),
       mouseout: mouseout(target),
       full_width: true,
-      markers: markers,
+      markers: globalMarkers,
     });
 
     target = '#detail-pc-video-card'
@@ -628,7 +628,7 @@ $(document).ready(function() {
       x_accesor: 'date',
       y_accessor: ['gpuVendor_Intel', 'gpuVendor_NVIDIA', 'gpuVendor_AMD'],
       legend: ['Intel', 'NVIDIA', 'AMD'],
-      markers: markers,
+      markers: globalMarkers,
     });
 
     target = '#detail-operating-systems';
@@ -661,7 +661,7 @@ $(document).ready(function() {
       x_accesor: 'date',
       y_accessor: os_keys,
       legend: os_labels,
-      markers: markers,
+      markers: globalMarkers,
     });
 
     target = '#detail-processor';
@@ -683,7 +683,7 @@ $(document).ready(function() {
       x_accesor: 'date',
       y_accessor: ['cpuVendor_GenuineIntel', 'cpuVendor_AuthenticAMD'],
       legend: ['Intel', 'AMD'],
-      markers: markers,
+      markers: globalMarkers,
     });
 
     target = '#detail-display-resolution';
@@ -712,7 +712,7 @@ $(document).ready(function() {
       x_accesor: 'date',
       y_accessor: display_resolutions_keys,
       legend: display_resolutions_labels,
-      markers: markers,
+      markers: globalMarkers,
     });
 
     target = '#detail-ram';
@@ -743,7 +743,7 @@ $(document).ready(function() {
       x_accesor: 'date',
       y_accessor: ram_keys,
       legend: ram_labels,
-      markers: markers,
+      markers: globalMarkers,
     });
 
     // gives us the top gpu models
@@ -768,7 +768,14 @@ $(document).ready(function() {
       legend: ['32-bit', '64-bit'],
       max_y: 1,
       full_width: true,
-      markers: markers,
+
+      // Don't show the globalMarkers here. At the time of this writing, they
+      // don't add much to this chart and they take up space that we need for
+      // this marker.
+      markers: [{
+          'label': '64-bit Firefox updates fully unthrottled on Win7+ for 2GB+ users',
+          'date': new Date('2017-10-23T00:00:00'),
+      }],
     });
 
     target = '#detail-browser-share-os-32-64';
@@ -789,7 +796,7 @@ $(document).ready(function() {
       legend: ['32-bit', '64-bit'],
       max_y: 1,
       full_width: true,
-      markers: markers,
+      markers: globalMarkers,
     });
 
     MG.data_graphic({
@@ -808,7 +815,7 @@ $(document).ready(function() {
       max_y: 1,
       area: true,
       full_width: true,
-      markers: markers,
+      markers: globalMarkers,
     });
   }
 
@@ -861,7 +868,7 @@ $(document).ready(function() {
       mouseout: mouseout(target),
       y_accessor: gpu_models_keys,
       legend: gpu_models_labels,
-      markers: markers,
+      markers: globalMarkers,
     };
 
     MG.data_graphic(args);
