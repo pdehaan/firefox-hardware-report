@@ -1,13 +1,12 @@
 # Run the Firefox Hardware Report locally
 
-## Install dependencies
+## Install
 
-1. Install [yarn](https://yarnpkg.com/) globally
-2. Run `yarn`
+`npm install`
 
 ## Run
 
-`yarn start-local`
+`npm run start-local`
 
 # Servers
 
