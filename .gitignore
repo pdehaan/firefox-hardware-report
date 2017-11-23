@@ -12,6 +12,5 @@ data/hwsurvey-FF43-Resolution.csv
 data/hwsurvey-FF43-GFXStrings.csv
 *.json
 
-# The presence of package-lock.json causes builds to occasionally fail. See this
-# issue: https://github.com/npm/npm/issues/16839
-!package.json
+# We use yarn.lock, not package-lock.json
+/package-lock.json
