@@ -773,7 +773,7 @@ $(document).ready(function() {
       // don't add much to this chart and they take up space that we need for
       // this marker.
       markers: [{
-          'label': '64-bit Firefox updates fully unthrottled on Win7+ for 2GB+ users',
+          'label': '64-bit updates unthrottled on Win7+ for 2GB+ users',
           'date': new Date('2017-10-23T00:00:00'),
       }],
     });
