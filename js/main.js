@@ -890,7 +890,7 @@ $(document).ready(function() {
         }
 
         //original line ID
-        var line_id = d3Select(this).node().classList[0].match(r);
+        var line_id = d3Select(this).node().classList[1].match(r);
 
         //remove any old vendor ids
         d3Select(this)
