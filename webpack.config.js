@@ -12,6 +12,7 @@ module.exports = {
   ],
   output: {
     path: path.join(__dirname, 'build', 'js'),
+    publicPath: path.resolve(__dirname, '/build/js/'),
     filename: 'bundle.js',
     sourceMapFilename: 'bundle.map.js'
   },
