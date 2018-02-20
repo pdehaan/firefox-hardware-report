@@ -3,7 +3,7 @@
   "scripts": {
     "postinstall": "webpack",
     "start": "node server",
-    "local": "webpack-dev-server --progress --hot",
+    "local": "webpack-dev-server --progress --hot --port 3000",
     "test": "echo No tests to run."
   },
   "dependencies": {
