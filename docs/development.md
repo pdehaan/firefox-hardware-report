@@ -6,7 +6,7 @@
 
 ## Run
 
-`npm run start-local`
+`npm run local`
 
 # Servers
 
