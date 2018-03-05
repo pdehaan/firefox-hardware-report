@@ -21,7 +21,7 @@
     "metrics-graphics": "2.13.0",
     "morgan": "1.9.0",
     "node-sass": "4.7.2",
-    "resolve-url-loader": "2.2.1",
+    "resolve-url-loader": "2.3.0",
     "sass-loader": "6.0.7",
     "style-loader": "0.20.2",
     "url-loader": "1.0.1",
