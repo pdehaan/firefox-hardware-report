@@ -63,6 +63,7 @@ $(document).ready(function() {
       'osName_Darwin-14.5.0': 'macOS Yosemite',
       'osName_Darwin-15.6.0': 'macOS El Capitan',
       'osName_Darwin-16.5.0': 'macOS Sierra',
+      'osName_Darwin-17.4.0': 'macOS High Sierra',
       'osName_Other': 'Other',
     },
 
@@ -472,6 +473,8 @@ $(document).ready(function() {
       data_gfx.map(function(d) {
         //consolidate Mac releases
         d['osName_Darwin'] = 0;
+        d['osName_Darwin'] += d['osName_Darwin-17.4.0'] || 0;
+        d['osName_Darwin'] += d['osName_Darwin-16.5.0'] || 0;
         d['osName_Darwin'] += d['osName_Darwin-15.6.0'] || 0;
         d['osName_Darwin'] += d['osName_Darwin-14.5.0'] || 0;
         d['osName_Darwin'] += d['osName_Darwin-Other'] || 0;
