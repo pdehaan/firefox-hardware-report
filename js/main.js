@@ -56,6 +56,7 @@ $(document).ready(function() {
       'osName_Windows_NT-10.0': 'Windows 10',
       'osName_Windows_NT-5.1': 'Windows XP',
       'osName_Windows_NT-6.3': 'Windows 8.1',
+      'osName_Windows_NT-Other': 'Windows Other',
       'osName_Darwin-Other': 'macOS Other',
       'osName_Windows_NT-6.0': 'Windows Vista',
       'osName_Linux-Other': 'Linux',
